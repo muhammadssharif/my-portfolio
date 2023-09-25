@@ -1,0 +1,161 @@
+/* components/Intro.module.css */
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text');
+@import url('https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff');
+@import url('https://fonts.googleapis.com/css?family=Italianno');
+
+.introContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.backgroundImg {
+  width: 100%;
+  height: auto;
+}
+
+.overlayImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.overlayImg {
+  width: 35%; /* Keep this size */
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 30%;
+  z-index: 1;
+
+}
+.nameContainer {
+  position: absolute;
+  top: 60%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the element perfectly */
+  z-index: 1;
+  
+}
+
+.name {
+  margin: 0; /* Remove any default margin for h1 elements */
+  font-size: 170px;
+  text-align: center;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 185px;
+  font-weight: bold;
+  z-index: 1;
+  display: flex; /* Use flex to ensure no gap between lines */
+  flex-direction: column; /* Display lines vertically */
+  align-items: center; /* Center text horizontally */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.titlesContainer {
+  position: absolute;
+  top: 20%; /* Position at the top */
+  left: 4%; /* Position at the left */
+  transform: translate(0, 0); /* Remove centering transform */
+  z-index: 0;
+}
+
+.titleSD {
+  margin: 0; /* Remove any default margin for h1 elements */
+  text-align:center;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 80px;
+  font-weight: bold;
+  z-index: 1;
+  display: flex; /* Use flex to ensure no gap between lines */
+  flex-direction: column; /* Display lines vertically */
+  white-space: nowrap; /* Prevent text from wrapping */
+  font-family: "Libre Barcode 39 Text";
+}
+
+.cardLang {
+  position: absolute;
+  right: 69%;
+  top: 2%;
+  background-color: transparent;
+  /* Set a transparent background color */
+  backdrop-filter: blur(5px);
+  /* Add a blur effect for better merging with the background */
+  border: none;
+  color: white;
+
+}
+
+.cardStuff {
+
+  position: absolute;
+  right: 1%;
+  top: 2%;
+
+}
+
+/* components/Intro.module.css */
+.githubLink {
+  position: absolute;
+  bottom: 0%;
+  right: 80%;
+  /* Set a transparent background color */
+  /* Add a blur effect for better merging with the background */
+  border: none;
+  color: purple;
+  z-index: 1;
+  font-size: 150px;
+}
+
+.linkedinLink {
+  position: absolute;
+  bottom: 0%;
+  right: 72%;
+  /* Set a transparent background color */
+  /* Add a blur effect for better merging with the background */
+  border: none;
+  z-index: 1;
+  font-size: 150px;
+}
+
+.skillsLink {
+  position: absolute;
+  bottom: 37%;
+  right: 5%;
+  /* Set a transparent background color */
+  /* Add a blur effect for better merging with the background */
+  border: none;
+  z-index: 1;
+}
+
+/* Media query for screens smaller than 768px (typical smartphone width) */
+@media (max-width: 768px) {
+  
+}
+
+
+
+
+
+
+

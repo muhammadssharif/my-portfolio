@@ -1,0 +1,103 @@
+/* TechLogos.module.css */
+/* Add your custom styles for the logos here */
+
+
+.clogo {
+    /* Add any specific styles for the 'clogo' here */
+    position: absolute;
+    height: auto;
+    top: 8%;
+    right: 27%;
+    z-index: 0;
+  }
+  
+  .jslogo {
+    /* Add any specific styles for the 'jslogo' here */
+    position: absolute;
+    height: auto;
+    top: 8%;
+    right: 19%;
+    z-index: 0;
+  }
+  
+  .pylogo {
+    /* Add any specific styles for the 'pylogo' here */
+    position: absolute;
+    height: auto;
+    top: 8%;
+    right: 12%;
+    z-index: 0;
+  }
+  
+  .reactjslogo {
+    /* Add any specific styles for the 'reactjslogo' here */
+    position: absolute;
+    height: auto;
+    top: 8%;
+    right: 6%;
+    z-index: 0;
+  }
+  
+  .nextjslogo {
+    /* Add any specific styles for the 'nextjslogo' here */
+    position: absolute;
+    height: auto;
+    top: 21%;
+    right: 24%;
+    z-index: 0;
+  }
+  
+  .nodejslogo {
+    /* Add any specific styles for the 'nodejslogo' here */
+    position: absolute;
+    height: auto;
+    top: 21%;
+    right: 17%;
+    z-index: 0;
+  }
+  
+  .expressjslogo {
+    /* Add any specific styles for the 'expressjslogo' here */
+    position: absolute;
+    height: auto;
+    top: 21%;
+    right: 10%;
+    z-index: 0;
+  }
+  
+  .pslogo {
+    /* Add any specific styles for the 'pslogo' here */
+    height: auto;
+    position: absolute;
+    top: 21%;
+    right: 3%;
+    z-index: 0;
+  }
+  
+  .mongodblogo {
+    /* Add any specific styles for the 'mongodblogo' here */
+    position: absolute;
+    height: auto;
+    top: 35%;
+    right: 15%;
+    z-index: 0;
+  }
+  
+  .firebaselogo {
+    /* Add any specific styles for the 'firebaselogo' here */
+    position: absolute;
+    height: auto;
+    top: 35%;
+    right: 8%;
+    z-index: 0;
+  }
+  
+  .jiralogo {
+    /* Add any specific styles for the 'jiralogo' here */
+    position: absolute;
+    height: auto;
+    top: 35%;
+    right: 1%;
+    z-index: 0;
+  }
+  
