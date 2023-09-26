@@ -7,6 +7,7 @@ import MainNav from './MainNav';
 import TechLogos from './TechLogos';
 import Link from 'next/link';
 import Footer from './Footer';
+import PrgLanguages from './PrgLanguages';
 
 
 export default function Intro() {
@@ -36,7 +37,7 @@ export default function Intro() {
                 </div>
                 <Link className={styles.githubLink} href="https://github.com/moeSeneca" target="_blank" rel="noopener noreferrer"><FaGithub className={styles.githubIcon} /></Link>
                 <Link className={styles.linkedinLink} href="https://www.linkedin.com/in/muhammad-sharif-bb6774286/" target="_blank" rel="noopener noreferrer"><FaLinkedin className={styles.icon} /></Link>
-                <Link className={styles.skillsLink} href="/resume/skills" rel="noopener noreferrer"><Button variant="outline-primary" style={{ fontSize: '50px', padding: '16px 32px' }}>Resumé</Button></Link>
+                <Link className={styles.skillsLink} href="/resume/skills" rel="noopener noreferrer"><Button variant="dark" style={{ fontSize: '50px', padding: '16px 32px' }}>Resumé</Button></Link>
             </div>
             <Footer />
         </>
