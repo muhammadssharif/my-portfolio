@@ -6,6 +6,7 @@
   width: 100%; /* Full width */
   background-color: black !important; /* Transparent background with !important */
   z-index: 1;
+  height: 75px;
 }
 
   .navbar-brand {

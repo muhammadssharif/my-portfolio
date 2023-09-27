@@ -1,0 +1,65 @@
+/* PrgLanguages.module.css */
+
+.pLangDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    transition: all 0.5s ease;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.pLangText {
+    padding-bottom: 20px;
+    text-align: center;
+    transition: all 0.5s ease;
+}
+
+.pLangClosed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    border: 2px solid white;
+    /* Add a border to .pLangClosed */
+}
+
+.pLangOpen {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    font-size: 50px;
+    border: 2px solid white;
+    /* Add a border to .pLangClosed */
+
+}
+
+.language {
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-image: url("/images/skillsbgs/divbg2.jpg");
+    background-size: cover;
+    color: white;
+    border: 2px solid white;
+    /* Add a border to .language */
+}
+
+.language img {
+    margin-right: 10px;
+}
+
+.language h2 {
+    margin-right: 10px;
+}
+
+.language p {
+    margin: 0;
+}
+
+.container {}
