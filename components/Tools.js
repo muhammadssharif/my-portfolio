@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styles from '../styles/Databases.module.css';
+import styles from '../styles/Tools.module.css';
 import Image from 'next/image';
 
-function Databases() {
+function Tools() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleContent = () => {
@@ -72,4 +72,4 @@ function Databases() {
   );
 }
 
-export default Databases;
+export default Tools;

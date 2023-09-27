@@ -10,12 +10,15 @@
   color: white;
   transition: all 0.5s ease;
   font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-shadow: 2px 2px black;
 }
 
 .pLangText {
   padding-bottom: 20px;
   text-align: center;
   transition: all 0.5s ease;
+  text-shadow: 5px 5px black;
 }
 
 .pLangClosed {
@@ -23,7 +26,8 @@
   justify-content: center;
   align-items: center;
   font-size: 120px;
-  border: 2px solid white; /* Add a border to .pLangClosed */
+  border: 2px solid white;
+  /* Add a border to .pLangClosed */
 }
 
 .pLangOpen {
@@ -32,7 +36,8 @@
   align-items: flex-start;
   height: 100%;
   font-size: 50px;
-  border: 2px solid white; /* Add a border to .pLangClosed */
+  border: 2px solid white;
+  /* Add a border to .pLangClosed */
 
 }
 
@@ -41,10 +46,12 @@
   align-items: center;
   padding-top: 5px;
   padding-bottom: 5px;
-  background-image: url("/images/skillsbgs/divbg2.jpg");
+  background-image: url("/images/skillsbgs/divbg5.jpg");
   background-size: cover;
   color: white;
-  border: 2px solid white; /* Add a border to .language */
+  border: 2px solid white;
+  text-shadow: 5px 5px black;
+  /* Add a border to .language */
 }
 
 .language img {
@@ -53,12 +60,13 @@
 
 .language h2 {
   margin-right: 10px;
+  text-shadow: 5px 5px black;
 }
 
 .language p {
   margin: 0;
+  text-shadow: 5px 5px black;
 }
 
 .container {
-  padding-top: 75px;
 }

@@ -26,6 +26,20 @@ function PrgLanguages() {
         <div className={styles.languageContainer}>
           <div className={styles.language}>
             <Image
+              src={`/images/logos/jslogo.png`} // Generate the image URL dynamically
+              width={150} // Set the width of the image as needed
+              height={150} // Set the height of the image as needed
+              alt="JavaScript Logo"
+            />
+            <div className={styles.languageInfo}>
+              <h2>JavaScript</h2>
+              <p>
+                JavaScript is a dynamic scripting language primarily used for web development. It allows developers to create interactive and responsive web applications.<br/> JavaScript is essential for client-side scripting and can be used with popular web frameworks like React.js and Angular to build modern web interfaces.
+              </p>
+            </div>
+          </div>
+          <div className={styles.language}>
+            <Image
               src={`/images/logos/pylogo.png`} // Generate the image URL dynamically
               width={150} // Set the width of the image as needed
               height={150} // Set the height of the image as needed
@@ -49,20 +63,6 @@ function PrgLanguages() {
               <h2>C++</h2>
               <p>
                 C++ is a powerful and widely-used programming language that combines both high-level and low-level features. It is commonly used for system-level programming, game development, and performance-critical applications.<br/> C++ offers strong support for object-oriented programming and is known for its speed and efficiency.
-              </p>
-            </div>
-          </div>
-          <div className={styles.language}>
-            <Image
-              src={`/images/logos/jslogo.png`} // Generate the image URL dynamically
-              width={150} // Set the width of the image as needed
-              height={150} // Set the height of the image as needed
-              alt="JavaScript Logo"
-            />
-            <div className={styles.languageInfo}>
-              <h2>JavaScript</h2>
-              <p>
-                JavaScript is a dynamic scripting language primarily used for web development. It allows developers to create interactive and responsive web applications.<br/> JavaScript is essential for client-side scripting and can be used with popular web frameworks like React.js and Angular to build modern web interfaces.
               </p>
             </div>
           </div>
