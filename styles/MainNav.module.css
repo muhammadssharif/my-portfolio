@@ -1,32 +1,83 @@
 /* components/Navbar.module.css */
 
 .navbar {
-  position: fixed; /* Fixed position */
-  top: 0; /* Stick it to the top of the page */
-  width: 100%; /* Full width */
-  background-color: black !important; /* Transparent background with !important */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: black;
   z-index: 1;
   height: 75px;
 }
 
-  .navbar-brand {
-    font-size: 35px; /* Adjust the font size */
-    margin-left: 20px;
-    color: white;
+.navbar-brand {
+  font-size: 35px;
+  margin-left: 20px;
+  color: white;
+}
+
+.nav-link {
+  color: white;
+  font-size: 20px;
+  margin-right: 20px;
+  z-index: 1000;
+  position: relative;
+}
+
+.bigLink {
+  font-size: 20px;
+  color: blue;
+}
+
+/* Media Query for Smaller Screens (e.g., smartphones) */
+@media (max-width: 768px) {
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: black;
+    z-index: 1;
+    justify-content: center;
   }
   
+
+  .navbar-brand {
+    font-size: 24px;
+  }
+
   .nav-link {
-    color: white; /* Text color for navigation links */
-    font-size:20px; /* Adjust the font size */
-    margin-right: 20px; /* Spacing between links */
-    z-index: 1000; /* Ensure it's above other content */
-    position: relative;
-    
+    font-size: 18px;
+    padding-left: 45%;
   }
 
   .bigLink {
     font-size: 35px;
+    color: white;
+    padding-left: 45%;
+  }
+
+  /* Add styles for the collapsed (mobile) menu background */
+  .navbar-collapse {
+    background-color: black; /* Background color for the collapsed menu */
+    position: absolute;
+    top: 75px; /* Adjust to match your navbar height */
+    right: 0;
+    left: 0;
+    z-index: 1001; /* Ensure it's above other content */
+    padding: 10px; /* Add some padding for spacing */
+  }
+
+  .navbar-toggler-icon {
+    color: black !important; /* Change the color of the collapsed button to white */
+    background-color: white;
+  }
+
+  .navbar-nav {
+    flex-direction: column; /* Display links vertically */
+    align-items: flex-start; /* Align links to the left */
+    width: 100%; /* Full width of the collapsed menu */
+    background-color: black;
   }
 
 
-  
+}

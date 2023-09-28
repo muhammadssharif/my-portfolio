@@ -17,7 +17,6 @@
 .pLangText {
   padding-bottom: 20px;
   text-align: center;
-  transition: all 0.5s ease;
   text-shadow: 5px 5px black;
 }
 
@@ -28,6 +27,8 @@
   font-size: 120px;
   border: 2px solid white;
   /* Add a border to .pLangClosed */
+  transition: all 0.5s ease;
+  /* Add transition here */
 }
 
 .pLangOpen {
@@ -38,7 +39,8 @@
   font-size: 50px;
   border: 2px solid white;
   /* Add a border to .pLangClosed */
-
+  transition: all 0.5s ease;
+  /* Add transition here */
 }
 
 .language {
@@ -52,6 +54,8 @@
   border: 2px solid white;
   text-shadow: 5px 5px black;
   /* Add a border to .language */
+  transition: all 0.5s ease;
+  /* Add transition here */
 }
 
 .language img {
@@ -68,5 +72,99 @@
   text-shadow: 5px 5px black;
 }
 
-.container {
+@media (max-width: 480px) {
+
+  .languageContainer{
+    flex-direction: column; /* Stack languages vertically */
+  }
+
+
+  .pLangDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    transition: all 0.5s ease;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-shadow: 2px 2px black;
+    align-items: center; /* Center align items horizontally */
+    text-align: center; /* Center align text */
+  }
+
+  .pLangText {
+    padding-bottom: 20px;
+    text-align: center;
+    text-shadow: 5px 5px black;
+  }
+
+  .pLangClosed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    border: 2px solid white;
+    /* Add a border to .pLangClosed */
+    transition: all 0.5s ease;
+    /* Add transition here */
+  }
+
+  .pLangOpen {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    font-size: 25px;
+    border: 2px solid white;
+    /* Add a border to .pLangClosed */
+    transition: all 0.5s ease;
+    /* Add transition here */
+    padding-top: 15px;
+  }
+
+  .language {
+    display: flex;
+    background-size: cover;
+    color: white;
+    border: 2px solid white;
+    text-shadow: 5px 5px black;
+    /* Add a border to .language */
+    transition: all 0.5s ease;
+    /* Add transition here */
+    flex-direction: column; /* Stack title and info vertically */
+    align-items: center; /* Center align items horizontally */
+    text-align: center; /* Center align text */
+  }
+
+  .languageContent {
+    display: flex;
+    flex-direction: column;
+    /* Stack title and info vertically */
+  }
+
+  .language img {
+    margin-right: 10px;
+  }
+
+  .language h2 {
+    margin-right: 0;
+    text-shadow: 5px 5px black;
+  }
+
+  .language p {
+    margin: 0;
+    text-shadow: 5px 5px black;
+  }
+
+  .languageTitle {
+
+    font-weight: bold;
+    padding-top: 5px;
+    text-decoration: underline;
+
+  }
+
 }

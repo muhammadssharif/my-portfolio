@@ -1,0 +1,31 @@
+/* AboutMe.module.css */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: left; /* Align text to the left */
+    background-image: url('../public/images/ambg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    font-size: 1000%;
+  }
+  
+  .content {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    max-width: 45%; /* Adjust the width as needed */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* You can add more styles as needed */
+  

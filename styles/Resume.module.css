@@ -1,0 +1,121 @@
+/* Resume.module.css */
+
+.resumeFormal {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    padding-top: 75px;
+}
+
+.headerDiv p {
+    margin: 4px 0;
+    text-align: center;
+
+}
+
+.projects,
+.skills,
+.experience,
+.certifications,
+.education {
+    margin-top: 30px;
+}
+
+.project,
+.certificationEntry,
+.educationEntry,
+.experienceEntry {
+    margin-bottom: 20px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.project h2,
+.certificationEntry h2,
+.educationEntry h2,
+.experienceEntry h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+  
+}
+
+.project ul,
+.skills ul {
+    list-style-type: disc;
+    padding-left: 15%;
+}
+
+.skills li{
+
+    font-size: 20px;
+
+}
+.project li,
+.certificationEntry li,
+.experienceEntry li,
+.educationEntry li {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+/* Center h1 and h2 */
+.resumeFormal h1,
+.resumeFormal h2,
+.resumeSpecial h1,
+.resumeSpecial h2 {
+    text-align: center;
+    font-weight: bold; /* Make h2 elements bold */
+    text-decoration: underline; /* Underline h2 elements */
+    width: 100%;
+
+}
+
+/* Resume.module.css */
+
+.resumeContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 45px;
+    padding-top: 80px;
+  }
+  
+  .resumeFormal,
+  .resumeSpecial {
+    max-width: 100%; /* Adjust the maximum width for each resume */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Rest of your existing CSS styles */
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .resumeFormal {
+      order: 1; /* Display first on smaller screens */
+    }
+  
+    .resumeSpecial {
+      order: 2; /* Display second on smaller screens */
+    }
+
+    .resumeContainer {
+        display: flex;
+        flex-direction: column; /* Stack sections on smaller screens */
+        align-items: center; 
+        width: 100%;
+
+      }
+      
+      .resumeFormal,
+      .resumeSpecial {
+        font-family: Arial, sans-serif;
+        width: 100%;
+
+      }
+      
+  }
+  

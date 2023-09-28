@@ -1,20 +1,18 @@
 // components/Navbar.js
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { FaGithub, FaLinkedin } from 'react-icons/fa'; // 
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Link from 'next/link';
-import styles from '../styles/MainNav.module.css'; // Import the custom CSS module
+import styles from '../styles/MainNav.module.css';
 
 function MainNav() {
   return (
-    <Navbar className={styles.navbar}>
+    <Navbar className={styles.navbar} expand="lg">
       <Navbar.Brand href="#home" className={styles['navbar-brand']}>
         My Portfolio
       </Navbar.Brand>
-      <Link className={styles.bigLink} href="https://github.com/muhammadssharif" target="_blank" rel="noopener noreferrer"><FaGithub className={styles.githubIcon} /></Link>&nbsp;&nbsp;
-      <Link className={styles.bigLink} href="https://www.linkedin.com/in/muhammad-sharif-bb6774286/" target="_blank" rel="noopener noreferrer"><FaLinkedin className={styles.icon} /></Link>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" className={styles['navbar-toggler-icon']} />
+      <Navbar.Collapse id="basic-navbar-nav">
         <Nav className={`ml-auto ${styles['navbar-nav']}`}>
           <Nav.Link href="/" className={styles['nav-link']}>
             Intro
@@ -24,6 +22,12 @@ function MainNav() {
           </Nav.Link>
           <Nav.Link href="#other" className={styles['nav-link']}>
             Other
+          </Nav.Link>
+          <Nav.Link href="https://github.com/muhammadssharif" target="_blank" rel="noopener noreferrer" className={styles['bigLink']}>
+            <FaGithub className={styles.githubIcon} />
+          </Nav.Link>
+          <Nav.Link href="https://www.linkedin.com/in/muhammad-sharif-bb6774286/" target="_blank" rel="noopener noreferrer" className={styles['bigLink']}>
+            <FaLinkedin className={styles.icon} />
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
