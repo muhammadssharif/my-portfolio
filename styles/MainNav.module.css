@@ -29,14 +29,14 @@
 }
 
 /* Media Query for Smaller Screens (e.g., smartphones) */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
   .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     background-color: black;
-    z-index: 1;
+    z-index: 2;
     justify-content: center;
   }
   
@@ -48,6 +48,8 @@
   .nav-link {
     font-size: 18px;
     padding-left: 45%;
+    text-align: center;
+    
   }
 
   .bigLink {
@@ -77,6 +79,7 @@
     align-items: flex-start; /* Align links to the left */
     width: 100%; /* Full width of the collapsed menu */
     background-color: black;
+    text-align: center;
   }
 
 

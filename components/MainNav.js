@@ -8,7 +8,7 @@ import styles from '../styles/MainNav.module.css';
 function MainNav() {
   return (
     <Navbar className={styles.navbar} expand="lg">
-      <Navbar.Brand href="#home" className={styles['navbar-brand']}>
+      <Navbar.Brand href="/" className={styles['navbar-brand']}>
         My Portfolio
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" className={styles['navbar-toggler-icon']} />
@@ -18,7 +18,7 @@ function MainNav() {
             Intro
           </Nav.Link>
           <Nav.Link href="/resume/skills" className={styles['nav-link']}>
-            Skills
+            Resumé
           </Nav.Link>
           <Nav.Link href="#other" className={styles['nav-link']}>
             Other

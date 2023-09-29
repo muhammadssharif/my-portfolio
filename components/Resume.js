@@ -10,6 +10,14 @@ import Databases from './Databases';
 import Tools from './Tools';
 import AboutMe from './AboutMe';
 function Resume() {
+
+  const handleScrollToPrgLanguages = () => {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+    });
+};
+
   return (
     <>
       <MainNav />
@@ -27,7 +35,7 @@ function Resume() {
             </header>
           </div>
           <section className={styles.skills}>
-            <h2>SKILLS</h2>
+            <h2 onClick={handleScrollToPrgLanguages}>SKILLS</h2>
             <ul>
               <li><b>Programming Languages:</b> JavaScript, Python, C++, TypeScript, C</li>
               <li><b>Cloud Services:</b> Google Firebase</li>

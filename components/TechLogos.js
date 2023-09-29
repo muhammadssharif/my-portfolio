@@ -3,6 +3,14 @@ import Image from 'next/image'; // Import the next/image component
 import styles from '../styles/TechLogos.module.css';
 
 export default function TechLogos() {
+
+  const handleScrollToPrgLanguages = () => {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+    });
+};
+
   // List of logos with corresponding class names
   const logos = [
     { name: 'clogo', alt: 'Logo 1' },
@@ -29,6 +37,7 @@ export default function TechLogos() {
           alt={logo.alt}
           width={150} // Set the width of the image as needed
           height={150} // Set the height of the image as needed
+          onClick={handleScrollToPrgLanguages}
         />
       ))}
     </>

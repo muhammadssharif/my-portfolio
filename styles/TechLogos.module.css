@@ -3,101 +3,223 @@
 
 
 .clogo {
-    /* Add any specific styles for the 'clogo' here */
-    position: absolute;
-    height: auto;
-    top: 8%;
-    right: 27%;
+  /* Add any specific styles for the 'clogo' here */
+  position: absolute;
+  height: auto;
+  top: 8%;
+  right: 27%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.jslogo {
+  /* Add any specific styles for the 'jslogo' here */
+  position: absolute;
+  height: auto;
+  top: 8%;
+  right: 19%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.pylogo {
+  /* Add any specific styles for the 'pylogo' here */
+  position: absolute;
+  height: auto;
+  top: 8%;
+  right: 12%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.reactjslogo {
+  /* Add any specific styles for the 'reactjslogo' here */
+  position: absolute;
+  height: auto;
+  top: 8%;
+  right: 6%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.nextjslogo {
+  /* Add any specific styles for the 'nextjslogo' here */
+  position: absolute;
+  height: auto;
+  top: 21%;
+  right: 24%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.nodejslogo {
+  /* Add any specific styles for the 'nodejslogo' here */
+  position: absolute;
+  height: auto;
+  top: 21%;
+  right: 17%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.expressjslogo {
+  /* Add any specific styles for the 'expressjslogo' here */
+  position: absolute;
+  height: auto;
+  top: 21%;
+  right: 10%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.pslogo {
+  /* Add any specific styles for the 'pslogo' here */
+  height: auto;
+  position: absolute;
+  top: 21%;
+  right: 3%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.mongodblogo {
+  /* Add any specific styles for the 'mongodblogo' here */
+  position: absolute;
+  height: auto;
+  top: 35%;
+  right: 15%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.firebaselogo {
+  /* Add any specific styles for the 'firebaselogo' here */
+  position: absolute;
+  height: auto;
+  top: 35%;
+  right: 8%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.jiralogo {
+  /* Add any specific styles for the 'jiralogo' here */
+  position: absolute;
+  height: auto;
+  top: 35%;
+  right: 1%;
+  z-index: 0;
+  cursor: pointer;
+}
+
+
+@media (max-width: 900px) {
+  /* TechLogos.module.css */
+  /* Add your custom styles for the logos here */
+
+  .clogo {
+    position: relative;
     z-index: 0;
+    height: 90px;
+    width: 90px;
+    top:500px;
+    right: 80px;
   }
-  
+
   .jslogo {
-    /* Add any specific styles for the 'jslogo' here */
-    position: absolute;
-    height: auto;
-    top: 8%;
-    right: 19%;
+    position: relative;
     z-index: 0;
+    height: 90px;
+    width: 90px;
+    top:500px;
+    right: -5px;
+    
   }
-  
+
   .pylogo {
-    /* Add any specific styles for the 'pylogo' here */
-    position: absolute;
-    height: auto;
-    top: 8%;
-    right: 12%;
+    position: relative;
     z-index: 0;
+    height: 90px;
+    width: 90px;
+    top: 410px; /* Adjust the distance from the top */
+    right: -10px;
   }
-  
-  .reactjslogo {
-    /* Add any specific styles for the 'reactjslogo' here */
-    position: absolute;
-    height: auto;
-    top: 8%;
-    right: 6%;
-    z-index: 0;
-  }
-  
+
   .nextjslogo {
-    /* Add any specific styles for the 'nextjslogo' here */
-    position: absolute;
-    height: auto;
-    top: 21%;
-    right: 24%;
+    position: relative;
     z-index: 0;
+    height: 90px;
+    width: 90px;
+    top: 320px; /* Adjust the distance from the top */
+    left: 190px;
   }
-  
+
+  .reactjslogo {
+    position: relative;
+    z-index: 0;
+    height: 80px;
+    width: 80px;
+    top: 500px; /* Adjust the distance from the top */
+    right: 150px;
+  }
+
   .nodejslogo {
-    /* Add any specific styles for the 'nodejslogo' here */
-    position: absolute;
-    height: auto;
-    top: 21%;
-    right: 17%;
+    position: relative;
     z-index: 0;
+    height: 80px;
+    width: 80px;
+    top: 410px; /* Adjust the distance from the top */
+    right: 70px;
   }
-  
+
   .expressjslogo {
-    /* Add any specific styles for the 'expressjslogo' here */
-    position: absolute;
-    height: auto;
-    top: 21%;
-    right: 10%;
+    position: relative;
     z-index: 0;
+    height: 80px;
+    width: 80px;
+    top: 324px; /* Adjust the distance from the top */
+    right: -110px;
   }
-  
+
   .pslogo {
-    /* Add any specific styles for the 'pslogo' here */
-    height: auto;
-    position: absolute;
-    top: 21%;
-    right: 3%;
+    position: relative;
     z-index: 0;
+    height: 80px;
+    width: 80px;
+    top: 324px; /* Adjust the distance from the top */
+    right: -110px;
   }
-  
+
   .mongodblogo {
-    /* Add any specific styles for the 'mongodblogo' here */
-    position: absolute;
-    height: auto;
-    top: 35%;
-    right: 15%;
+    position: relative;
     z-index: 0;
+    height: 80px;
+    width: 80px;
+    top: 320px; /* Adjust the distance from the top */
+    right: 10px;
   }
-  
+
   .firebaselogo {
-    /* Add any specific styles for the 'firebaselogo' here */
-    position: absolute;
-    height: auto;
-    top: 35%;
-    right: 8%;
+    position: relative;
     z-index: 0;
+    height: 80px;
+    width: 80px;
+    top: 320px; /* Adjust the distance from the top */
+    right: 10px;
   }
-  
+
   .jiralogo {
-    /* Add any specific styles for the 'jiralogo' here */
-    position: absolute;
-    height: auto;
-    top: 35%;
-    right: 1%;
+    position: relative;
     z-index: 0;
+    height: 80px;
+    width: 80px;
+    top: 244px; /* Adjust the distance from the top */
+    right: -150px;
   }
-  
+
+  /* Adjust the positioning for specific logos */
+
+}
+
+
+
