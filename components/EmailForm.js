@@ -59,7 +59,7 @@ const EmailForm = () => {
         <label>
           Message:
           <br />
-          <textarea value={message} className={styles.textareaField} onChange={(e) => setMessage(e.target.value)} placeholder='Please Put In Your Message' required />
+          <textarea value={message} className={styles.textareaField} onChange={(e) => setMessage(e.target.value)} placeholder='Please Put In Your Message Then Click &apos;Send Message&apos;' required />
         </label>
         <br />
         <br />
