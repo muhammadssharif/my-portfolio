@@ -75,7 +75,7 @@ function Resume() {
                 <li>Implemented advanced front-end and back-end functionality to enhance user experience and optimize business processes.</li>
                 <li>Created a visually appealing and user-friendly interface by using HTML, CSS, Bootstrap, and React.js.</li>
                 <li>Created an application that manages real-time data and user authentication using Firebase.</li>
-                <li>Conducted manual testing and debugging to ensure the website's performance and security.</li>
+                <li>Conducted manual testing and debugging to ensure the website&apos;s performance and security.</li>
                 <li>Managed the entire project, from initial concept to deployment, and worked with a team.</li>
               </ul>
             </div>

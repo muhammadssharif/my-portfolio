@@ -53,7 +53,7 @@ function PrgLanguages() {
               <h2 className={styles.languageTitle}>Python</h2>
               <div className={styles.languageInfo}>
                 <p>
-                  Python is a versatile and high-level programming language known for its simplicity and readability. It excels in a wide range of applications, from web development to data analysis and artificial intelligence. Python's extensive library ecosystem and clean syntax make it a popular choice for developers.
+                  Python is a versatile and high-level programming language known for its simplicity and readability. It excels in a wide range of applications, from web development to data analysis and artificial intelligence. Python&apos;s extensive library ecosystem and clean syntax make it a popular choice for developers.
                 </p>
               </div>
             </div>

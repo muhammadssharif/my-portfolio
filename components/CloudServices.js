@@ -38,7 +38,7 @@ function CloudServices() {
               <h2 className={styles.languageTitle}>Firebase</h2>
               <div className={styles.languageInfo}>
                 <p>
-                  Firebase is a comprehensive app development platform that includes a real-time database, authentication, cloud functions, and more. It is a popular choice for building web and mobile applications quickly and efficiently. <br />Firebase's Firestore is a cloud-based NoSQL database I have become proficient in and with.
+                  Firebase is a comprehensive app development platform that includes a real-time database, authentication, cloud functions, and more. It is a popular choice for building web and mobile applications quickly and efficiently. <br />Firebase&apos;s Firestore is a cloud-based NoSQL database I have become proficient in and with.
                 </p>
               </div>
             </div>
