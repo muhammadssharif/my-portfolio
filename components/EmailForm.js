@@ -70,6 +70,7 @@ const EmailForm = () => {
       <br />
       <h2 className={styles.contactFooting}>or <u>Call 647-548-5349</u></h2>
       <br />
+      <br />
     </div>
   );
 };

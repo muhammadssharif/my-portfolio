@@ -37,9 +37,9 @@
   
   .submitButton {
     position: absolute;
-    right: 1%;
-    top: 26%;
-    font-size: 300px;
+    right: 0%;
+    top: 40%;
+    font-size: 200px;
     font-family: 'Dancing Script';
 
   }
