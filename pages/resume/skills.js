@@ -8,17 +8,9 @@ import WebDev from '@/components/WebDev';
 import Tools from '@/components/Tools';
 import Resume from '@/components/Resume'
 
-export default function skills() {
+export default function Skills() {
   return (
-    <>{/*
-      <MainNav />
-      <PrgLanguages />
-      <WebDev/>
-      <Databases/>
-      <CloudServices/>
-      <Tools />
-      <Footer />
-    */}
+    <>
     <Resume />
     </>
   )

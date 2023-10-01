@@ -1,0 +1,84 @@
+/* EmailForm.module.css */
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
+
+.formWrapper {
+    justify-content: center;
+    height: 69vh;
+    background-color: black;
+    color: white;
+    padding-left: 50px; /* Add padding to the left */
+  }
+  
+  .inputField {
+    width: 200%;
+    height: 200%; 
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .textareaField {
+
+    width: 300%;
+    height: 100%; 
+    padding: 20px;
+    font-size: 16px;
+
+  }
+  
+  
+  .contactHeading,
+  .contactFooting {
+    font-weight: bold;
+    font-size: 100px;
+    font-family: 'Dancing Script';
+  }
+  
+  .submitButton {
+    position: absolute;
+    right: 1%;
+    top: 26%;
+    font-size: 300px;
+    font-family: 'Dancing Script';
+
+  }
+  
+
+  @media only screen and (max-width: 767px) {
+    /* Styles specific to smartphones */
+  
+    .formWrapper {
+      padding-left: 20px; /* Adjust padding for smaller screens */
+      height: auto;
+    }
+  
+    .inputField {
+      width: 340px; /* Set input width to 100% for smaller screens */
+    }
+  
+    .textareaField {
+      width: 340px; /* Set textarea width to 100% for smaller screens */
+    }
+  
+    .contactHeading {
+      font-size: 45px; /* Adjust font size for smaller screens */
+    }
+
+    .contactFooting {
+        font-size: 40px; /* Adjust font size for smaller screens */
+    }
+  
+    .submitButton {
+        font-size: 50px; /* Adjust font size for smaller screens */
+        width: 100%; /* Set a width for the button */
+        text-align: center; /* Center the text within the button */
+        position: relative;
+        left: 47%; /* Place the left edge of the button at the middle of the screen */
+        top: 1%;
+        transform: translateX(-50%); /* Shift the button back by half of its own width */
+    }
+    
+}
+
+  

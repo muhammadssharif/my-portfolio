@@ -1,0 +1,23 @@
+.hOne {
+
+    padding-top: 70px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 90px;
+
+}
+
+@media (max-width: 480px) {
+
+
+    .hOne {
+
+        padding-top: 70px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 50px;
+    
+    }
+
+
+}
