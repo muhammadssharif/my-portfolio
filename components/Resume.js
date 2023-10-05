@@ -26,7 +26,7 @@ function Resume() {
           <div className={styles.headerDiv}>
             <header>
               <h1>Muhammad Sheheryar Sharif</h1>
-              <p>msheheryarsharif@outlook.com</p>
+              <p>msheheryarsharif@gmail.com</p>
               <p>
                 <Link className={styles.githubLink} href="https://github.com/muhammadssharif" target="_blank" rel="noopener noreferrer">https://github.com/muhammadssharif</Link>
                 <br />
