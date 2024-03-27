@@ -31,12 +31,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* You can add more styles as needed */
+/* Media Query for Smaller Screens (e.g., smartphones) */
 @media (max-width: 480px) {
-
-
-  /* AboutMe.module.css */
-
   .container {
     display: flex;
     flex-direction: column;
@@ -77,6 +73,34 @@
   }
 
   /* You can add more styles as needed */
+}
 
+/* Media Query for Laptops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: left;
+    /* Align text to the left */
+    background-image: url('../public/images/ambg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+  }
 
+  .title {
+    font-size: 1000%;
+  font-weight: bold;
+  text-decoration: underline;
+    /* Reduce font size for smaller screens */
+  }
+
+  .content{
+    text-align: right;
+  }
+
+  
 }

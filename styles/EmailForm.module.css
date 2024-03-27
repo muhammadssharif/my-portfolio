@@ -4,7 +4,7 @@
 
 .formWrapper {
     justify-content: center;
-    height: 69vh;
+    height: auto;
     background-color: black;
     color: white;
     padding-left: 50px; /* Add padding to the left */
@@ -33,16 +33,85 @@
     font-weight: bold;
     font-size: 100px;
     font-family: 'Dancing Script';
+    padding: 1px;
   }
   
   .submitButton {
     position: absolute;
-    right: 1%;
-    top: 26%;
-    font-size: 300px;
+    right: 2%;
+    top: 40%;
+    font-size: 200px;
     font-family: 'Dancing Script';
 
   }
+
+  @media (max-height: 900px) and (max-width: 1440px) {
+    /* Styles specific to smartphones */
+  
+    .formWrapper {
+      padding-left: 20px; /* Adjust padding for smaller screens */
+      height: auto;
+    }
+  
+    .inputField {
+      width: 500px; /* Set input width to 100% for smaller screens */
+    }
+  
+    .textareaField {
+      width: 500px; /* Set textarea width to 100% for smaller screens */
+    }
+  
+    .contactHeading {
+      font-size: 45px; /* Adjust font size for smaller screens */
+    }
+
+    .contactFooting {
+        font-size: 40px; /* Adjust font size for smaller screens */
+    }
+  
+    .submitButton {
+      top: 40%;
+      font-size: 135px;
+      font-family: 'Dancing Script';
+  
+        
+    }
+    
+}
+
+@media (max-height: 950px) and (max-width: 1280px) {
+  /* Styles specific to smartphones */
+
+  .formWrapper {
+    padding-left: 20px; /* Adjust padding for smaller screens */
+    height: auto;
+  }
+
+  .inputField {
+    width: 500px; /* Set input width to 100% for smaller screens */
+  }
+
+  .textareaField {
+    width: 500px; /* Set textarea width to 100% for smaller screens */
+  }
+
+  .contactHeading {
+    font-size: 45px; /* Adjust font size for smaller screens */
+  }
+
+  .contactFooting {
+      font-size: 40px; /* Adjust font size for smaller screens */
+  }
+
+  .submitButton {
+    top: 40%;
+    font-size: 105px;
+    font-family: 'Dancing Script';
+
+      
+  }
+  
+}
   
 
   @media only screen and (max-width: 767px) {

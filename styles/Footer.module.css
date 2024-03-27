@@ -1,4 +1,5 @@
 /* Footer.module.css */
+
 .footer {
   background-color: black;
   color: #fff;
@@ -44,5 +45,16 @@
     font-size: 20px;
     margin: 0 15px;
   }
+}
 
+/* Media Query for Laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-links {
+    margin-top: 15px; /* Adjust as needed */
+  }
+
+  .footer-links a {
+    font-size: 22px; /* Adjust as needed */
+    margin: 0 12px; /* Adjust as needed */
+  }
 }

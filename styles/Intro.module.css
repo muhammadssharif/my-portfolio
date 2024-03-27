@@ -156,6 +156,213 @@
 
 }
 
+@media (max-width: 1280px) {
+
+  .introContainer {
+    height: 70vh; /* Adjust height for larger screens */
+  }
+
+  .nameContainer {
+    top: 60%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    font-size: 50px;
+    transform: translate(-50%, -50%); /* Center the element perfectly */
+  }
+
+  .overlayImage {
+    left: 0;
+    width: 100%;
+    height: 95%;
+    z-index: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .overlayImg {
+    top: 55%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    height: 90%;
+    
+    transform: translate(-50%, -50%); /* Center the element perfectly */
+    z-index: 0;
+    position: absolute; /* Position absolutely within .overlayImage */
+  }
+
+  
+
+  .name {
+    font-size: 250%; /* Adjust font size for larger screens */
+  }
+
+  .titlesContainer {
+    top: 20%; /* Center vertically */
+    left: 28%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the element perfectly */
+    z-index: 1;
+    
+  }
+
+  .titleSD {
+    font-size: 67px; /* Adjust font size for larger screens */
+    z-index: 1;
+
+  }
+
+  .githubLink,
+  .linkedinLink,
+  .skillsLink {
+    font-size: 100px; /* Adjust font size for larger screens */
+    height: 80px; /* Increase the height to cover the entire clickable area */
+    line-height: 80px; /* Vertically center text and icon */
+  }
+
+  .githubLink {
+    position: absolute;
+    bottom: 8%;
+    right: 81%;
+    /* Set a transparent background color */
+    /* Add a blur effect for better merging with the background */
+    border: none;
+    color: purple;
+    z-index: 0;
+    font-size: 100px;
+  }
+  
+  .linkedinLink {
+    position: absolute;
+    bottom: 8%;
+    right: 70%;
+    /* Set a transparent background color */
+    /* Add a blur effect for better merging with the background */
+    border: none;
+    z-index: 0;
+    font-size: 100px;
+  }
+  
+  .skillsLink {
+    position: absolute;
+    bottom: 55%;
+    left: 3%;
+    /* Set a transparent background color */
+    /* Add a blur effect for better merging with the background */
+    border: none;
+    z-index: 1;
+  }
+
+  /* Add any other styles you want to adjust for laptop-sized screens */
+
+  .Button {
+    font-size: 50px; /* Adjust button font size for larger screens */
+    padding: 16px 32px; /* Adjust button padding for larger screens */
+  }
+
+  
+}
+
+@media (max-height: 900px)and (max-width: 1440px) {
+
+  .introContainer {
+    height: 70vh; /* Adjust height for larger screens */
+  }
+
+  .nameContainer {
+    top: 60%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    font-size: 50px;
+    transform: translate(-50%, -50%); /* Center the element perfectly */
+  }
+
+  .overlayImage {
+    left: 0;
+    width: 100%;
+    height: 95%;
+    z-index: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .overlayImg {
+    top: 55%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    height: 90%;
+    
+    transform: translate(-50%, -50%); /* Center the element perfectly */
+    z-index: 0;
+    position: absolute; /* Position absolutely within .overlayImage */
+  }
+
+  
+
+  .name {
+    font-size: 250%; /* Adjust font size for larger screens */
+  }
+
+  .titlesContainer {
+    top: 20%; /* Center vertically */
+    left: 28%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the element perfectly */
+    z-index: 1;
+    
+  }
+
+  .titleSD {
+    font-size: 67px; /* Adjust font size for larger screens */
+    z-index: 1;
+
+  }
+
+  .githubLink,
+  .linkedinLink,
+  .skillsLink {
+    font-size: 100px; /* Adjust font size for larger screens */
+    height: 80px; /* Increase the height to cover the entire clickable area */
+    line-height: 80px; /* Vertically center text and icon */
+  }
+
+  .githubLink {
+    position: absolute;
+    bottom: 8%;
+    right: 81%;
+    /* Set a transparent background color */
+    /* Add a blur effect for better merging with the background */
+    border: none;
+    color: purple;
+    z-index: 0;
+    font-size: 100px;
+  }
+  
+  .linkedinLink {
+    position: absolute;
+    bottom: 8%;
+    right: 70%;
+    /* Set a transparent background color */
+    /* Add a blur effect for better merging with the background */
+    border: none;
+    z-index: 0;
+    font-size: 100px;
+  }
+  
+  .skillsLink {
+    position: absolute;
+    bottom: 55%;
+    left: 3%;
+    /* Set a transparent background color */
+    /* Add a blur effect for better merging with the background */
+    border: none;
+    z-index: 1;
+  }
+
+  /* Add any other styles you want to adjust for laptop-sized screens */
+
+  .Button {
+    font-size: 50px; /* Adjust button font size for larger screens */
+    padding: 16px 32px; /* Adjust button padding for larger screens */
+  }
+
+  
+}
+
+
 /* Media query for screens smaller than 768px (typical smartphone width) */
 @media (max-width: 900px) {
 
@@ -205,6 +412,7 @@
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Center the element perfectly */
     z-index: 1;
+    font-size: 15px;
     
   }
   
@@ -325,13 +533,4 @@
     z-index: 1;
   }
   
-
-  
 }
-
-
-
-
-
-
-
