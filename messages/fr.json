@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "homeTitle": "Muhammad Sharif | Développeur Full Stack",
+    "homeDescription": "Portfolio de niveau senior pour Muhammad Sharif : SaaS d'entreprise, paiements, architecture frontend et impact mesurable.",
+    "workTitle": "Travaux | Muhammad Sharif",
+    "workDescription": "Études de cas en SaaS d'entreprise, paiements et produits mobiles avec métriques vérifiées.",
+    "contactTitle": "Contact | Muhammad Sharif",
+    "contactDescription": "Contactez Muhammad Sharif pour des opportunités frontend, full stack et produits d'entreprise.",
+    "siteName": "Portfolio Muhammad Sharif",
+    "ogAlt": "Portfolio Muhammad Sharif"
+  },
+  "nav": {
+    "home": "Accueil",
+    "work": "Travaux",
+    "contact": "Contact",
+    "resume": "CV"
+  },
+  "languageSwitcher": {
+    "label": "Langue",
+    "current": "Langue actuelle : {language}"
+  },
+  "notFound": {
+    "eyebrow": "Signal perdu",
+    "title": "Cette page a dérivé hors orbite",
+    "description": "La route que vous cherchez n'existe pas — ou a changé. Revenez vers l'espace cartographié.",
+    "home": "Retour à l'accueil",
+    "contact": "Me contacter"
+  },
+  "locales": {
+    "en": { "label": "Anglais", "region": "Canada" },
+    "fr": { "label": "Français", "region": "Canada · FR" },
+    "es": { "label": "Espagnol", "region": "Mexique" },
+    "ar": { "label": "Arabe", "region": "Arabie saoudite" },
+    "ur": { "label": "Ourdou", "region": "Pakistan" }
+  },
+  "site": {
+    "shortName": "Muhammad Sharif",
+    "location": "Calgary, AB",
+    "headline": "Développeur Full Stack | Architecture Frontend | SaaS d'entreprise | Paiements",
+    "bio": [
+      "Développeur full stack spécialisé en React, TypeScript, FastAPI, MongoDB, WebSockets, Docker et CI/CD pour des produits SaaS d'entreprise, paiements et conformité.",
+      "Reconnu pour transformer des exigences urgentes en systèmes en production avec un impact mesurable, notamment la sauvegarde d'un partenariat Allianz de plus de 1 M$ grâce à un SDK livré en 48 heures, la virtualisation de plus de 200 000 lignes avec TanStack Virtual, et des gains de temps de chargement jusqu'à ~75 %."
+    ]
+  },
+  "hero": {
+    "eyebrow": "Full Stack · SaaS d'entreprise · Paiements",
+    "viewWork": "Voir les projets sélectionnés",
+    "getInTouch": "Me contacter",
+    "locationLabel": "Emplacement",
+    "availableLabel": "Disponible pour",
+    "availableValue": "Rôles senior full stack et frontend"
+  },
+  "home": {
+    "selectedWork": "Travaux sélectionnés",
+    "projectsTitle": "Projets aux résultats mesurables",
+    "seeAll": "Voir toutes les études de cas"
+  },
+  "work": {
+    "eyebrow": "Études de cas",
+    "title": "Construit sous pression.",
+    "titleMuted": "Mesuré en résultats.",
+    "intro": "Chaque projet suit le même modèle : contexte, contrainte majeure, ce qui a été livré et la preuve que ça a fonctionné.",
+    "context": "Contexte",
+    "constraint": "Contrainte",
+    "built": "Ce que j'ai construit",
+    "proof": "Preuve",
+    "stack": "Stack"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Construisons quelque chose",
+    "titleMuted": "à fort impact.",
+    "intro": "Ouvert aux opportunités senior frontend et full stack où la performance, l'architecture et les résultats d'affaires mesurables comptent.",
+    "email": "Courriel",
+    "phone": "Téléphone",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "formName": "Nom",
+    "formEmail": "Courriel",
+    "formSubject": "Sujet",
+    "formMessage": "Message",
+    "formCompany": "Entreprise",
+    "submit": "Envoyer le message",
+    "submitting": "Envoi en cours...",
+    "success": "Message envoyé avec succès. Je vous répondrai bientôt.",
+    "errorGeneric": "Une erreur s'est produite.",
+    "errorSend": "Impossible d'envoyer le message."
+  },
+  "footer": {
+    "tagline": "Basé à {location} · Ouvert aux rôles senior"
+  },
+  "impactConsole": {
+    "title": "Console d'impact",
+    "ariaLabel": "Métriques d'impact. Utilisez les flèches pour naviguer.",
+    "prev": "Métrique précédente",
+    "next": "Métrique suivante",
+    "viewCaseStudy": "Voir l'étude de cas"
+  },
+  "impactMetrics": {
+    "allianz-sdk": {
+      "label": "Partenariat sauvé",
+      "proof": "SDK de paiements Vanilla JS en 48 heures qui a protégé un partenariat Allianz unique."
+    },
+    "vite-migration": {
+      "label": "Temps de chargement plus rapides",
+      "proof": "Migration CRA vers Vite avec chargement paresseux et découpage par route."
+    },
+    "virtualization": {
+      "label": "Échelle testée sous stress",
+      "proof": "Architecture TanStack Virtual segmentée par page gérant plus de 200 000 enregistrements par segment."
+    },
+    "promotions": {
+      "label": "Promu en 12 mois",
+      "proof": "Passage de stagiaire frontend junior à développeur full stack chez Paybilt."
+    }
+  },
+  "caseStudies": {
+    "horuz-v2": {
+      "title": "Modernisation Horuz V2",
+      "company": "149MKM Software",
+      "period": "Sept. 2025 - Présent",
+      "context": "SaaS de conformité d'entreprise utilisé par les équipes d'ingénierie, juridiques et de construction.",
+      "constraint": "L'ancienne stack CRA et les grands jeux de données causaient des goulots d'étranglement et une mise à l'échelle difficile.",
+      "built": [
+        "Dirigé la modernisation de six modules : Tableau de bord, Obligations, Cadres, Authentification, Actions et Fichiers.",
+        "Migré de CRA vers Vite avec chargement paresseux, découpage par route et mise en cache.",
+        "Conçu une virtualisation segmentée par page avec TanStack Virtual et chargement conscient du cache."
+      ],
+      "metrics": [
+        "Bundle 6,6 Mo -> 3,9 Mo",
+        "JS initial 3 Mo -> ~998 Ko",
+        "Temps de chargement améliorés jusqu'à ~75 %",
+        "Plus de 200 000 enregistrements par segment ; testé près de 1 M de lignes"
+      ]
+    },
+    "pcc-sdk": {
+      "title": "SDK de paiements PCC / Allianz",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "SDK de paiement intégrable personnalisé pour les flux de paiement marchands.",
+      "constraint": "Échéance critique de partenariat exigeant une livraison complète en 48 heures.",
+      "built": [
+        "Construit un SDK Vanilla JS en un week-end avec thème CSS, préremplissage dynamique et champs verrouillés.",
+        "Intégré des flux de paiement déclenchés par API pour l'intégration marchande d'entreprise.",
+        "Livré une implémentation stable sous contraintes de délai serrées."
+      ],
+      "metrics": [
+        "Livré en 48 heures",
+        "Plus de 5 000 lignes livrées",
+        "Partenariat Allianz de plus de 1 M$ protégé",
+        "~70 % d'intégration marchande plus rapide"
+      ]
+    },
+    "occ-platform": {
+      "title": "Plateforme de dons OCC",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "Plateforme de collecte de fonds pour le flux de dons du Parti conservateur du Canada.",
+      "constraint": "Besoin d'une hausse de conversion mesurable avec des paiements conformes à grande échelle.",
+      "built": [
+        "Participé à la plateforme de dons OCC V1 avec flux de paiement de qualité production.",
+        "Dirigé une équipe frontend de quatre pour la reconstruction du paiement en un clic OCC V2.",
+        "Amélioré l'UX de paiement tout en préservant les exigences de conformité."
+      ],
+      "metrics": [
+        "Plus de 500 000 $ traités en OCC V1",
+        "+25 % de conversion en OCC V2",
+        "Équipe frontend de 4 dirigée",
+        "Soutenu plus de 1 M$ de transactions hebdomadaires sur les systèmes en production"
+      ]
+    },
+    "template-registry": {
+      "title": "Service de registre de modèles",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "Système de modèles et de statuts pour les notifications de paiement et le rendu de flux de travail complexes.",
+      "constraint": "La duplication frontend et les problèmes de support ralentissaient la livraison sur de nombreux flux marchands.",
+      "built": [
+        "Construit un service FastAPI + MongoDB pour centraliser les modèles Jinja2 et la gestion des statuts.",
+        "Permis la gestion d'un seul modèle pour de nombreux états de paiement via des règles composables.",
+        "Réduit la charge de support en stabilisant la réutilisation et la fiabilité du rendu des modèles."
+      ],
+      "metrics": [
+        "Plus de 100 modèles Jinja2 gérés",
+        "Plus de 300 combinaisons de statuts de paiement à partir de modèles uniques",
+        "~90 % moins de duplication frontend",
+        "~40 % de tickets de support en moins"
+      ]
+    },
+    "oasis-mobile": {
+      "title": "Application immobilière Oasis",
+      "company": "Oasis",
+      "period": "2025",
+      "context": "Application immobilière multiplateforme pour courtiers et clients.",
+      "constraint": "Construction rapide sous contrat avec chat en temps réel et interactions cartographiques lourdes.",
+      "built": [
+        "Développé l'architecture avec Clean Architecture et BLoC.",
+        "Implémenté le chat en temps réel avec indicateurs de frappe, accusés de lecture et reconnexion.",
+        "Intégré cartes, recherche, favoris, comparaisons et flux API REST sécurisés."
+      ],
+      "metrics": [
+        "Plus de 22 écrans livrés",
+        "Support iOS, Android et Web",
+        "Fonctionnalités de chat WebSocket en temps réel"
+      ]
+    },
+    "zamzam": {
+      "title": "Zam Zam Bags and Boutique",
+      "company": "Client indépendant",
+      "period": "2023",
+      "context": "Expérience web pour petite entreprise : vitrine produits et découverte client.",
+      "constraint": "Besoin d'une vitrine soignée et réactive avec des cycles d'itération rapides.",
+      "built": [
+        "Conçu et livré un site réactif pour l'entreprise.",
+        "Équilibré identité visuelle et implémentation frontend maintenable.",
+        "Soutenu la présentation produits et les flux de contact client."
+      ],
+      "metrics": ["Site d'affaires en ligne lancé", "Livraison réactive et prête pour la production"]
+    }
+  }
+}

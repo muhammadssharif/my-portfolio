@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "homeTitle": "محمد شریف | فل اسٹیک ڈویلپر",
+    "homeDescription": "محمد شریف کا سینئر لیول پورٹ فولیو: انٹرپرائز SaaS، ادائیگیاں، فرنٹ اینڈ آرکیٹیکچر، اور قابلِ پیمائش اثر۔",
+    "workTitle": "کام | محمد شریف",
+    "workDescription": "انٹرپرائز SaaS، ادائیگیوں اور موبائل مصنوعات پر تصدیق شدہ میٹرکس کے ساتھ کیس اسٹڈیز۔",
+    "contactTitle": "رابطہ | محمد شریف",
+    "contactDescription": "فرنٹ اینڈ، فل اسٹیک اور انٹرپرائز پروڈکٹ مواقع کے لیے محمد شریف سے رابطہ کریں۔",
+    "siteName": "محمد شریف پورٹ فولیو",
+    "ogAlt": "محمد شریف پورٹ فولیو"
+  },
+  "nav": {
+    "home": "ہوم",
+    "work": "کام",
+    "contact": "رابطہ",
+    "resume": "ریزیومے"
+  },
+  "languageSwitcher": {
+    "label": "زبان",
+    "current": "موجودہ زبان: {language}"
+  },
+  "notFound": {
+    "eyebrow": "سگنل کھو گیا",
+    "title": "یہ صفحہ مدار سے باہر نکل گیا",
+    "description": "جس راستے کی آپ تلاش کر رہے ہیں وہ موجود نہیں — یا بدل گیا ہے۔ واپس محفوظ راستے پر آئیں۔",
+    "home": "ہوم پر واپس",
+    "contact": "رابطہ کریں"
+  },
+  "locales": {
+    "en": { "label": "انگریزی", "region": "کینیڈا" },
+    "fr": { "label": "فرانسیسی", "region": "کینیڈا · FR" },
+    "es": { "label": "ہسپانوی", "region": "میکسیکو" },
+    "ar": { "label": "عربی", "region": "سعودی عرب" },
+    "ur": { "label": "اردو", "region": "پاکستان" }
+  },
+  "site": {
+    "shortName": "محمد شریف",
+    "location": "کیلگری، AB",
+    "headline": "فل اسٹیک ڈویلپر | فرنٹ اینڈ آرکیٹیکچر | انٹرپرائز SaaS | ادائیگیاں",
+    "bio": [
+      "فل اسٹیک ڈویلپر جو React، TypeScript، FastAPI، MongoDB، WebSockets، Docker اور CI/CD میں مہارت رکھتا ہے — انٹرپرائز SaaS، ادائیگیوں اور کمپلائنس مصنوعات کے لیے۔",
+      "فوری کاروباری ضروریات کو پروڈکشن سسٹمز میں تبدیل کرنے کے لیے جانا جاتا ہے، بشمول 48 گھنٹوں میں SDK کے ذریعے $1M+ Allianz شراکت بچانا، 200K+ قطاروں کی virtualization، اور ~75% تک لوڈ ٹائم بہتری۔"
+    ]
+  },
+  "hero": {
+    "eyebrow": "فل اسٹیک · انٹرپرائز SaaS · ادائیگیاں",
+    "viewWork": "منتخب کام دیکھیں",
+    "getInTouch": "رابطہ کریں",
+    "locationLabel": "مقام",
+    "availableLabel": "دستیاب برائے",
+    "availableValue": "سینئر فل اسٹیک اور فرنٹ اینڈ کردار"
+  },
+  "home": {
+    "selectedWork": "منتخب کام",
+    "projectsTitle": "قابلِ پیمائش نتائج والے پروجیکٹس",
+    "seeAll": "تمام کیس اسٹڈیز دیکھیں"
+  },
+  "work": {
+    "eyebrow": "کیس اسٹڈیز",
+    "title": "دباؤ میں بنایا گیا۔",
+    "titleMuted": "نتائج میں ناپا گیا۔",
+    "intro": "ہر پروجیکٹ ایک ہی نمونہ رکھتا ہے: سیاق و سباق، سخت رکاوٹ، کیا شپ ہوا، اور ثبوت کہ یہ کام کیا۔",
+    "context": "سیاق و سباق",
+    "constraint": "رکاوٹ",
+    "built": "میں نے کیا بنایا",
+    "proof": "ثبوت",
+    "stack": "اسٹیک"
+  },
+  "contact": {
+    "eyebrow": "رابطہ",
+    "title": "آئیے کچھ ایسا بنائیں",
+    "titleMuted": "جو زیادہ اثر رکھے۔",
+    "intro": "سینئر فرنٹ اینڈ اور فل اسٹیک مواقع کے لیے دستیاب جہاں کارکردگی، آرکیٹیکچر اور قابلِ پیمائش کاروباری نتائج اہم ہوں۔",
+    "email": "ای میل",
+    "phone": "فون",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "formName": "نام",
+    "formEmail": "ای میل",
+    "formSubject": "موضوع",
+    "formMessage": "پیغام",
+    "formCompany": "کمپنی",
+    "submit": "پیغام بھیجیں",
+    "submitting": "بھیجا جا رہا ہے...",
+    "success": "پیغام کامیابی سے بھیج دیا گیا۔ میں جلد جواب دوں گا۔",
+    "errorGeneric": "کچھ غلط ہو گیا۔",
+    "errorSend": "پیغام نہیں بھیجا جا سکا۔"
+  },
+  "footer": {
+    "tagline": "{location} میں مقیم · سینئر کرداروں کے لیے دستیاب"
+  },
+  "impactConsole": {
+    "title": "اثر کنسول",
+    "ariaLabel": "اثر میٹرکس۔ نیویگیٹ کرنے کے لیے تیر کیز استعمال کریں۔",
+    "prev": "پچھلا میٹرک",
+    "next": "اگلا میٹرک",
+    "viewCaseStudy": "کیس اسٹڈی دیکھیں"
+  },
+  "impactMetrics": {
+    "allianz-sdk": {
+      "label": "شراکت بچی",
+      "proof": "48 گھنٹوں میں Vanilla JS ادائیگی SDK نے ایک Allianz شراکت بچائی۔"
+    },
+    "vite-migration": {
+      "label": "تیز لوڈ ٹائمز",
+      "proof": "CRA سے Vite مائیگریشن lazy loading اور route-level code splitting کے ساتھ۔"
+    },
+    "virtualization": {
+      "label": "دباؤ میں آزمائی گئی اسکیل",
+      "proof": "صفحہ تقسیم شدہ TanStack Virtual آرکیٹیکچر جو فی سیگمنٹ 200K+ ریکارڈز سنبھالتا ہے۔"
+    },
+    "promotions": {
+      "label": "12 ماہ میں ترقی",
+      "proof": "Paybilt میں جونیئر فرنٹ اینڈ انٹرن سے فل اسٹیک ڈویلپر تک۔"
+    }
+  },
+  "caseStudies": {
+    "horuz-v2": {
+      "title": "Horuz V2 جدید کاری",
+      "company": "149MKM Software",
+      "period": "ستمبر 2025 - موجودہ",
+      "context": "انجینئرنگ، قانونی اور تعمیراتی ٹیموں کے لیے انٹرپرائز کمپلائنس SaaS۔",
+      "constraint": "پرانی CRA اسٹیک اور بڑے ڈیٹا سیٹس نے لوڈ بوتل نیکس اور مشکل اسکیلنگ پیدا کی۔",
+      "built": [
+        "چھ بنیادی ماڈیولز کی جدید کاری کی قیادت: Dashboard، Obligations، Frameworks، Authentication، Actions، Files۔",
+        "CRA سے Vite مائیگریشن lazy loading، route splitting اور caching کے ساتھ۔",
+        "TanStack Virtual کے ساتھ صفحہ تقسیم شدہ virtualization اور cache-aware loading۔"
+      ],
+      "metrics": [
+        "بنڈل 6.6MB -> 3.9MB",
+        "ابتدائی JS 3MB -> ~998KB",
+        "لوڈ ٹائم ~75% تک بہتر",
+        "فی سیگمنٹ 200K+ ریکارڈز؛ ~1M قطاروں پر ٹیسٹ"
+      ]
+    },
+    "pcc-sdk": {
+      "title": "PCC / Allianz ادائیگی SDK",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "مرچنٹ چیک آؤٹ فلو کے لیے حسبِ ضرورت embeddable ادائیگی SDK۔",
+      "constraint": "اہم شراکت کی ڈیڈ لائن نے 48 گھنٹوں میں مکمل ڈیلیوری مانگی۔",
+      "built": [
+        "ایک ویک اینڈ میں Vanilla JS SDK CSS theming، dynamic prefill اور locked fields کے ساتھ۔",
+        "انٹرپرائز مرچنٹ onboarding کے لیے API-triggered ادائیگی فلو۔",
+        "سخت ڈیڈ لائن میں مستحکم implementation شپ کی۔"
+      ],
+      "metrics": [
+        "48 گھنٹوں میں ڈیلیور",
+        "5,000+ لائنز شپ",
+        "$1M+ Allianz شراکت محفوظ",
+        "~70% تیز مرچنٹ onboarding"
+      ]
+    },
+    "occ-platform": {
+      "title": "OCC عطیہ پلیٹ فارم",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "کینیڈین محافظ جماعت کے عطیہ فلو کے لیے فنڈریزنگ پلیٹ فارم۔",
+      "constraint": "پیمانے پر compliant ادائیگیوں کے ساتھ قابلِ پیمائش conversion اضافے کی ضرورت۔",
+      "built": [
+        "OCC V1 عطیہ پلیٹ فارم production-grade ادائیگی فلو کے ساتھ۔",
+        "OCC V2 one-click checkout rebuild کے لیے چار افراد کی فرنٹ اینڈ ٹیم کی قیادت۔",
+        "چیک آؤٹ UX بہتر کی کمپلائنس برقرار رکھتے ہوئے۔"
+      ],
+      "metrics": [
+        "OCC V1 میں $500K+ پروسیس",
+        "OCC V2 میں +25% conversion",
+        "4 افراد کی فرنٹ اینڈ ٹیم",
+        "لائیو سسٹمز پر $1M+ ہفتہ وار لین دین"
+      ]
+    },
+    "template-registry": {
+      "title": "ٹیمپلیٹ رجسٹری سروس",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "پیچیدہ ادائیگی نوٹیفیکیشن اور workflow rendering کے لیے ٹیمپلیٹ اور status سسٹم۔",
+      "constraint": "فرنٹ اینڈ duplication اور support مسائل بہت سے مرچنٹ فلو میں ڈیلیوری سست کر رہے تھے۔",
+      "built": [
+        "Jinja2 ٹیمپلیٹس اور status handling مرکزی کرنے کے لیے FastAPI + MongoDB سروس۔",
+        "composable rules سے ایک ٹیمپلیٹ سے بہت سے ادائیگی states۔",
+        "ٹیمپلیٹ reuse اور rendering reliability سے support بوجھ کم کیا۔"
+      ],
+      "metrics": [
+        "100+ Jinja2 ٹیمپلیٹس",
+        "ایک ٹیمپلیٹ سے 300+ ادائیگی status امتزاج",
+        "~90% کم فرنٹ اینڈ duplication",
+        "~40% کم support ٹکٹس"
+      ]
+    },
+    "oasis-mobile": {
+      "title": "Oasis رئیل اسٹیٹ ایپ",
+      "company": "Oasis",
+      "period": "2025",
+      "context": "بروکرز اور کلائنٹس کے لیے کراس پلیٹ فارم رئیل اسٹیٹ ایپ۔",
+      "constraint": "ریئل ٹائم چیٹ اور map-heavy interactions کے ساتھ تیز contract build۔",
+      "built": [
+        "Clean Architecture اور BLoC کے ساتھ ایپ آرکیٹیکچر۔",
+        "ٹائپنگ indicators، read receipts اور reconnection کے ساتھ رئیل ٹائم چیٹ۔",
+        "نقشے، تلاش، پسندیدہ، موازنہ اور محفوظ REST API فلو۔"
+      ],
+      "metrics": [
+        "22+ اسکرینز ڈیلیور",
+        "iOS، Android اور Web سپورٹ",
+        "رئیل ٹائم WebSocket چیٹ فیچرز"
+      ]
+    },
+    "zamzam": {
+      "title": "Zam Zam Bags and Boutique",
+      "company": "آزاد کلائنٹ",
+      "period": "2023",
+      "context": "چھوٹے کاروبار کے لیے ویب تجربہ: پروڈکٹ شوکیس اور کسٹمر دریافت۔",
+      "constraint": "پالش اور responsive اسٹورفرنٹ کی ضرورت تیز iteration سائیکلز کے ساتھ۔",
+      "built": [
+        "کاروبار کے لیے responsive سائٹ ڈیزائن اور ڈیلیور۔",
+        "بصری شناخت اور قابلِ دیکھ بھال فرنٹ اینڈ کا توازن۔",
+        "پروڈکٹ پیشکش اور کسٹمر رابطہ فلو۔"
+      ],
+      "metrics": ["کاروباری ویب سائٹ لائیو", "responsive اور production-ready ڈیلیوری"]
+    }
+  }
+}

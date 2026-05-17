@@ -1,0 +1,1046 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-syne);
+  --font-body: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+:root {
+  /* Shared anchor — sun (light) and moon (dark) occupy the same spot */
+  --luminary-top: 9%;
+  --luminary-right: 15%;
+  --luminary-wrap-size: 112px;
+  --luminary-exit-y: 72px;
+  --luminary-exit-scale: 0.72;
+}
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #06060a;
+  --surface: #101018;
+  --surface-elevated: #161622;
+  --border: #2a2a38;
+  --border-bright: #3d3d52;
+  --text: #f4f4f5;
+  --muted: #9ca3af;
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.35);
+  --highlight: #f59e0b;
+  --highlight-glow: rgba(245, 158, 11, 0.2);
+  --hover-surface: color-mix(in srgb, white 4%, transparent);
+  --card-inset: color-mix(in srgb, white 3%, transparent);
+  --card-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+  --grid-line: rgba(255, 255, 255, 0.02);
+  --backdrop-blue: rgba(59, 130, 246, 0.18);
+  --backdrop-amber: rgba(245, 158, 11, 0.08);
+  --backdrop-blue-bottom: rgba(59, 130, 246, 0.06);
+  --input-bg: color-mix(in srgb, var(--bg) 60%, transparent);
+  --language-menu-bg: #161622;
+  --language-menu-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.65),
+    0 0 0 1px color-mix(in srgb, white 6%, transparent) inset;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-elevated: #f0f2f8;
+  --border: #e2e5ee;
+  --border-bright: #cdd2e0;
+  --text: #111118;
+  --muted: #5c6370;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.22);
+  --highlight: #d97706;
+  --highlight-glow: rgba(217, 119, 6, 0.15);
+  --hover-surface: color-mix(in srgb, black 4%, transparent);
+  --card-inset: color-mix(in srgb, white 80%, transparent);
+  --card-shadow: 0 20px 40px -24px rgba(15, 23, 42, 0.12);
+  --grid-line: rgba(15, 23, 42, 0.04);
+  --backdrop-blue: rgba(59, 130, 246, 0.12);
+  --backdrop-amber: rgba(245, 158, 11, 0.06);
+  --backdrop-blue-bottom: rgba(59, 130, 246, 0.05);
+  --input-bg: #ffffff;
+  --language-menu-bg: #ffffff;
+  --language-menu-shadow: 0 24px 60px -20px rgba(15, 23, 42, 0.18),
+    0 0 0 1px color-mix(in srgb, white 80%, transparent) inset;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.site-shell {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+}
+
+/* Theme veil — covers content + cosmic during transitions (compositor opacity only) */
+.theme-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  contain: strict;
+  will-change: opacity;
+}
+
+.theme-veil[data-veil-theme="dark"] {
+  background: linear-gradient(
+    180deg,
+    #050814 0%,
+    #06060a 45%,
+    #0d1528 72%,
+    #180d07 100%
+  );
+}
+
+.theme-veil[data-veil-theme="light"] {
+  background: linear-gradient(
+    180deg,
+    #eef4ff 0%,
+    #f6f7fb 48%,
+    #faf0e4 82%,
+    #fff7ed 100%
+  );
+}
+
+html[data-theme-transitioning] .cosmic-luminaries {
+  visibility: hidden;
+}
+
+/* Persistent background sun & moon */
+.cosmic-luminaries {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  contain: layout style paint;
+}
+
+.cosmic-luminary-wrap {
+  position: absolute;
+  top: var(--luminary-top, 9%);
+  right: var(--luminary-right, 15%);
+  width: var(--luminary-wrap-size, 112px);
+  height: var(--luminary-wrap-size, 112px);
+}
+
+.cosmic-luminary-wrap-sun {
+  opacity: 0;
+  transform: translate3d(0, var(--luminary-exit-y, 72px), 0) scale(var(--luminary-exit-scale, 0.72));
+  pointer-events: none;
+}
+
+.cosmic-luminary-wrap-moon {
+  opacity: 0;
+  transform: translate3d(0, var(--luminary-exit-y, 72px), 0) scale(var(--luminary-exit-scale, 0.72));
+  pointer-events: none;
+}
+
+html[data-theme="light"] .cosmic-luminary-wrap-sun {
+  opacity: 0.9;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+html[data-theme="dark"] .cosmic-luminary-wrap-moon {
+  opacity: 0.82;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.cosmic-luminary-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cosmic-luminary-svg-sun {
+  animation: luminary-float-sun 16s ease-in-out infinite;
+}
+
+html[data-theme="dark"] .cosmic-luminary-svg-sun {
+  filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.75)) drop-shadow(0 0 42px rgba(245, 158, 11, 0.35));
+}
+
+html[data-theme="light"] .cosmic-luminary-svg-sun {
+  filter:
+    drop-shadow(0 1px 0 rgba(146, 64, 14, 0.45))
+    drop-shadow(0 0 10px rgba(251, 191, 36, 0.85))
+    drop-shadow(0 0 22px rgba(245, 158, 11, 0.5))
+    drop-shadow(0 0 40px rgba(234, 88, 12, 0.28));
+}
+
+.cosmic-luminary-svg-moon {
+  filter: drop-shadow(0 0 14px rgba(226, 232, 240, 0.6)) drop-shadow(0 0 32px rgba(199, 210, 254, 0.35));
+  animation: luminary-float-sun 16s ease-in-out infinite;
+}
+
+/* Sun — dark mode */
+.cosmic-sun-corona-fill {
+  animation: sun-corona-pulse 8s ease-in-out infinite;
+}
+
+html[data-theme="dark"] .cosmic-sun-corona-fill {
+  fill: url(#sun-corona-dark);
+}
+
+.cosmic-sun-disc {
+  fill: url(#sun-core-dark);
+}
+
+html[data-theme="dark"] .cosmic-sun-disc {
+  fill: url(#sun-core-dark);
+}
+
+.cosmic-sun-rays-dark {
+  transform-origin: 60px 60px;
+  animation: sun-rays-spin 90s linear infinite;
+  stroke: rgba(253, 224, 71, 0.55);
+}
+
+.cosmic-sun-rays-light {
+  display: none;
+}
+
+.cosmic-sun-flare,
+.cosmic-sun-rim {
+  display: none;
+}
+
+html[data-theme="dark"] .cosmic-sun-highlight-a {
+  fill: rgba(255, 255, 255, 0.45);
+}
+
+html[data-theme="dark"] .cosmic-sun-highlight-b {
+  fill: rgba(255, 200, 80, 0.25);
+}
+
+html[data-theme="dark"] .cosmic-luminary-glow-sun {
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.5) 0%, rgba(245, 158, 11, 0.15) 45%, transparent 72%);
+}
+
+/* Sun — light mode (crisp daystar, not muddy blob) */
+html[data-theme="light"] .cosmic-sun-corona-fill {
+  fill: url(#sun-corona-light);
+}
+
+html[data-theme="light"] .cosmic-sun-disc {
+  fill: url(#sun-core-light);
+}
+
+html[data-theme="light"] .cosmic-sun-flare {
+  display: block;
+  fill: url(#sun-flare-light);
+  opacity: 0.55;
+}
+
+html[data-theme="light"] .cosmic-sun-rim {
+  display: block;
+  stroke: rgba(154, 52, 18, 0.62);
+  stroke-width: 2.25;
+}
+
+html[data-theme="light"] .cosmic-sun-rays-dark {
+  display: none;
+}
+
+html[data-theme="light"] .cosmic-sun-rays-light {
+  display: block;
+  transform-origin: 60px 60px;
+  animation: sun-rays-spin 120s linear infinite;
+  stroke: rgba(180, 83, 9, 0.62);
+}
+
+html[data-theme="light"] .cosmic-sun-highlight-a {
+  fill: rgba(255, 255, 255, 0.92);
+}
+
+html[data-theme="light"] .cosmic-sun-highlight-b {
+  fill: rgba(255, 251, 235, 0.5);
+}
+
+html[data-theme="light"] .cosmic-luminary-glow-sun {
+  opacity: 0.5;
+  inset: -28%;
+  background:
+    radial-gradient(circle, rgba(254, 240, 138, 0.55) 0%, rgba(251, 191, 36, 0.28) 38%, rgba(245, 158, 11, 0.1) 58%, transparent 72%);
+}
+
+html[data-theme="light"] .cosmic-luminary-wrap-sun {
+  opacity: 1;
+}
+
+.cosmic-luminary-glow {
+  position: absolute;
+  inset: -45%;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: luminary-glow-pulse 8s ease-in-out infinite;
+}
+
+.cosmic-luminary-glow-sun {
+  opacity: 0.55;
+}
+
+.cosmic-luminary-glow-moon {
+  background: radial-gradient(circle, rgba(199, 210, 254, 0.45) 0%, rgba(147, 197, 253, 0.12) 50%, transparent 72%);
+}
+
+@keyframes sun-rays-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sun-corona-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes luminary-float-sun {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-5px, 7px, 0);
+  }
+}
+
+@keyframes luminary-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.06);
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--text);
+}
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  overflow: visible;
+  color: currentColor;
+}
+
+.btn .icon {
+  color: currentColor;
+}
+
+.btn-primary .icon {
+  color: #ffffff;
+}
+
+.theme-toggle-btn {
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.social-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-link-btn {
+  color: var(--text);
+}
+
+.cosmic-stack {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cosmic-stack-dark {
+  z-index: 0;
+}
+
+.cosmic-stack-light {
+  z-index: 1;
+}
+
+.cosmic-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Fixed cosmic stack — keeps canvases out of document flow */
+.cosmic-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  contain: layout style;
+}
+
+/* Cosmic backdrop — atmosphere base + feathered accents (see CosmicBackdrop.tsx) */
+.cosmic-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #06060a;
+}
+
+.cosmic-backdrop[data-active-stack="light"] {
+  background-color: #f6f7fb;
+}
+
+.cosmic-backdrop[data-active-stack="dark"] {
+  background-color: #06060a;
+}
+
+.pretext-starfield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 1;
+}
+
+[data-theme="light"] .pretext-starfield {
+  opacity: 1;
+}
+
+/* Layer 1 — sky field (one stack visible via data-theme) */
+.cosmic-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cosmic-atmosphere-dark {
+  background-color: #050814;
+  background-image:
+    radial-gradient(ellipse 55% 42% at 72% 6%, rgba(56, 189, 248, 0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 22% 10%, rgba(99, 102, 241, 0.1) 0%, transparent 60%),
+    linear-gradient(
+      180deg,
+      #050814 0%,
+      #060a14 14%,
+      #080e1c 28%,
+      #0a1224 40%,
+      #0d1528 50%,
+      #101820 58%,
+      #131410 66%,
+      #16100c 73%,
+      #190f0a 80%,
+      #1b0f09 88%,
+      #1a0e08 94%,
+      #180d07 100%
+    );
+}
+
+.cosmic-atmosphere-light {
+  background-color: #eef4ff;
+  background-image: linear-gradient(
+    180deg,
+    #eef4ff 0%,
+    #e9effa 18%,
+    #e4eaf6 32%,
+    #e2e7f2 44%,
+    #e8e4de 54%,
+    #efe6dc 64%,
+    #f5e8dc 74%,
+    #faebd4 86%,
+    #fff7ed 100%
+  );
+}
+
+/* Layer 2 — accent color; single vertical feather mask prevents hard horizontal cuts */
+.cosmic-accent {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    #000 28%,
+    rgba(0, 0, 0, 0.75) 42%,
+    rgba(0, 0, 0, 0.35) 54%,
+    transparent 68%
+  );
+  mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    #000 28%,
+    rgba(0, 0, 0, 0.75) 42%,
+    rgba(0, 0, 0, 0.35) 54%,
+    transparent 68%
+  );
+}
+
+.cosmic-accent-light {
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 22%, rgba(0, 0, 0, 0.5) 48%, transparent 72%);
+  mask-image: linear-gradient(to top, #000 0%, #000 22%, rgba(0, 0, 0, 0.5) 48%, transparent 72%);
+}
+
+.cosmic-sky-glow {
+  position: absolute;
+  inset: 0;
+}
+
+.cosmic-sky-glow-day {
+  background:
+    radial-gradient(ellipse 38% 32% at 72% 11%, rgba(147, 197, 253, 0.22) 0%, transparent 72%),
+    radial-gradient(ellipse 44% 36% at 22% 18%, rgba(199, 210, 254, 0.28) 0%, transparent 72%),
+    radial-gradient(ellipse 85% 50% at 50% -8%, rgba(255, 255, 255, 0.45) 0%, transparent 78%),
+    linear-gradient(180deg, transparent 0%, transparent 50%, rgba(255, 247, 237, 0.12) 85%, transparent 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Light-mode clouds — canvas layer above backdrop, below stars */
+.cosmic-clouds-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: opacity 0.05s linear;
+}
+
+/* Accent pillars — color only in lower half; .cosmic-accent mask feathers the top edge */
+.cosmic-pillar {
+  position: absolute;
+  bottom: 0;
+  height: 55%;
+  filter: blur(64px);
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  opacity: 0.5;
+  animation: pillar-sway 52s ease-in-out infinite alternate;
+}
+
+.cosmic-layer-dark .cosmic-pillar-a {
+  left: 4%;
+  width: 22%;
+  border-radius: 48% 52% 42% 58% / 8% 8% 92% 92%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(251, 146, 60, 0.35) 62%,
+    rgba(234, 88, 12, 0.4) 82%,
+    rgba(180, 60, 10, 0.25) 100%
+  );
+}
+
+.cosmic-layer-dark .cosmic-pillar-b {
+  left: 26%;
+  width: 16%;
+  border-radius: 55% 45% 50% 50% / 8% 8% 92% 92%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(251, 191, 36, 0.32) 68%,
+    rgba(194, 65, 12, 0.28) 100%
+  );
+  animation-delay: -12s;
+  animation-duration: 46s;
+}
+
+.cosmic-layer-dark .cosmic-pillar-c {
+  right: 22%;
+  width: 18%;
+  border-radius: 42% 58% 45% 55% / 8% 8% 92% 92%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(251, 146, 60, 0.28) 65%,
+    rgba(180, 60, 10, 0.22) 100%
+  );
+  animation-delay: -24s;
+}
+
+
+.cosmic-layer-light .cosmic-pillar {
+  bottom: -5%;
+  height: 72%;
+  filter: blur(48px);
+  mix-blend-mode: multiply;
+  opacity: 0.72;
+}
+
+.cosmic-layer-light .cosmic-pillar-a {
+  left: 8%;
+  width: 18%;
+}
+
+.cosmic-layer-light .cosmic-pillar-b {
+  left: 28%;
+  width: 14%;
+}
+
+.cosmic-layer-light .cosmic-pillar-c {
+  right: 26%;
+  width: 16%;
+}
+
+.cosmic-pillar-day.cosmic-pillar-a {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(191, 219, 254, 0.35) 20%,
+    rgba(253, 186, 116, 0.42) 50%,
+    rgba(251, 191, 36, 0.28) 75%,
+    transparent 100%
+  );
+}
+
+.cosmic-pillar-day.cosmic-pillar-b {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(254, 215, 170, 0.3) 24%,
+    rgba(251, 146, 60, 0.32) 55%,
+    rgba(253, 224, 71, 0.22) 78%,
+    transparent 100%
+  );
+}
+
+.cosmic-pillar-day.cosmic-pillar-c {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(199, 210, 254, 0.28) 22%,
+    rgba(253, 186, 116, 0.35) 52%,
+    rgba(254, 215, 170, 0.25) 80%,
+    transparent 100%
+  );
+}
+
+.cosmic-dust-lane {
+  position: absolute;
+  filter: blur(24px);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  transform: rotate(-12deg);
+  animation: dust-drift 44s ease-in-out infinite alternate;
+}
+
+.cosmic-dust-lane-a {
+  left: -5%;
+  bottom: 52%;
+  width: 55%;
+  height: 22%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse 80% 100% at 40% 50%, rgba(251, 191, 36, 0.25) 0%, transparent 70%);
+}
+
+.cosmic-dust-lane-b {
+  right: -8%;
+  bottom: 58%;
+  width: 50%;
+  height: 18%;
+  border-radius: 50%;
+  transform: rotate(8deg);
+  background: radial-gradient(ellipse 75% 100% at 60% 50%, rgba(147, 197, 253, 0.2) 0%, transparent 68%);
+  animation-delay: -16s;
+}
+
+.cosmic-dust-lane-day {
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+}
+
+.cosmic-ember {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  mix-blend-mode: screen;
+  animation: ember-pulse 9s ease-in-out infinite;
+}
+
+.cosmic-ember-a {
+  left: 34%;
+  bottom: 26%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(254, 243, 199, 0.85) 0%, rgba(251, 191, 36, 0.3) 48%, transparent 72%);
+}
+
+.cosmic-ember-b {
+  right: 24%;
+  bottom: 20%;
+  width: 72px;
+  height: 72px;
+  background: radial-gradient(circle, rgba(253, 224, 71, 0.7) 0%, transparent 70%);
+  animation-delay: -3s;
+}
+
+.cosmic-ember-day {
+  mix-blend-mode: multiply;
+  opacity: 0.65;
+}
+
+.cosmic-ember-day.cosmic-ember-a {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(253, 186, 116, 0.35) 50%, transparent 72%);
+}
+
+.cosmic-ember-day.cosmic-ember-b {
+  background: radial-gradient(circle, rgba(254, 215, 170, 0.75) 0%, transparent 70%);
+}
+
+.cosmic-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cosmic-vignette-dark {
+  z-index: 2;
+  background: radial-gradient(ellipse 95% 80% at 50% 40%, transparent 58%, rgba(0, 0, 0, 0.16) 100%);
+}
+
+.cosmic-vignette-light {
+  z-index: 3;
+  background: radial-gradient(ellipse 100% 90% at 50% 40%, transparent 58%, rgba(255, 255, 255, 0.22) 100%);
+}
+
+html[data-theme-transitioning] .cosmic-pillar,
+html[data-theme-transitioning] .cosmic-dust-lane,
+html[data-theme-transitioning] .cosmic-ember {
+  animation-play-state: paused;
+}
+
+html[data-cosmic-tier="medium"] .cosmic-pillar {
+  filter: blur(48px);
+}
+
+html[data-cosmic-tier="low"] .cosmic-pillar {
+  filter: blur(40px);
+}
+
+html[data-cosmic-tier="low"] .cosmic-layer-light .cosmic-pillar {
+  filter: blur(32px);
+}
+
+html[data-cosmic-tier="low"] .cosmic-pillar,
+html[data-cosmic-tier="low"] .cosmic-dust-lane,
+html[data-cosmic-tier="low"] .cosmic-ember {
+  animation: none;
+}
+
+html[data-cosmic-tier="low"] .cosmic-luminary-svg-sun,
+html[data-cosmic-tier="low"] .cosmic-sun-rays {
+  animation: none;
+}
+
+@keyframes pillar-sway {
+  0% {
+    transform: translate(0, 0) scaleY(1);
+  }
+  100% {
+    transform: translate(2%, -1.5%) scaleY(1.04);
+  }
+}
+
+@keyframes cliff-breathe {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(1%, -0.8%) scale(1.02);
+  }
+}
+
+@keyframes dust-drift {
+  0% {
+    transform: rotate(-12deg) translate(0, 0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: rotate(-8deg) translate(3%, -2%);
+    opacity: 0.62;
+  }
+}
+
+@keyframes ember-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.surface-card {
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--surface-elevated) 95%, var(--text) 2%),
+    color-mix(in srgb, var(--surface) 90%, transparent)
+  );
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 0 1px var(--card-inset) inset,
+    var(--card-shadow);
+  transition:
+    border-color 0.2s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.surface-card:hover {
+  border-color: color-mix(in srgb, var(--border-bright) 80%, var(--accent) 20%);
+}
+
+/* Nav header: skip backdrop-filter so dropdowns composite correctly in Safari */
+.surface-card-nav {
+  background: var(--surface-elevated);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* Language menu — fully opaque in both themes (no glass bleed-through on Safari) */
+.language-menu-panel {
+  background: var(--language-menu-bg);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  isolation: isolate;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.625rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 85%, #000) 100%);
+  color: white;
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px var(--accent-glow);
+}
+
+.btn-secondary {
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  line-height: 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Pill control — one border only; avoid nested rounded borders (Safari paints them twice) */
+.icon-btn-pill {
+  width: auto;
+  gap: 0.375rem;
+  padding: 0 0.5rem 0 0.375rem;
+  border-radius: 9999px;
+}
+
+.icon-btn-open {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  outline: 2px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  outline-offset: 2px;
+}
+
+.icon-btn .icon {
+  color: currentColor;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+
+.link-glyph {
+  font-size: 1rem;
+  line-height: 1;
+  color: currentColor;
+}
+
+.metric-pill {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  transition: all 0.2s ease;
+}
+
+.metric-pill[data-active="true"] {
+  border-color: var(--accent);
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.impact-value {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--text) 0%, var(--highlight) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .cosmic-pillar,
+  .cosmic-ember,
+  .cosmic-dust-lane,
+  .cosmic-luminary-svg-sun,
+  .cosmic-luminary-svg-moon,
+  .cosmic-sun-rays {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cosmic-ember-b {
+    display: none;
+  }
+}
+
+[dir="rtl"] li.relative.pl-5 {
+  padding-left: 0;
+  padding-right: 1.25rem;
+}
+
+[dir="rtl"] li.relative.pl-5::before {
+  left: auto;
+  right: 0;
+}
+

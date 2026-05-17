@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "homeTitle": "Muhammad Sharif | Desarrollador Full Stack",
+    "homeDescription": "Portafolio de nivel senior de Muhammad Sharif: SaaS empresarial, pagos, arquitectura frontend e impacto medible.",
+    "workTitle": "Trabajo | Muhammad Sharif",
+    "workDescription": "Casos de estudio en SaaS empresarial, pagos y productos móviles con métricas verificadas.",
+    "contactTitle": "Contacto | Muhammad Sharif",
+    "contactDescription": "Conecta con Muhammad Sharif para oportunidades frontend, full stack y productos empresariales.",
+    "siteName": "Portafolio Muhammad Sharif",
+    "ogAlt": "Portafolio Muhammad Sharif"
+  },
+  "nav": {
+    "home": "Inicio",
+    "work": "Trabajo",
+    "contact": "Contacto",
+    "resume": "Currículum"
+  },
+  "languageSwitcher": {
+    "label": "Idioma",
+    "current": "Idioma actual: {language}"
+  },
+  "notFound": {
+    "eyebrow": "Señal perdida",
+    "title": "Esta página salió de órbita",
+    "description": "La ruta que buscas no existe — o se movió. Vuelve al espacio cartografiado.",
+    "home": "Volver al inicio",
+    "contact": "Contactar"
+  },
+  "locales": {
+    "en": { "label": "Inglés", "region": "Canadá" },
+    "fr": { "label": "Francés", "region": "Canadá · FR" },
+    "es": { "label": "Español", "region": "México" },
+    "ar": { "label": "Árabe", "region": "Arabia Saudita" },
+    "ur": { "label": "Urdu", "region": "Pakistán" }
+  },
+  "site": {
+    "shortName": "Muhammad Sharif",
+    "location": "Calgary, AB",
+    "headline": "Desarrollador Full Stack | Arquitectura Frontend | SaaS Empresarial | Pagos",
+    "bio": [
+      "Desarrollador full stack especializado en React, TypeScript, FastAPI, MongoDB, WebSockets, Docker y CI/CD para productos SaaS empresariales, pagos y cumplimiento.",
+      "Reconocido por convertir requisitos urgentes en sistemas de producción con impacto medible, incluyendo salvar una alianza Allianz de más de $1M con un SDK entregado en 48 horas, virtualización de más de 200K filas con TanStack Virtual, y mejoras de carga de hasta ~75%."
+    ]
+  },
+  "hero": {
+    "eyebrow": "Full Stack · SaaS Empresarial · Pagos",
+    "viewWork": "Ver trabajo seleccionado",
+    "getInTouch": "Ponerse en contacto",
+    "locationLabel": "Ubicación",
+    "availableLabel": "Disponible para",
+    "availableValue": "Roles senior full stack y frontend"
+  },
+  "home": {
+    "selectedWork": "Trabajo seleccionado",
+    "projectsTitle": "Proyectos con resultados medibles",
+    "seeAll": "Ver todos los casos de estudio"
+  },
+  "work": {
+    "eyebrow": "Casos de estudio",
+    "title": "Construido bajo presión.",
+    "titleMuted": "Medido en resultados.",
+    "intro": "Cada proyecto sigue el mismo patrón: contexto, restricción difícil, lo que se entregó y la prueba de que funcionó.",
+    "context": "Contexto",
+    "constraint": "Restricción",
+    "built": "Lo que construí",
+    "proof": "Prueba",
+    "stack": "Stack"
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "Construyamos algo",
+    "titleMuted": "de alto impacto.",
+    "intro": "Abierto a oportunidades senior frontend y full stack donde importan el rendimiento, la arquitectura y los resultados de negocio medibles.",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "formName": "Nombre",
+    "formEmail": "Correo",
+    "formSubject": "Asunto",
+    "formMessage": "Mensaje",
+    "formCompany": "Empresa",
+    "submit": "Enviar mensaje",
+    "submitting": "Enviando...",
+    "success": "Mensaje enviado con éxito. Te responderé pronto.",
+    "errorGeneric": "Algo salió mal.",
+    "errorSend": "No se pudo enviar el mensaje."
+  },
+  "footer": {
+    "tagline": "Con base en {location} · Abierto a roles senior"
+  },
+  "impactConsole": {
+    "title": "Consola de impacto",
+    "ariaLabel": "Métricas de impacto. Usa las flechas para navegar.",
+    "prev": "Métrica anterior",
+    "next": "Métrica siguiente",
+    "viewCaseStudy": "Ver caso de estudio"
+  },
+  "impactMetrics": {
+    "allianz-sdk": {
+      "label": "Alianza salvada",
+      "proof": "SDK de pagos Vanilla JS en 48 horas que protegió una alianza única con Allianz."
+    },
+    "vite-migration": {
+      "label": "Tiempos de carga más rápidos",
+      "proof": "Migración de CRA a Vite con carga diferida y división de código por ruta."
+    },
+    "virtualization": {
+      "label": "Escala probada bajo estrés",
+      "proof": "Arquitectura TanStack Virtual segmentada por página manejando más de 200K registros por segmento."
+    },
+    "promotions": {
+      "label": "Promovido en 12 meses",
+      "proof": "Avanzó de pasante frontend junior a desarrollador full stack en Paybilt."
+    }
+  },
+  "caseStudies": {
+    "horuz-v2": {
+      "title": "Modernización Horuz V2",
+      "company": "149MKM Software",
+      "period": "Sept. 2025 - Presente",
+      "context": "SaaS de cumplimiento empresarial usado por equipos de ingeniería, legal y construcción.",
+      "constraint": "La stack CRA heredada y grandes conjuntos de datos causaron cuellos de botella y escalado difícil.",
+      "built": [
+        "Lideré la modernización de seis módulos: Dashboard, Obligaciones, Frameworks, Autenticación, Acciones y Archivos.",
+        "Migré de CRA a Vite con carga diferida, división por ruta y caché.",
+        "Diseñé virtualización segmentada por página con TanStack Virtual y carga consciente de caché."
+      ],
+      "metrics": [
+        "Bundle 6.6MB -> 3.9MB",
+        "JS inicial 3MB -> ~998KB",
+        "Tiempos de carga mejorados hasta ~75%",
+        "Más de 200K registros por segmento; probado cerca de 1M filas"
+      ]
+    },
+    "pcc-sdk": {
+      "title": "SDK de pagos PCC / Allianz",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "SDK de pago integrable personalizado para flujos de checkout de comerciantes.",
+      "constraint": "Plazo crítico de alianza requería entrega completa en 48 horas.",
+      "built": [
+        "Construí un SDK Vanilla JS en un fin de semana con temas CSS, prellenado dinámico y campos bloqueados.",
+        "Integré flujos de pago activados por API para incorporación de comerciantes empresariales.",
+        "Entregué una implementación estable bajo restricciones de plazo ajustadas."
+      ],
+      "metrics": [
+        "Entregado en 48 horas",
+        "Más de 5,000 líneas enviadas",
+        "Alianza Allianz de más de $1M protegida",
+        "~70% de incorporación de comerciantes más rápida"
+      ]
+    },
+    "occ-platform": {
+      "title": "Plataforma de donaciones OCC",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "Plataforma de recaudación para el flujo de donaciones del Partido Conservador de Canadá.",
+      "constraint": "Se necesitaba aumento medible de conversión con pagos conformes a escala.",
+      "built": [
+        "Ayudé a entregar la plataforma de donaciones OCC V1 con flujo de pago de grado producción.",
+        "Lideré un equipo frontend de cuatro para la reconstrucción de checkout en un clic OCC V2.",
+        "Mejoré la UX de checkout preservando requisitos de cumplimiento."
+      ],
+      "metrics": [
+        "Más de $500K procesados en OCC V1",
+        "+25% de conversión en OCC V2",
+        "Equipo frontend de 4 liderado",
+        "Soporté más de $1M en transacciones semanales en sistemas en vivo"
+      ]
+    },
+    "template-registry": {
+      "title": "Servicio de registro de plantillas",
+      "company": "Paybilt",
+      "period": "2024 - 2025",
+      "context": "Sistema de plantillas y estados para notificaciones de pago y renderizado de flujos complejos.",
+      "constraint": "La duplicación frontend y problemas de soporte ralentizaban la entrega en muchos flujos de comerciantes.",
+      "built": [
+        "Construí servicio FastAPI + MongoDB para centralizar plantillas Jinja2 y manejo de estados.",
+        "Habilité manejo de una sola plantilla para muchos estados de pago mediante reglas componibles.",
+        "Reduje la carga de soporte estabilizando la reutilización y confiabilidad del renderizado."
+      ],
+      "metrics": [
+        "Más de 100 plantillas Jinja2 gestionadas",
+        "Más de 300 combinaciones de estado de pago desde plantillas únicas",
+        "~90% menos duplicación frontend",
+        "~40% menos tickets de soporte"
+      ]
+    },
+    "oasis-mobile": {
+      "title": "App inmobiliaria Oasis",
+      "company": "Oasis",
+      "period": "2025",
+      "context": "App inmobiliaria multiplataforma para corredores y clientes.",
+      "constraint": "Construcción rápida por contrato con chat en tiempo real e interacciones con mapas en varias plataformas.",
+      "built": [
+        "Desarrollé arquitectura con Clean Architecture y BLoC.",
+        "Implementé chat en tiempo real con indicadores de escritura, confirmaciones de lectura y reconexión.",
+        "Integré mapas, búsqueda, favoritos, comparaciones y flujos API REST seguros."
+      ],
+      "metrics": [
+        "Más de 22 pantallas entregadas",
+        "Soporte iOS, Android y Web",
+        "Funciones de chat WebSocket en tiempo real"
+      ]
+    },
+    "zamzam": {
+      "title": "Zam Zam Bags and Boutique",
+      "company": "Cliente independiente",
+      "period": "2023",
+      "context": "Experiencia web para pequeño negocio: vitrina de productos y descubrimiento de clientes.",
+      "constraint": "Se necesitaba presencia de tienda pulida y responsiva con ciclos de iteración rápidos.",
+      "built": [
+        "Diseñé y entregué un sitio responsivo para el negocio.",
+        "Equilibré identidad visual con implementación frontend mantenible.",
+        "Soporté presentación de productos y flujos de contacto con clientes."
+      ],
+      "metrics": ["Sitio web del negocio en vivo lanzado", "Entrega responsiva y lista para producción"]
+    }
+  }
+}
