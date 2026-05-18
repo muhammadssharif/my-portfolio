@@ -94,11 +94,14 @@ export function ImpactConsole({ metrics }: ImpactConsoleProps) {
           {activeMetric ? (
             <Link
               href={`/work#${activeMetric.caseStudy}`}
-              className="impact-console-story group relative flex min-h-0 flex-1 flex-col overflow-hidden p-1 transition hover:bg-[color:color-mix(in_srgb,var(--accent)_6%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+              /* overflow-visible (not hidden): the panel itself already clips with
+                 rounded corners + overflow-hidden, and clipping here was cutting
+                 the descenders (g/p/y) off the headline at the bottom of the row. */
+              className="impact-console-story group relative flex min-h-0 flex-1 flex-col overflow-visible p-1 transition hover:bg-[color:color-mix(in_srgb,var(--accent)_6%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
               aria-label={`${activeMetric.headline} — ${t("viewCaseStudy")}`}
             >
               <div className="flex min-h-0 flex-1 flex-col gap-3">
-                <h3 className="font-display text-lg font-semibold leading-snug tracking-tight text-[var(--text)] transition group-hover:text-[var(--accent)] md:text-xl">
+                <h3 className="font-display text-lg font-semibold leading-snug tracking-tight text-[var(--text)] pb-[0.05em] transition group-hover:text-[var(--accent)] md:text-xl">
                   {activeMetric.headline}
                 </h3>
                 <p className="text-sm leading-relaxed text-[var(--muted)]">{activeMetric.story}</p>

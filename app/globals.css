@@ -952,7 +952,11 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
 
 .display-title {
   font-family: var(--font-display), system-ui, sans-serif;
-  line-height: 1;
+  /* line-height:1 used to clip descenders (g, p, y) on Syne in Safari/Chrome.
+     1.15 leaves room for the descender even when children don't override leading. */
+  line-height: 1.15;
+  /* Tail padding so descenders never touch the next block on tight stacks. */
+  padding-bottom: 0.06em;
   overflow: visible;
 }
 
@@ -1040,7 +1044,11 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
 }
 
 .impact-console-header {
-  overflow: hidden;
+  /* overflow:hidden previously clipped the descender (e.g. "g" in "modules")
+     of the stat badge, which sits on the same row. Allow visible since the
+     parent .impact-console-panel already clips with its own overflow:hidden
+     for the rounded corners + glow. */
+  overflow: visible;
 }
 
 .btn {
@@ -1151,7 +1159,11 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   font-family: var(--font-display), system-ui, sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 600;
-  line-height: 1;
+  /* line-height:1 + gradient text-fill clips descenders in WebKit because the
+     line box equals the font-size while the glyph descent (Syne ~0.29em)
+     extends below it. Loosen + pad to keep the gradient g/p/y visible. */
+  line-height: 1.1;
+  padding-bottom: 0.08em;
   letter-spacing: -0.03em;
   background: linear-gradient(135deg, var(--text) 0%, var(--highlight) 100%);
   -webkit-background-clip: text;
@@ -1272,8 +1284,10 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   font-family: var(--font-display), system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1;
-  padding: 0.35rem 0.65rem;
+  /* 1.1 (not 1) keeps descenders inside the pill — $ in "$1M+" and any stat
+     ending in a glyph that descends below baseline render fully on Safari. */
+  line-height: 1.1;
+  padding: 0.4rem 0.65rem 0.45rem;
   border-radius: 0.5rem;
   color: var(--highlight);
   background: linear-gradient(
@@ -1996,7 +2010,10 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   font-family: var(--font-display), system-ui, sans-serif;
   font-size: clamp(1.25rem, 2.4vw, 1.65rem);
   font-weight: 600;
-  line-height: 1.15;
+  /* 1.15 was too tight for Syne descenders on titles like "Horuz V2 Modernization"
+     and "PCC / Allianz Payments SDK" — the 'y' / 'g' / 'p' got clipped. */
+  line-height: 1.2;
+  padding-bottom: 0.05em;
   letter-spacing: -0.02em;
   color: var(--text);
 }
@@ -2408,12 +2425,24 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
     padding: 0.95rem 1rem;
   }
 
-  /* Single scroll on card body — outcomes flow naturally, no bounded marquee clip */
+  /* Mobile: card body must NOT be its own scroll container. The base rule sets
+     overflow-y:auto + overscroll-behavior:contain which, on touch, routes the
+     gesture into a nested scroller and prevents the page from picking up the
+     scroll when the user lands mid-card. Let content flow into the page. */
   .case-study-card-body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    -webkit-overflow-scrolling: touch;
+    overflow: visible;
+    overscroll-behavior: auto;
+    -webkit-overflow-scrolling: auto;
+  }
+
+  /* The card itself uses overflow:hidden for its rounded corners + accent glow
+     clipping. On mobile the slide grows intrinsically, so we keep that, but the
+     card-body above must be visible for the page-scroll handoff to work. */
+  .case-study-deck .viewport-deck-slide {
+    overflow: visible;
   }
 
   .case-study-card-narrative,
@@ -2625,7 +2654,9 @@ html.viewport-deck-active body {
 
 .viewport-page-intro--compact h1 {
   font-size: clamp(1.65rem, 2.8vw, 2.35rem);
-  line-height: 1.15;
+  /* 1.15 clipped descenders for "Measured in outcomes." / "in context." on Syne. */
+  line-height: 1.2;
+  padding-bottom: 0.05em;
 }
 
 .viewport-page-intro--compact .text-base,
