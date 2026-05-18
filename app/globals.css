@@ -1223,18 +1223,18 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
 .marquee {
   pointer-events: none;
   user-select: none;
-  touch-action: none;
+  touch-action: pan-y pinch-zoom;
 }
 
 .marquee-track {
   flex-wrap: nowrap;
+  touch-action: pan-y pinch-zoom;
 }
 
 .marquee a,
-.marquee .tech-badge-pill {
+.marquee .tech-badge-pill,
+.marquee .project-preview-card {
   pointer-events: auto;
-  /* Override inherited touch-action:none so vertical page scroll works when the
-     user touches a project card or tech pill while the marquee is animating. */
   touch-action: pan-y pinch-zoom;
 }
 

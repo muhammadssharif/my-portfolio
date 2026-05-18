@@ -14,17 +14,9 @@ export type ProjectPreviewCardProps = {
  * Homepage carousel card. Content is derived directly from the CaseStudy data
  * (already translated in messages/<locale>.json under `caseStudies.<id>.*`).
  *
- * Mapping:
- *   tagline → study.context  (one-line situation)
- *   problem → study.constraint
- *   built   → first item of study.built
- *   impact  → first item of study.metrics
- *   stack   → study.stack (capped so the card stays compact)
- *
- * Previously the card pulled bespoke copy from `home.cards.<cardId>.*` for a
- * hand-picked subset of 3 case studies — which is why the marquee was stuck
- * cycling only Paybilt + Horuz V2. Driving off CaseStudy lets every case study
- * render with no parallel translation surface.
+ * Card body is a plain article (not a link) so vertical page scroll works on
+ * mobile when the user touches the middle of the card inside the marquee.
+ * Navigation is via the CTA link only.
  */
 const STACK_PREVIEW_LIMIT = 6;
 
@@ -43,54 +35,55 @@ export function ProjectPreviewCard({ study }: ProjectPreviewCardProps) {
   const ctaLabel = demo ? demosT("viewFlow") : t("viewCaseStudy");
 
   return (
-    <Link href={href} className="marquee-project-link group">
-      <article className="project-preview-card surface-card flex h-full w-[min(100vw-2rem,20rem)] shrink-0 flex-col rounded-2xl border border-[var(--border)] p-5 sm:w-[19rem] md:p-6">
-        <p className="eyebrow mb-2">{study.company}</p>
-        <h3 className="font-display text-lg font-semibold tracking-tight text-[var(--text)] md:text-xl">{study.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-[var(--accent)]">{tagline}</p>
+    <article className="project-preview-card surface-card group flex h-full w-[min(100vw-2rem,20rem)] shrink-0 flex-col rounded-2xl border border-[var(--border)] p-5 sm:w-[19rem] md:p-6">
+      <p className="eyebrow mb-2">{study.company}</p>
+      <h3 className="font-display text-lg font-semibold tracking-tight text-[var(--text)] md:text-xl">{study.title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-[var(--accent)]">{tagline}</p>
 
-        <dl className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--muted)]">
-          {problem ? (
-            <div>
-              <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("problemLabel")}</dt>
-              <dd className="text-[var(--text)]">{problem}</dd>
-            </div>
-          ) : null}
-          {built ? (
-            <div>
-              <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("builtLabel")}</dt>
-              <dd>{built}</dd>
-            </div>
-          ) : null}
-          {impact ? (
-            <div>
-              <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("impactLabel")}</dt>
-              <dd className="text-[var(--text)]">{impact}</dd>
-            </div>
-          ) : null}
-        </dl>
-
-        {stack.length > 0 ? (
-          <div className="mt-4">
-            <p className="eyebrow mb-2">{t("techLabel")}</p>
-            <div className="flex flex-wrap gap-1.5">
-              {stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-lg border border-[var(--border)] bg-[color:color-mix(in_srgb,var(--surface)_70%,transparent)] px-2 py-0.5 text-xs text-[var(--muted)]"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+      <dl className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--muted)]">
+        {problem ? (
+          <div>
+            <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("problemLabel")}</dt>
+            <dd className="text-[var(--text)]">{problem}</dd>
           </div>
         ) : null}
+        {built ? (
+          <div>
+            <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("builtLabel")}</dt>
+            <dd>{built}</dd>
+          </div>
+        ) : null}
+        {impact ? (
+          <div>
+            <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("impactLabel")}</dt>
+            <dd className="text-[var(--text)]">{impact}</dd>
+          </div>
+        ) : null}
+      </dl>
 
-        <span className="btn btn-secondary mt-5 inline-flex w-full items-center justify-center gap-2 text-sm">
-          {ctaLabel}
-          <IconArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </span>
-      </article>
-    </Link>
+      {stack.length > 0 ? (
+        <div className="mt-4">
+          <p className="eyebrow mb-2">{t("techLabel")}</p>
+          <div className="flex flex-wrap gap-1.5">
+            {stack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-lg border border-[var(--border)] bg-[color:color-mix(in_srgb,var(--surface)_70%,transparent)] px-2 py-0.5 text-xs text-[var(--muted)]"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      <Link
+        href={href}
+        className="btn btn-secondary mt-5 inline-flex w-full items-center justify-center gap-2 text-sm no-underline"
+      >
+        {ctaLabel}
+        <IconArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </Link>
+    </article>
   );
 }

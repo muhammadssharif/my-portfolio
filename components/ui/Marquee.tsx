@@ -23,7 +23,7 @@ export function Marquee({
   return (
     <div
       dir="ltr"
-      className={`marquee relative overflow-hidden ${className}`.trim()}
+      className={`marquee relative overflow-x-clip overflow-y-visible ${className}`.trim()}
       role="region"
       aria-label={ariaLabel}
     >
