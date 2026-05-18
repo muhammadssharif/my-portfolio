@@ -2335,7 +2335,17 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
     gap: 0.85rem;
   }
 
-  .case-study-deck .viewport-deck-toolbar {
+  /* Work card first; toolbar (counter + stepper) below on mobile only */
+  .case-study-deck.viewport-deck .viewport-deck-stage {
+    order: 1;
+  }
+
+  .case-study-deck.viewport-deck .viewport-deck-middle {
+    order: 2;
+  }
+
+  .case-study-deck.viewport-deck .viewport-deck-toolbar {
+    order: 3;
     gap: 0.5rem 0.75rem;
   }
 
