@@ -977,8 +977,10 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
     box-shadow 0.25s ease;
 }
 
-.surface-card:hover {
-  border-color: color-mix(in srgb, var(--border-bright) 80%, var(--accent) 20%);
+@media (hover: hover) and (pointer: fine) {
+  .surface-card:hover {
+    border-color: color-mix(in srgb, var(--border-bright) 80%, var(--accent) 20%);
+  }
 }
 
 /* Content stacked above cosmic layers — promotes reliable compositing (Safari + starfield) */
@@ -1231,6 +1233,9 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
 .marquee a,
 .marquee .tech-badge-pill {
   pointer-events: auto;
+  /* Override inherited touch-action:none so vertical page scroll works when the
+     user touches a project card or tech pill while the marquee is animating. */
+  touch-action: pan-y pinch-zoom;
 }
 
 .home-marquee-fade {
@@ -1253,15 +1258,17 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
     box-shadow 0.2s ease;
 }
 
-.tech-badge-pill:hover {
-  border-color: color-mix(in srgb, var(--tech-brand) 55%, var(--border));
-  color: var(--tech-brand);
-  background: color-mix(in srgb, var(--tech-brand) 14%, var(--surface));
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--tech-brand) 22%, transparent);
-}
+@media (hover: hover) and (pointer: fine) {
+  .tech-badge-pill:hover {
+    border-color: color-mix(in srgb, var(--tech-brand) 55%, var(--border));
+    color: var(--tech-brand);
+    background: color-mix(in srgb, var(--tech-brand) 14%, var(--surface));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--tech-brand) 22%, transparent);
+  }
 
-.tech-badge-pill:hover .tech-badge-pill-icon {
-  color: var(--tech-brand);
+  .tech-badge-pill:hover .tech-badge-pill-icon {
+    color: var(--tech-brand);
+  }
 }
 
 .tech-badge-pill-icon {
