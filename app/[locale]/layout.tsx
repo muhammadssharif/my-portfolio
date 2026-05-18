@@ -11,7 +11,6 @@ import { CosmicChrome } from "@/components/layout/CosmicChrome";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { StyleHealthProbe } from "@/components/debug/StyleHealthProbe";
 import { SafariCompat } from "@/components/layout/SafariCompat";
-import { ThemeBootstrap } from "@/components/layout/ThemeBootstrap";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { localeMetadata, routing } from "@/i18n/routing";
 import { resolveServerTheme } from "@/lib/theme-server";
@@ -92,9 +91,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       className={`${syne.variable} ${dmSans.variable} ${jetBrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <ThemeBootstrap theme={theme} />
-      </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider initialTheme={theme}>

@@ -18,5 +18,5 @@ export function DemoPreviewDeck({ demos: demoItems }: DemoPreviewDeckProps) {
     content: <DemoPreviewCard demo={demo} />
   }));
 
-  return <ViewportDeck axis="horizontal" slides={slides} lockPageScroll />;
+  return <ViewportDeck axis="horizontal" mode="single" slides={slides} lockPageScroll />;
 }

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { IconChevronLeft, IconChevronRight } from "@/components/ui/icons";
+import { getIsRtl } from "@/lib/document-direction";
 import { shouldDeferWheelToNestedScroll } from "@/lib/nested-scroll-wheel";
 import { useSwipeNavigation } from "@/lib/use-swipe-navigation";
 import { useViewportDeckScrollLock } from "@/lib/use-viewport-deck-scroll-lock";
@@ -120,7 +121,8 @@ export function ViewportDeck({
     let wheelLock = false;
     const onWheel = (event: WheelEvent) => {
       if (wheelLock) return;
-      const delta = axis === "vertical" ? event.deltaY : event.deltaX;
+      const rawDelta = axis === "vertical" ? event.deltaY : event.deltaX;
+      const delta = axis === "horizontal" && getIsRtl() ? -rawDelta : rawDelta;
       if (Math.abs(delta) < 28) return;
       // Let nested VerticalMarquee consume wheel until top/bottom (Safari + Chrome).
       if (shouldDeferWheelToNestedScroll(event.target, event.deltaY)) return;
@@ -148,12 +150,15 @@ export function ViewportDeck({
         return;
       }
 
+      const isRtl = getIsRtl();
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-        goPrev();
+        if (isRtl) goNext();
+        else goPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
-        goNext();
+        if (isRtl) goPrev();
+        else goNext();
       } else if (event.key === "Home") {
         event.preventDefault();
         goTo(0);
@@ -169,8 +174,9 @@ export function ViewportDeck({
 
   if (total === 0 || !current) return null;
 
-  const PrevIcon = IconChevronLeft;
-  const NextIcon = IconChevronRight;
+  const isRtl = getIsRtl();
+  const PrevIcon = isRtl ? IconChevronRight : IconChevronLeft;
+  const NextIcon = isRtl ? IconChevronLeft : IconChevronRight;
   const hint = axis === "vertical" ? t("hintVertical") : t("hintHorizontal");
   const stageControlId = mode === "single" ? `${deckId}-slide-${current.id}` : `${deckId}-track`;
 

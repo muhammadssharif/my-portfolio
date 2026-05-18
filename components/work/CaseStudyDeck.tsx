@@ -20,6 +20,7 @@ export function CaseStudyDeck({ studies }: CaseStudyDeckProps) {
   return (
     <ViewportDeck
       axis="horizontal"
+      mode="single"
       slides={slides}
       lockPageScroll={isDesktop}
       className="case-study-deck"

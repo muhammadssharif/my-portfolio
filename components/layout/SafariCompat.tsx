@@ -40,20 +40,15 @@ export function SafariCompat() {
     run("mount");
 
     const onPageShow = (event: PageTransitionEvent) => {
-      if (event.persisted) recoveredForPath.current = null;
-      run(event.persisted ? "pageshow-bfcache" : "pageshow");
-    };
-
-    const onVisibility = () => {
-      if (document.visibilityState === "visible") run("visibility-visible");
+      if (!event.persisted) return;
+      recoveredForPath.current = null;
+      run("pageshow-bfcache");
     };
 
     window.addEventListener("pageshow", onPageShow);
-    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       window.removeEventListener("pageshow", onPageShow);
-      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, [pathname, router]);
 

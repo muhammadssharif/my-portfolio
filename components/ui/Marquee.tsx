@@ -1,4 +1,9 @@
+import { Fragment } from "react";
+
 type MarqueeDirection = "left" | "right";
+
+/** Duplicated sequences in the track; animation shifts by 1/N of total width per loop. */
+const MARQUEE_COPY_COUNT = 4;
 
 type MarqueeProps = {
   children: React.ReactNode;
@@ -17,16 +22,24 @@ export function Marquee({
 }: MarqueeProps) {
   return (
     <div
+      dir="ltr"
       className={`marquee relative overflow-hidden ${className}`.trim()}
       role="region"
       aria-label={ariaLabel}
     >
       <div
-        className={`marquee-track flex w-max gap-3 ${direction === "right" ? "marquee-track-right" : "marquee-track-left"}`}
-        style={{ "--marquee-duration": `${durationSec}s` } as React.CSSProperties}
+        dir="ltr"
+        className={`marquee-track flex w-max flex-nowrap gap-3 ${direction === "right" ? "marquee-track-right" : "marquee-track-left"}`}
+        style={
+          {
+            "--marquee-duration": `${durationSec}s`,
+            "--marquee-copies": MARQUEE_COPY_COUNT
+          } as React.CSSProperties
+        }
       >
-        {children}
-        {children}
+        {Array.from({ length: MARQUEE_COPY_COUNT }, (_, copyIndex) => (
+          <Fragment key={copyIndex}>{children}</Fragment>
+        ))}
       </div>
     </div>
   );

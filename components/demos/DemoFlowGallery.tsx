@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { IconChevronLeft, IconChevronRight } from "@/components/ui/icons";
+import { getIsRtl } from "@/lib/document-direction";
 import { useSwipeNavigation } from "@/lib/use-swipe-navigation";
 import { useViewportDeckScrollLock } from "@/lib/use-viewport-deck-scroll-lock";
 
@@ -143,12 +144,15 @@ export function DemoFlowGallery({ steps, ariaLabel, intro, footnote }: DemoFlowG
       ) {
         return;
       }
+      const isRtl = getIsRtl();
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-        goPrev();
+        if (isRtl) goNext();
+        else goPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
-        goNext();
+        if (isRtl) goPrev();
+        else goNext();
       } else if (event.key === "Home") {
         event.preventDefault();
         goTo(0);
@@ -164,6 +168,10 @@ export function DemoFlowGallery({ steps, ariaLabel, intro, footnote }: DemoFlowG
 
   if (!step || total === 0) return null;
 
+  const isRtl = getIsRtl();
+  const PrevIcon = isRtl ? IconChevronRight : IconChevronLeft;
+  const NextIcon = isRtl ? IconChevronLeft : IconChevronRight;
+
   return (
     <section ref={galleryRef} className="demo-flow-gallery demo-flow-swipe-surface" aria-label={ariaLabel}>
       <div className="demo-flow-copy">
@@ -175,11 +183,11 @@ export function DemoFlowGallery({ steps, ariaLabel, intro, footnote }: DemoFlowG
 
           <div className="demo-flow-nav">
             <button type="button" className="viewport-deck-nav-btn" onClick={goPrev} aria-label={deckT("prev")}>
-              <IconChevronLeft size={18} />
+              <PrevIcon size={18} />
             </button>
             <span className="demo-flow-nav-counter">{deckT("counter", { current: index + 1, total })}</span>
             <button type="button" className="viewport-deck-nav-btn" onClick={goNext} aria-label={deckT("next")}>
-              <IconChevronRight size={18} />
+              <NextIcon size={18} />
             </button>
           </div>
         </div>
@@ -187,7 +195,7 @@ export function DemoFlowGallery({ steps, ariaLabel, intro, footnote }: DemoFlowG
 
       <div className="demo-flow-mobile-nav" aria-label={deckT("jumpTo")}>
         <button type="button" className="viewport-deck-nav-btn" onClick={goPrev} aria-label={deckT("prev")}>
-          <IconChevronLeft size={18} />
+          <PrevIcon size={18} />
         </button>
         <div className="viewport-deck-dots" role="tablist" aria-label={deckT("jumpTo")}>
           {steps.map((flowStep, stepIndex) => (
@@ -203,7 +211,7 @@ export function DemoFlowGallery({ steps, ariaLabel, intro, footnote }: DemoFlowG
           ))}
         </div>
         <button type="button" className="viewport-deck-nav-btn" onClick={goNext} aria-label={deckT("next")}>
-          <IconChevronRight size={18} />
+          <NextIcon size={18} />
         </button>
       </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { createContext, useContext, useLayoutEffect } from "react";
+import { runThemeBootstrap } from "@/lib/theme-bootstrap";
 import { ThemeTransition } from "@/components/layout/ThemeTransition";
 import { ThemeVeil } from "@/components/layout/ThemeVeil";
 import { useTheme } from "@/hooks/useTheme";
@@ -21,8 +22,17 @@ type ThemeProviderProps = {
   initialTheme: Theme;
 };
 
+if (typeof window !== "undefined") {
+  runThemeBootstrap();
+}
+
 export function ThemeProvider({ children, initialTheme }: ThemeProviderProps) {
   const value = useTheme();
+
+  useLayoutEffect(() => {
+    runThemeBootstrap();
+  }, []);
+
   return (
     <InitialThemeContext.Provider value={initialTheme}>
       <ThemeContext.Provider value={value}>
