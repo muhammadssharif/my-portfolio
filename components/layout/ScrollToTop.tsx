@@ -11,6 +11,8 @@ export function ScrollToTop() {
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
+    // Deep links (e.g. /work#pcc-sdk) scroll the deck into view instead.
+    if (window.location.hash) return;
     window.scrollTo(0, 0);
   }, [pathname]);
 

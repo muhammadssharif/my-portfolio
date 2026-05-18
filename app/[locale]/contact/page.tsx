@@ -21,8 +21,8 @@ export default async function ContactPage() {
         <div className="space-y-4 overflow-visible">
           <p className="eyebrow">{t("eyebrow")}</p>
           <h1 className="display-title text-3xl font-semibold tracking-tight phone-lg:text-4xl md:text-5xl">
-            <span className="block pb-[0.18em] leading-[1.25]">{t("title")}</span>
-            <span className="mt-1 block pb-[0.18em] leading-[1.25] text-[var(--muted)]">{t("titleMuted")}</span>
+            <span className="display-title__line">{t("title")}</span>
+            <span className="display-title__line mt-1 text-[var(--muted)]">{t("titleMuted")}</span>
           </h1>
           <p className="max-w-md text-base leading-relaxed text-[var(--muted)] phone-lg:text-lg">{t("intro")}</p>
         </div>

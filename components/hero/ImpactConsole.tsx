@@ -101,7 +101,7 @@ export function ImpactConsole({ metrics }: ImpactConsoleProps) {
               aria-label={`${activeMetric.headline} — ${t("viewCaseStudy")}`}
             >
               <div className="flex min-h-0 flex-1 flex-col gap-3">
-                <h3 className="font-display text-lg font-semibold leading-snug tracking-tight text-[var(--text)] pb-[0.05em] transition group-hover:text-[var(--accent)] md:text-xl">
+                <h3 className="font-display text-lg font-semibold leading-snug tracking-tight text-[var(--text)] transition group-hover:text-[var(--accent)] md:text-xl">
                   {activeMetric.headline}
                 </h3>
                 <p className="text-sm leading-relaxed text-[var(--muted)]">{activeMetric.story}</p>

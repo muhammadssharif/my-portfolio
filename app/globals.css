@@ -38,6 +38,48 @@
   --luminary-transition-duration: 1.15s;
   /* Gap below nav — flex gap on .site-shell between header and main (Safari-safe vs sticky parent padding) */
   --site-header-gap: 1.5rem;
+
+  /* === Display-font (Syne) descender safety — single source of truth ============
+   *
+   * Why we need this:
+   *   Syne is a display font with an aggressive descent (~0.29em) and a
+   *   double-story 'g' whose lower loop reaches the deepest ink point in the
+   *   font. Other descenders (p, y, j, q) terminate higher than the g-loop,
+   *   so the 'g' is always the first letter to look clipped — even when
+   *   p/y/j/q still visually fit. That's why "only the g is cut off".
+   *
+   * What clips it:
+   *   1) Tight line-height (< ~1.26): the CSS line-box is shorter than the
+   *      font's ink extent, so descender pixels paint outside the line-box.
+   *   2) overflow:hidden on an ancestor (card, panel, marquee, rounded
+   *      container): cuts the descender that sits outside the line-box.
+   *   3) -webkit-background-clip: text + -webkit-text-fill-color: transparent:
+   *      the gradient image is bounded by the element's padding-box; descender
+   *      ink that sits below the box renders as transparent (looks "cut").
+   *   4) Tight stacks: the next sibling starts where the line-box ends,
+   *      visually slicing the descender.
+   *
+   * The fix (universal):
+   *   Reserve a small em-relative padding-block-end on every display-font
+   *   element. This makes the padding-box taller than the line-box, so:
+   *     - the descender paints inside the element box (no overflow clip),
+   *     - background-clip:text gradients cover the descender ink,
+   *     - next siblings don't overlap the descender visually.
+   *
+   *   0.12em is the safe baseline (Stack Overflow consensus for this class of
+   *   font: 0.12em–0.15em). It comfortably handles every line-height down to
+   *   ~1.02 for Syne. Tighter cases (leading-none) can override locally.
+   *
+   * Refs:
+   *   - SO: "Descenders of letters get cropped out when using -webkit-line-clamp
+   *      with reduced line-height" (canonical fix: padding-bottom: 0.14em)
+   *   - SO: "In CSS the Bottom Part of my Custom Fonts are Getting Cut Off
+   *      (the g's and y's)"
+   *   - CSS 2.2 §10.8 Line height calculations (leading / half-leading)
+   *   - css-inline-3: text-box-trim / leading-trim (future-proof replacement,
+   *      not yet broadly supported; padding-block-end is the portable fix).
+   * ============================================================================ */
+  --display-font-descender-safety: 0.12em;
 }
 
 /* Theme tokens on data-theme only — :root must not set theme colors (Safari cascade on refresh) */
@@ -907,8 +949,38 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   }
 }
 
+/* Every Syne surface — one descender rule (see :root token docs). */
+:where(
+  .font-display,
+  .display-title,
+  .case-study-title,
+  .impact-console-stat-badge,
+  .impact-value
+) {
+  padding-block-end: var(--display-font-descender-safety);
+}
+
 .font-display {
   font-family: var(--font-display), system-ui, sans-serif;
+}
+
+/* Fixed-size initials chip — no descender room needed (MS, not a word with g) */
+.brand-mark {
+  --display-font-descender-safety: 0;
+}
+
+/* leading-none / leading-[1] shrink the line-box below Syne's ink extent */
+.font-display:where(.leading-none, [class*="leading-none"], .leading-\[1\], [class*="leading-[1]"]) {
+  padding-block-end: calc(var(--display-font-descender-safety) + 0.05em);
+}
+
+/* Each line in a stacked display heading (work/demos/contact titles, etc.) */
+.display-title__line,
+.font-display > :is(.display-title__line, .block),
+.display-title > :is(.display-title__line, .block) {
+  display: block;
+  line-height: 1.25;
+  padding-block-end: var(--display-font-descender-safety);
 }
 
 .mono {
@@ -955,9 +1027,16 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   /* line-height:1 used to clip descenders (g, p, y) on Syne in Safari/Chrome.
      1.15 leaves room for the descender even when children don't override leading. */
   line-height: 1.15;
-  /* Tail padding so descenders never touch the next block on tight stacks. */
-  padding-bottom: 0.06em;
   overflow: visible;
+}
+
+/* Line wrappers own descender padding — avoid stacking with the parent token */
+.display-title:has(.display-title__line) {
+  padding-block-end: 0;
+}
+
+.font-display:has(.display-title__line) {
+  padding-block-end: 0;
 }
 
 .surface-card {
@@ -1163,9 +1242,9 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   font-weight: 600;
   /* line-height:1 + gradient text-fill clips descenders in WebKit because the
      line box equals the font-size while the glyph descent (Syne ~0.29em)
-     extends below it. Loosen + pad to keep the gradient g/p/y visible. */
+     extends below it. Loosen + pad to keep the gradient g/p/y visible.
+     Padding uses the shared --display-font-descender-safety token. */
   line-height: 1.1;
-  padding-bottom: 0.08em;
   letter-spacing: -0.03em;
   background: linear-gradient(135deg, var(--text) 0%, var(--highlight) 100%);
   -webkit-background-clip: text;
@@ -1292,9 +1371,12 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   font-weight: 700;
   letter-spacing: -0.02em;
   /* 1.1 (not 1) keeps descenders inside the pill — $ in "$1M+" and any stat
-     ending in a glyph that descends below baseline render fully on Safari. */
+     ending in a glyph that descends below baseline render fully on Safari.
+     Bottom padding already adds Syne descender safety via the asymmetric
+     shorthand; keep explicit value here (this rule sets background+border too,
+     so we don't switch to padding-block-end and risk side-skewing the pill). */
   line-height: 1.1;
-  padding: 0.4rem 0.65rem 0.45rem;
+  padding: 0.4rem 0.65rem calc(0.45rem + var(--display-font-descender-safety));
   border-radius: 0.5rem;
   color: var(--highlight);
   background: linear-gradient(
@@ -2018,9 +2100,9 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   font-size: clamp(1.25rem, 2.4vw, 1.65rem);
   font-weight: 600;
   /* 1.15 was too tight for Syne descenders on titles like "Horuz V2 Modernization"
-     and "PCC / Allianz Payments SDK" — the 'y' / 'g' / 'p' got clipped. */
+     and "PCC / Allianz Payments SDK" — the 'y' / 'g' / 'p' got clipped.
+     Padding pulled from --display-font-descender-safety (see :root). */
   line-height: 1.2;
-  padding-bottom: 0.05em;
   letter-spacing: -0.02em;
   color: var(--text);
 }
@@ -2661,9 +2743,9 @@ html.viewport-deck-active body {
 
 .viewport-page-intro--compact h1 {
   font-size: clamp(1.65rem, 2.8vw, 2.35rem);
-  /* 1.15 clipped descenders for "Measured in outcomes." / "in context." on Syne. */
+  /* 1.15 clipped descenders for "Measured in outcomes." / "in context." on Syne.
+     Padding now pulled from --display-font-descender-safety (see :root). */
   line-height: 1.2;
-  padding-bottom: 0.05em;
 }
 
 .viewport-page-intro--compact .text-base,

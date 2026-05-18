@@ -21,6 +21,12 @@ type ViewportDeckMode = "carousel" | "single";
 
 const MOBILE_DECK_MAX_WIDTH = "(max-width: 899px)";
 
+function findSlideIndex(slides: readonly ViewportDeckSlide[], targetId: string): number {
+  return slides.findIndex(
+    (slide) => slide.id === targetId || slide.id.startsWith(`${targetId}-`)
+  );
+}
+
 type GoToOptions = {
   scrollToSlide?: boolean;
 };
@@ -61,8 +67,10 @@ export function ViewportDeck({
   const t = useTranslations("viewportDeck");
   const deckId = useId();
   const stageRef = useRef<HTMLDivElement>(null);
-  const hashSyncedRef = useRef(false);
+  const initialHashAppliedRef = useRef(false);
+  const lastHashRef = useRef<string | null>(null);
   const pendingScrollRef = useRef(false);
+  const [scrollTick, setScrollTick] = useState(0);
   const [uncontrolledIndex, setUncontrolledIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -76,7 +84,13 @@ export function ViewportDeck({
     (nextIndex: number, options?: GoToOptions) => {
       if (total === 0) return;
       const wrapped = ((nextIndex % total) + total) % total;
-      if (wrapped === index) return;
+      if (wrapped === index) {
+        if (scrollToSlideOnNavigate && options?.scrollToSlide) {
+          pendingScrollRef.current = true;
+          setScrollTick((tick) => tick + 1);
+        }
+        return;
+      }
       if (scrollToSlideOnNavigate && options?.scrollToSlide) {
         pendingScrollRef.current = true;
       }
@@ -91,19 +105,47 @@ export function ViewportDeck({
   const goToRef = useRef(goTo);
   goToRef.current = goTo;
 
+  const syncIndexFromHash = useCallback(
+    (options?: GoToOptions) => {
+      const hashId = window.location.hash.replace(/^#/, "");
+      const targetId = hashId || initialId;
+      if (!targetId) {
+        initialHashAppliedRef.current = true;
+        return;
+      }
+
+      const hashIndex = findSlideIndex(slides, targetId);
+      if (hashIndex < 0) {
+        initialHashAppliedRef.current = true;
+        return;
+      }
+
+      lastHashRef.current = targetId;
+      goToRef.current(hashIndex, options);
+      initialHashAppliedRef.current = true;
+    },
+    [initialId, slides]
+  );
+
   useEffect(() => {
     setMounted(true);
-    if (hashSyncedRef.current) return;
-    hashSyncedRef.current = true;
+    const scrollOpts = scrollToSlideOnNavigate ? { scrollToSlide: true as const } : undefined;
+    syncIndexFromHash(scrollOpts);
 
-    const hashId = window.location.hash.replace(/^#/, "");
-    const fromHash = hashId || initialId;
-    if (!fromHash) return;
-    const hashIndex = slides.findIndex(
-      (slide) => slide.id === fromHash || slide.id.startsWith(`${fromHash}-`)
-    );
-    if (hashIndex >= 0) goToRef.current(hashIndex);
-  }, [initialId, slides]);
+    // Next.js client navigation can apply the hash after the first paint.
+    const raf = requestAnimationFrame(() => {
+      syncIndexFromHash(scrollOpts);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [scrollToSlideOnNavigate, syncIndexFromHash]);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      syncIndexFromHash(scrollToSlideOnNavigate ? { scrollToSlide: true } : undefined);
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, [scrollToSlideOnNavigate, syncIndexFromHash]);
 
   useViewportDeckScrollLock(lockPageScroll);
   useSwipeNavigation(stageRef, {
@@ -127,17 +169,23 @@ export function ViewportDeck({
       ? "auto"
       : "smooth";
     stage.scrollIntoView({ block: "start", behavior });
-  }, [index, scrollToSlideOnNavigate]);
-
-  const lastHashRef = useRef<string | null>(null);
+  }, [index, scrollTick, scrollToSlideOnNavigate]);
 
   useEffect(() => {
     if (!mounted || !current) return;
+    if (!initialHashAppliedRef.current) return;
+
+    const incomingHash = window.location.hash.replace(/^#/, "");
+    if (incomingHash && incomingHash !== current.id) {
+      const incomingIndex = findSlideIndex(slides, incomingHash);
+      if (incomingIndex >= 0 && incomingIndex !== index) return;
+    }
+
     if (lastHashRef.current === current.id) return;
     lastHashRef.current = current.id;
     const nextUrl = `${window.location.pathname}${window.location.search}#${current.id}`;
     window.history.replaceState(null, "", nextUrl);
-  }, [current?.id, mounted]);
+  }, [current?.id, index, mounted, slides]);
 
   useEffect(() => {
     const stage = stageRef.current;

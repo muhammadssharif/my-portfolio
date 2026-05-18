@@ -20,8 +20,8 @@ export default async function WorkPage() {
       <header className="viewport-page-intro viewport-page-intro--compact max-w-3xl space-y-1.5 phone-lg:space-y-2">
         <p className="eyebrow">{t("eyebrow")}</p>
         <h1 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">
-          {t("title")}
-          <span className="block text-[var(--muted)]">{t("titleMuted")}</span>
+          <span className="display-title__line">{t("title")}</span>
+          <span className="display-title__line text-[var(--muted)]">{t("titleMuted")}</span>
         </h1>
         <p className="text-base leading-relaxed text-[var(--muted)] md:text-lg">{t("intro")}</p>
       </header>

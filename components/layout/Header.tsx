@@ -44,7 +44,7 @@ export function Header() {
         <NavShell>
         <Link href="/" className="min-w-0 shrink">
           <span className="flex items-center gap-2 sm:gap-2.5">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[color:color-mix(in_srgb,var(--accent)_18%,transparent)] font-display text-sm font-semibold text-[var(--accent)] ring-1 ring-[color:color-mix(in_srgb,var(--accent)_30%,transparent)]">
+            <span className="brand-mark flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[color:color-mix(in_srgb,var(--accent)_18%,transparent)] font-display text-sm font-semibold text-[var(--accent)] ring-1 ring-[color:color-mix(in_srgb,var(--accent)_30%,transparent)]">
               MS
             </span>
             <span className="hidden truncate font-display text-sm font-semibold tracking-tight phone-lg:block phone-lg:max-w-[9rem] md:max-w-none md:text-base">

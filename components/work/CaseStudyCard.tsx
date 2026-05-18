@@ -19,6 +19,7 @@ export function CaseStudyCard({ study }: CaseStudyCardProps) {
 
   return (
     <article
+      id={study.id}
       className="case-study-card viewport-deck-card surface-panel"
       data-study={study.id}
       data-swipe-surface

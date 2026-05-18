@@ -31,8 +31,6 @@ export function ProjectPreviewCard({ study }: ProjectPreviewCardProps) {
   const stack = study.stack.slice(0, STACK_PREVIEW_LIMIT);
 
   const demo = getDemoForCaseStudy(study.id);
-  const href = demo ? `/demos/${demo.slug}` : `/work#${study.id}`;
-  const ctaLabel = demo ? demosT("viewFlow") : t("viewCaseStudy");
 
   return (
     <article className="project-preview-card surface-card group flex h-full w-[min(100vw-2rem,20rem)] shrink-0 flex-col rounded-2xl border border-[var(--border)] p-5 sm:w-[19rem] md:p-6">
@@ -77,13 +75,24 @@ export function ProjectPreviewCard({ study }: ProjectPreviewCardProps) {
         </div>
       ) : null}
 
-      <Link
-        href={href}
-        className="btn btn-secondary mt-5 inline-flex w-full items-center justify-center gap-2 text-sm no-underline"
-      >
-        {ctaLabel}
-        <IconArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </Link>
+      <div className="mt-5 flex flex-col gap-2">
+        <Link
+          href={`/work#${study.id}`}
+          className="btn btn-secondary inline-flex w-full items-center justify-center gap-2 text-sm no-underline"
+        >
+          {t("viewCaseStudy")}
+          <IconArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </Link>
+        {demo ? (
+          <Link
+            href={`/demos/${demo.slug}`}
+            className="inline-flex w-full items-center justify-center gap-1.5 text-sm text-[var(--muted)] no-underline transition hover:text-[var(--accent)]"
+          >
+            {demosT("viewFlow")}
+            <IconArrowUpRight size={14} />
+          </Link>
+        ) : null}
+      </div>
     </article>
   );
 }
