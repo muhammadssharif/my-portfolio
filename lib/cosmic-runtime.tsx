@@ -12,6 +12,7 @@ import {
 } from "react";
 import { getThemeTransitionController } from "@/lib/theme-transition-controller";
 import { getCosmicQualitySettings, type CosmicQualitySettings } from "@/lib/cosmic-quality";
+import { markSafariDocument } from "@/lib/safari-compat";
 
 export type CosmicFrameHandle = {
   id: string;
@@ -43,6 +44,7 @@ export function CosmicRuntimeProvider({ children }: { children: ReactNode }) {
 
   useLayoutEffect(() => {
     document.documentElement.dataset.cosmicTier = quality.tier;
+    markSafariDocument();
   }, [quality.tier]);
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import type { CaseStudy, ImpactMetric } from "@/content/portfolio";
 import { siteContent } from "@/content/portfolio";
 
-type ImpactMetricMessages = Record<string, { label: string; proof: string }>;
+type ImpactMetricMessages = Record<string, { headline: string; story: string; proofChips: string[] }>;
 type CaseStudyMessages = Record<
   string,
   {
@@ -31,8 +31,9 @@ export function buildImpactMetrics(messages: PortfolioMessages): ImpactMetric[] 
     const translated = messages.impactMetrics[metric.id];
     return {
       ...metric,
-      label: translated?.label ?? metric.label,
-      proof: translated?.proof ?? metric.proof
+      headline: translated?.headline ?? metric.headline,
+      story: translated?.story ?? metric.story,
+      proofChips: translated?.proofChips ?? [...metric.proofChips]
     };
   });
 }

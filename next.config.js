@@ -5,6 +5,8 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Next 16 devtools inject a fixed div before hydration; it mismatches the app shell in dev.
+  devIndicators: false,
   async redirects() {
     return [
       {

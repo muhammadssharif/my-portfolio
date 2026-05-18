@@ -83,6 +83,16 @@ Checklist when something looks wrong:
 3. `data-theme-transitioning` is absent when idle
 4. Only one of `.cosmic-stack-dark` / `.cosmic-stack-light` is visible
 
+## Safari development (CSS / Turbopack)
+
+When styles look correct briefly then break after refresh in **Safari**:
+
+1. Prefer `npm run dev:webpack` instead of `npm run dev` (Turbopack can serve stale CSS in WebKit).
+2. Hard-refresh once with **⌘⌥R** or **Develop → Empty Caches** if styles stay wrong.
+3. Filter the console by `style-health` and copy the `paste:` JSON from a broken load.
+
+Production Safari uses `SafariCompat` + `needsStyleRecovery()` to `router.refresh()` when global CSS or theme tokens fail probes.
+
 ## Anti-patterns
 
 Do **not**:

@@ -59,8 +59,9 @@ export async function POST(request: Request) {
 
     const gmailUser = process.env.GMAIL_USER ?? process.env.GMAIL_E;
     const gmailPassword = process.env.GMAIL_APP_PASSWORD ?? process.env.GMAIL_P;
+    const contactEmail = process.env.CONTACT_EMAIL?.trim();
 
-    if (!gmailUser || !gmailPassword) {
+    if (!gmailUser || !gmailPassword || !contactEmail) {
       return NextResponse.json({ message: "Email service is not configured." }, { status: 500 });
     }
 
@@ -74,14 +75,27 @@ export async function POST(request: Request) {
 
     await transporter.sendMail({
       from: gmailUser,
-      to: gmailUser,
-      subject: `Portfolio message from ${name} (${email}): ${subject}`,
-      text: message
+      to: contactEmail,
+      replyTo: email,
+      subject: `Portfolio message from ${name}: ${subject}`,
+      text: `From: ${name} <${email}>\nSubject: ${subject}\n\n${message}`
     });
 
     return NextResponse.json({ message: "Email sent successfully." }, { status: 200 });
   } catch (error) {
-    console.error("sendEmail route error", error);
+    // console.error("sendEmail route error", error);
+
+    const smtpError = error as { code?: string; responseCode?: number };
+    if (smtpError.code === "EAUTH" || smtpError.responseCode === 535) {
+      return NextResponse.json(
+        {
+          message:
+            "Gmail rejected the app password. Use a 16-character App Password (not your normal Gmail password) for GMAIL_APP_PASSWORD."
+        },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json({ message: "Internal server error." }, { status: 500 });
   }
 }

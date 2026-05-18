@@ -6,14 +6,22 @@
     "workDescription": "Études de cas en SaaS d'entreprise, paiements et produits mobiles avec métriques vérifiées.",
     "contactTitle": "Contact | Muhammad Sharif",
     "contactDescription": "Contactez Muhammad Sharif pour des opportunités frontend, full stack et produits d'entreprise.",
+    "demosTitle": "Démos | Muhammad Sharif",
+    "demosDescription": "Parcours produit issus de systèmes de paiement et de dons en production.",
     "siteName": "Portfolio Muhammad Sharif",
     "ogAlt": "Portfolio Muhammad Sharif"
   },
   "nav": {
     "home": "Accueil",
     "work": "Travaux",
+    "caseStudies": "Études de cas",
+    "demos": "Démos",
     "contact": "Contact",
-    "resume": "CV"
+    "resume": "CV",
+    "menu": "Menu",
+    "closeMenu": "Fermer le menu",
+    "preferences": "Préférences du site",
+    "connect": "Réseaux"
   },
   "languageSwitcher": {
     "label": "Langue",
@@ -38,22 +46,63 @@
     "location": "Calgary, AB",
     "headline": "Développeur Full Stack | Architecture Frontend | SaaS d'entreprise | Paiements",
     "bio": [
-      "Développeur full stack spécialisé en React, TypeScript, FastAPI, MongoDB, WebSockets, Docker et CI/CD pour des produits SaaS d'entreprise, paiements et conformité.",
-      "Reconnu pour transformer des exigences urgentes en systèmes en production avec un impact mesurable, notamment la sauvegarde d'un partenariat Allianz de plus de 1 M$ grâce à un SDK livré en 48 heures, la virtualisation de plus de 200 000 lignes avec TanStack Virtual, et des gains de temps de chargement jusqu'à ~75 %."
+      "Je construis des systèmes de production où la performance, la fiabilité et l'impact d'affaires comptent, des SDK de paiement et plateformes de conformité aux interfaces virtualisées sur de grands volumes de données.",
+      "Travaux récents : appuyer un partenariat Allianz de paiements à forte valeur via un SDK livré en 48 h, une architecture de table volumineuse testée sous stress pour des volumes extrêmes de lignes, et une modernisation frontend avec des gains de chargement nettement plus rapides."
     ]
   },
   "hero": {
     "eyebrow": "Full Stack · SaaS d'entreprise · Paiements",
-    "viewWork": "Voir les projets sélectionnés",
-    "getInTouch": "Me contacter",
-    "locationLabel": "Emplacement",
-    "availableLabel": "Disponible pour",
-    "availableValue": "Rôles senior full stack et frontend"
+    "positioning": "Développeur full stack axé sur le SaaS d'entreprise, l'architecture frontend et les systèmes de paiement.",
+    "viewWork": "Voir les études de cas",
+    "downloadResume": "Télécharger le CV",
+    "openTo": "Ouvert aux rôles full stack, architecture frontend et SaaS."
   },
   "home": {
-    "selectedWork": "Travaux sélectionnés",
-    "projectsTitle": "Projets aux résultats mesurables",
-    "seeAll": "Voir toutes les études de cas"
+    "selectedEngineeringWork": "Ingénierie sélectionnée",
+    "recentCaseStudies": "Études de cas récentes",
+    "seeAll": "Voir toutes les études de cas",
+    "problemLabel": "Problème",
+    "builtLabel": "Ce que j'ai construit",
+    "impactLabel": "Impact",
+    "techLabel": "Technos",
+    "viewCaseStudy": "Voir l'étude de cas",
+    "techMarqueeLabel": "Outils et plateformes",
+    "workMarqueeLabel": "Carrousel des réalisations d'ingénierie",
+    "cards": {
+      "payments-sdk": {
+        "tagline": "SDK Vanilla JS en 48 h pour un déploiement de paiements d'entreprise urgent",
+        "problem": "Le checkout marchand avait besoin d'une couche de paiements intégrable sous une échéance de partenariat immuable.",
+        "built": "Livré un SDK Vanilla JS prêt pour la production avec thèmes, champs préremplis et flux de paiement pilotés par API.",
+        "impact": "Contribution à la protection d'un partenariat de paiements Allianz à forte valeur par une livraison rapide et fiable.",
+        "stack": ["JavaScript", "Paiements", "REST", "WebSockets", "CSS"]
+      },
+      "horuz-compliance": {
+        "tagline": "Architecture frontend pour une plateforme de conformité multi-locataires",
+        "problem": "L'ancien outillage CRA et des modules UI lourds ralentissaient le chargement et la livraison pour des flux réglementés.",
+        "built": "Modernisé les modules clés avec Vite, le découpage par route et une couche d'état résiliente dans toute l'application.",
+        "impact": "Réduit le JS initial et amélioré nettement les temps de chargement sur les routes principales.",
+        "stack": ["React", "Vite", "Zustand", "TanStack Virtual", "MongoDB", "FastAPI"]
+      },
+      "horuz-large-data": {
+        "tagline": "Table hiérarchique virtualisée pour d'importants volumes d'enregistrements de conformité",
+        "problem": "Les utilisateurs avaient besoin d'une navigation fluide dans d'énormes jeux de données sans saturer le navigateur.",
+        "built": "Virtualisation segmentée par page avec TanStack Virtual, chargement conscient du cache et dimensionnement pour tables profondes.",
+        "impact": "Architecture de table volumineuse testée sous stress pour des nombres de lignes extrêmes tout en gardant l'interface réactive.",
+        "stack": ["TanStack Virtual", "React", "TypeScript", "Dimensionnement dynamique", "Cache", "Virtualisation segmentée"]
+      }
+    }
+  },
+  "viewportDeck": {
+    "label": "Carrousel de projets",
+    "position": "Diapositive actuelle",
+    "counter": "{current} sur {total}",
+    "hintVertical": "Touches ← →, glisser ou molette — une diapositive à la fois",
+    "hintHorizontal": "Touches ← →, glisser ou molette — un écran à la fois",
+    "hintTouch": "Glissez ou utilisez les boutons — un écran à la fois",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "jumpTo": "Aller à la diapositive",
+    "goTo": "Aller à {label}"
   },
   "work": {
     "eyebrow": "Études de cas",
@@ -64,7 +113,9 @@
     "constraint": "Contrainte",
     "built": "Ce que j'ai construit",
     "proof": "Preuve",
-    "stack": "Stack"
+    "stack": "Stack",
+    "slideStory": "Contexte",
+    "slideOutcomes": "Résultats"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -86,32 +137,134 @@
     "errorGeneric": "Une erreur s'est produite.",
     "errorSend": "Impossible d'envoyer le message."
   },
+  "demos": {
+    "eyebrow": "Démos produit",
+    "title": "Parcours en production",
+    "titleMuted": "en contexte.",
+    "intro": "Captures écran par écran de produits de paiement et de collecte de fonds — recadrées sur l'interface, sans chrome du navigateur.",
+    "viewFlow": "Voir le parcours",
+    "flowStepsLabel": "Étapes du parcours de paiement",
+    "flowStep": "Étape {current} sur {total}",
+    "backToDemos": "Toutes les démos",
+    "relatedCaseStudy": "Étude de cas associée",
+    "conservative-party": {
+      "tag": "OCC · Collecte politique",
+      "title": "Parti conservateur du Canada",
+      "description": "Parcours de don de bout en bout — montant, contact du donateur, Interac et carte, sélection de banque et gestion d'erreurs.",
+      "flowLabel": "Parcours de don — Parti conservateur",
+      "disclaimer": "Captures d'un environnement de type production. Les données personnelles sont fictives à des fins de démonstration.",
+      "steps": {
+        "amount": {
+          "title": "Montant du don",
+          "description": "Le donateur choisit un montant prédéfini ou saisit un montant personnalisé avant de passer aux coordonnées."
+        },
+        "contact": {
+          "title": "Contact et facturation",
+          "description": "Nom, courriel, adresse et facturation sont recueillis pour la conformité, les reçus et le routage du paiement."
+        },
+        "payBy": {
+          "title": "Options de paiement",
+          "description": "Choix entre carte et virement Interac. Le récapitulatif du montant reste visible avant l’ouverture du rail de paiement."
+        },
+        "paymentMethod": {
+          "title": "Interac sélectionné",
+          "description": "Le parcours Interac est actif dans la coque de paiement, en vue de la sélection de banque ou de la saisie carte."
+        },
+        "cardCheckout": {
+          "title": "Paiement par carte",
+          "description": "Formulaire carte avec récapitulatif, code postal de facturation et widget Paybilt intégré pour la saisie sécurisée."
+        },
+        "interacBanks": {
+          "title": "Choix de la banque Interac",
+          "description": "Grille d’institutions financières pour rediriger le donateur vers sa banque en ligne et compléter le virement."
+        },
+        "etransferWaiting": {
+          "title": "En attente du virement",
+          "description": "Attente avec sondage dans l’onglet pendant que le donateur termine le virement. Le checkout reste ouvert jusqu’à confirmation ou expiration."
+        },
+        "paymentDeclined": {
+          "title": "Paiement refusé",
+          "description": "État d’erreur lorsque le paiement échoue, avec message pour réessayer ou choisir une autre méthode."
+        }
+      }
+    },
+    "bmo-allianz": {
+      "tag": "SDK PCC · BMO × Allianz",
+      "title": "Paiement assurance voyage BMO",
+      "description": "SDK de paiement intégrable dans le parcours de devis Allianz aux couleurs BMO — iframe avec révision du voyage, coordonnées, Apple Pay, virement Interac et carte, puis sélection de banque et attente du paiement.",
+      "flowLabel": "Parcours de paiement intégré BMO × Allianz",
+      "disclaimer": "Captures d'un environnement de type production sur sales.allianz-assistance.ca. Les données personnelles sont fictives à des fins de démonstration.",
+      "steps": {
+        "reviewPayment": {
+          "title": "Révision et paiement",
+          "description": "Récapitulatif voyageur et police avec total dû. L’iframe SDK ouvre l’étape paiement sans quitter le devis Allianz."
+        },
+        "contactInfo": {
+          "title": "Coordonnées",
+          "description": "Coordonnées et adresse dans la modale SDK, préremplies lorsque le contexte de la page hôte le permet."
+        },
+        "validationErrors": {
+          "title": "Validation du formulaire",
+          "description": "Validation en ligne des champs requis avant de poursuivre — limite les soumissions invalides vers les rails de paiement."
+        },
+        "creditCard": {
+          "title": "Paiement par carte",
+          "description": "Saisie carte avec récapitulatif et code postal, via le même widget intégrable que les autres marchands Paybilt."
+        },
+        "applePay": {
+          "title": "Apple Pay",
+          "description": "Rail portefeuille sur appareils compatibles. Confirmation en un geste après sélection d’Apple Pay."
+        },
+        "interacEtransfer": {
+          "title": "Virement Interac",
+          "description": "Option Interac dans le sélecteur de méthode avant la redirection bancaire. Le contexte police reste visible."
+        },
+        "waitingPayment": {
+          "title": "En attente du paiement",
+          "description": "État d’attente pendant que le client paie dans un autre onglet ou sa banque. L’iframe suit la progression jusqu’au résultat."
+        },
+        "interacBanks": {
+          "title": "Choix de la banque Interac",
+          "description": "Grille d’IF pour la banque en ligne. Même schéma de handoff Interac que la collecte, adapté à l’achat d’assurance."
+        }
+      }
+    }
+  },
   "footer": {
     "tagline": "Basé à {location} · Ouvert aux rôles senior"
   },
   "impactConsole": {
     "title": "Console d'impact",
-    "ariaLabel": "Métriques d'impact. Utilisez les flèches pour naviguer.",
-    "prev": "Métrique précédente",
-    "next": "Métrique suivante",
-    "viewCaseStudy": "Voir l'étude de cas"
+    "ariaLabel": "Histoires d'impact. Utilisez les flèches pour naviguer.",
+    "prev": "Histoire précédente",
+    "next": "Histoire suivante",
+    "viewCaseStudy": "Voir l'étude de cas",
+    "filterAll": "Tous",
+    "filterImpact": "Impact",
+    "filterPerformance": "Performance",
+    "filterScale": "Échelle",
+    "filterDelivery": "Livraison"
   },
   "impactMetrics": {
     "allianz-sdk": {
-      "label": "Partenariat sauvé",
-      "proof": "SDK de paiements Vanilla JS en 48 heures qui a protégé un partenariat Allianz unique."
+      "headline": "Protection d'un partenariat de paiements majeur",
+      "story": "Conçu et livré un SDK de paiements Vanilla JS en 48 heures pour un déploiement Allianz urgent.",
+      "proofChips": ["Livraison 48 h", "SDK Vanilla JS", "Intégration paiements", "Mise en production"]
     },
     "vite-migration": {
-      "label": "Temps de chargement plus rapides",
-      "proof": "Migration CRA vers Vite avec chargement paresseux et découpage par route."
+      "headline": "Montée en gamme de l'architecture frontend",
+      "story": "Réduction de la taille des bundles et amélioration des performances de chargement en migrant de CRA à Vite, en découpant les routes clés et en optimisant les builds de production.",
+      "proofChips": ["CRA → Vite", "Découpage par route", "Optimisation des builds", "Gains de chargement mesurables"]
     },
     "virtualization": {
-      "label": "Échelle testée sous stress",
-      "proof": "Architecture TanStack Virtual segmentée par page gérant plus de 200 000 enregistrements par segment."
+      "headline": "Interface pour très grands volumes de données",
+      "story": "Table d'entreprise virtualisée avec TanStack Virtual et défilement segmenté pour d'importants volumes d'enregistrements de conformité.",
+      "proofChips": ["TanStack Virtual", "Virtualisation segmentée", "Tables volumineuses", "Architecture de défilement"]
     },
-    "promotions": {
-      "label": "Promu en 12 mois",
-      "proof": "Passage de stagiaire frontend junior à développeur full stack chez Paybilt."
+    "auth-state": {
+      "headline": "Refonte auth et état",
+      "story": "Fiabilité améliorée en orientant l'authentification et l'état partagé vers une architecture Zustand plus claire.",
+      "proofChips": ["Zustand", "Flux d'auth", "État partagé", "Fiabilité"]
     }
   },
   "caseStudies": {

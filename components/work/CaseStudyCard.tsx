@@ -1,75 +1,124 @@
-import { getTranslations } from "next-intl/server";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { getDemoForCaseStudy } from "@/content/demos";
 import type { CaseStudy } from "@/content/portfolio";
+import { IconArrowUpRight } from "@/components/ui/icons";
+import { VerticalMarquee } from "@/components/ui/VerticalMarquee";
+import { getTechBrandColor } from "@/lib/tech-brand";
 
 type CaseStudyCardProps = {
   study: CaseStudy;
 };
 
-export async function CaseStudyCard({ study }: CaseStudyCardProps) {
-  const t = await getTranslations("work");
+export function CaseStudyCard({ study }: CaseStudyCardProps) {
+  const t = useTranslations("work");
+  const demosT = useTranslations("demos");
+  const demo = getDemoForCaseStudy(study.id);
 
   return (
-    <article id={study.id} className="surface-card scroll-mt-32 rounded-2xl p-6 md:p-8">
-      <header className="mb-8 border-b border-[var(--border)] pb-6">
-        <p className="eyebrow mb-2">{study.company}</p>
-        <h2 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">{study.title}</h2>
-        <p className="mt-2 text-sm text-[var(--muted)]">{study.period}</p>
+    <article
+      className="case-study-card viewport-deck-card surface-panel"
+      data-study={study.id}
+      data-swipe-surface
+    >
+      <div className="case-study-card-glow" aria-hidden />
+
+      <header className="case-study-card-header">
+        <div className="case-study-card-identity">
+          <p className="case-study-company">{study.company}</p>
+          <h2 className="case-study-title">{study.title}</h2>
+        </div>
+        <div className="case-study-card-meta">
+          <span className="case-study-period">{study.period}</span>
+          {demo ? (
+            <Link href={`/demos/${demo.slug}`} className="case-study-flow-cta">
+              {demosT("viewFlow")}
+              <IconArrowUpRight size={15} />
+            </Link>
+          ) : null}
+        </div>
       </header>
 
-      <div className="grid gap-8 md:grid-cols-2">
-        <div className="space-y-6 text-sm leading-relaxed text-[var(--muted)]">
-          <section>
-            <p className="eyebrow mb-2">{t("context")}</p>
-            <p className="text-[var(--text)]">{study.context}</p>
+      <div className="case-study-card-body">
+        <div className="case-study-card-narrative">
+          <section className="case-study-block">
+            <h3 className="case-study-block-label">{t("context")}</h3>
+            <p className="case-study-block-text">{study.context}</p>
           </section>
-          <section>
-            <p className="eyebrow mb-2">{t("constraint")}</p>
-            <p>{study.constraint}</p>
-          </section>
-          <section>
-            <p className="eyebrow mb-3">{t("built")}</p>
-            <ul className="space-y-3">
-              {study.built.map((item) => (
-                <li key={item} className="relative pl-5 before:absolute before:left-0 before:top-2.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-[var(--highlight)]">
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <section className="case-study-block case-study-block-constraint">
+            <h3 className="case-study-block-label">{t("constraint")}</h3>
+            <p className="case-study-block-text">{study.constraint}</p>
           </section>
         </div>
 
-        <div className="space-y-6">
-          <section>
-            <p className="eyebrow mb-3">{t("proof")}</p>
-            <div className="flex flex-wrap gap-2">
-              {study.metrics.map((metric) => (
-                <span key={metric} className="metric-pill" data-active={false}>
-                  {metric}
-                </span>
-              ))}
+        {/*
+          data-marquee-bound: flex height cap for VerticalMarquee.measure().
+          Safari flex children default to min-height:auto and grow instead of
+          clipping; pairing this with min-height:0 in globals.css enables overflow.
+        */}
+        <div className="case-study-card-outcomes" data-marquee-bound>
+          <VerticalMarquee
+            aria-label={t("slideOutcomes")}
+            className="case-study-outcomes-marquee"
+            scrollSpeed={18}
+          >
+            <div className="case-study-outcomes-scroll">
+              <section className="case-study-metrics">
+                <h3 className="case-study-block-label">{t("proof")}</h3>
+                <ul className="case-study-metrics-list">
+                  {study.metrics.map((metric) => (
+                    <li key={metric}>
+                      <MetricTile metric={metric} />
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="case-study-built">
+                <h3 className="case-study-block-label">{t("built")}</h3>
+                <ul className="case-study-built-list">
+                  {study.built.map((item, index) => (
+                    <li key={item}>
+                      <span className="case-study-built-index">{String(index + 1).padStart(2, "0")}</span>
+                      <span className="case-study-built-text">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="case-study-stack-section">
+                <h3 className="case-study-block-label">{t("stack")}</h3>
+                <ul className="case-study-stack">
+                  {study.stack.map((tech) => (
+                    <li
+                      key={tech}
+                      style={{ "--tech-brand": getTechBrandColor(tech) } as React.CSSProperties}
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </section>
             </div>
-          </section>
-          <section>
-            <p className="eyebrow mb-3">{t("stack")}</p>
-            <StackPills stack={study.stack} />
-          </section>
+          </VerticalMarquee>
         </div>
-        </div>
+      </div>
     </article>
   );
 }
 
-function StackPills({ stack }: { stack: string[] }) {
+function MetricTile({ metric }: { metric: string }) {
+  const arrowIndex = metric.indexOf("->");
+  const hasArrow = arrowIndex !== -1;
+  const head = hasArrow ? metric.slice(0, arrowIndex).trim() : metric;
+  const tail = hasArrow ? metric.slice(arrowIndex + 2).trim() : null;
+
   return (
-    <div className="flex flex-wrap gap-2">
-      {stack.map((tech) => (
-        <span
-          key={tech}
-          className="rounded-lg border border-[var(--border)] bg-[color:color-mix(in_srgb,var(--surface)_70%,transparent)] px-2.5 py-1 text-xs text-[var(--muted)]"
-        >
-          {tech}
-        </span>
-      ))}
+    <div className="case-study-metric">
+      <span className="case-study-metric-value">{head}</span>
+      {tail ? <span className="case-study-metric-detail">{tail}</span> : null}
     </div>
   );
 }

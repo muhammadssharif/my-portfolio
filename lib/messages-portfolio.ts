@@ -9,8 +9,9 @@ export async function getPortfolioMessages(): Promise<PortfolioMessages> {
     siteContent.impactMetrics.map((metric) => [
       metric.id,
       {
-        label: t(`impactMetrics.${metric.id}.label`),
-        proof: t(`impactMetrics.${metric.id}.proof`)
+        headline: t(`impactMetrics.${metric.id}.headline`),
+        story: t(`impactMetrics.${metric.id}.story`),
+        proofChips: t.raw(`impactMetrics.${metric.id}.proofChips`) as string[]
       }
     ])
   );

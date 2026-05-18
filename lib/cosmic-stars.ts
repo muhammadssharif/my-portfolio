@@ -95,7 +95,7 @@ function hitsObstacle(x: number, y: number, obstacles: Rect[]): boolean {
 
 function pickSpec(pool: StarSpec[]): StarSpec {
   const roll = Math.random();
-  if (roll < 0.82) return pool[Math.floor(Math.random() * 3)]!;
+  if (roll < 0.68) return pool[Math.floor(Math.random() * 3)]!;
   return pool[3 + Math.floor(Math.random() * 2)]!;
 }
 
@@ -367,25 +367,26 @@ export function paintStarfield(
   }
 
   const mix = Math.max(0, Math.min(1, themeMix));
-  const dotR = lerpChannel(255, 37, mix);
-  const dotG = lerpChannel(255, 99, mix);
-  const dotB = lerpChannel(255, 235, mix);
-  const glyphR = lerpChannel(255, 59, mix);
-  const glyphG = lerpChannel(255, 130, mix);
-  const glyphB = lerpChannel(255, 246, mix);
-  const lineR = lerpChannel(186, 59, mix);
-  const lineG = lerpChannel(230, 130, mix);
-  const lineB = lerpChannel(253, 246, mix);
+  const dotR = lerpChannel(255, 28, mix);
+  const dotG = lerpChannel(255, 72, mix);
+  const dotB = lerpChannel(255, 210, mix);
+  const glyphR = lerpChannel(255, 42, mix);
+  const glyphG = lerpChannel(255, 108, mix);
+  const glyphB = lerpChannel(255, 232, mix);
+  const lineR = lerpChannel(200, 42, mix);
+  const lineG = lerpChannel(235, 108, mix);
+  const lineB = lerpChannel(255, 232, mix);
   const dotFill = `rgba(${dotR},${dotG},${dotB},`;
   const glyphFill = `rgba(${glyphR},${glyphG},${glyphB},`;
   const lineStroke = `rgba(${lineR},${lineG},${lineB},`;
-  const twinkleBase = lerpAlpha(0.22, 0.48, mix);
-  const twinkleAmp = 0.28;
-  const brightBoost = lerpAlpha(0.12, 0.28, mix);
-  const lineAlpha = lerpAlpha(0.09, 0.22, mix);
-  const dimRadius = lerpAlpha(0.9, 1.15, mix);
-  const glyphAlphaBoost = lerpAlpha(0.15, 0.25, mix);
-  const edgeStrokeAlpha = lerpAlpha(0.85, 1, mix);
+  const twinkleBase = lerpAlpha(0.48, 0.62, mix);
+  const twinkleAmp = 0.22;
+  const brightBoost = lerpAlpha(0.3, 0.38, mix);
+  const lineAlpha = lerpAlpha(0.18, 0.34, mix);
+  const dimRadius = lerpAlpha(1.1, 1.3, mix);
+  const dimGlowRadius = dimRadius * 2.4;
+  const glyphAlphaBoost = lerpAlpha(0.24, 0.34, mix);
+  const edgeStrokeAlpha = lerpAlpha(0.92, 1, mix);
 
   for (const meteor of meteors) {
     const fade = 1 - meteor.life / meteor.maxLife;
@@ -420,10 +421,22 @@ export function paintStarfield(
 
     if (star.tier === "dim") {
       const radius = dimRadius;
+      ctx.globalAlpha = alpha * 0.45;
+      ctx.fillStyle = `${dotFill}0.32)`;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, dimGlowRadius, 0, Math.PI * 2);
+      ctx.fill();
+
       ctx.globalAlpha = alpha;
-      ctx.fillStyle = `${dotFill}${alpha})`;
+      ctx.fillStyle = `${dotFill}${Math.min(1, alpha)})`;
       ctx.beginPath();
       ctx.arc(star.x, star.y, radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.globalAlpha = Math.min(1, alpha * 1.1);
+      ctx.fillStyle = `${dotFill}${Math.min(1, alpha * 1.1)})`;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, radius * 0.42, 0, Math.PI * 2);
       ctx.fill();
     } else {
       ctx.save();
@@ -437,11 +450,17 @@ export function paintStarfield(
       ctx.fillText(star.char, 0, 0);
       ctx.restore();
 
-      if (alpha > 0.32) {
-        ctx.globalAlpha = alpha * 0.4;
-        ctx.strokeStyle = `${glyphFill}${alpha * 0.5})`;
-        ctx.lineWidth = 0.6;
-        const s = 4;
+      ctx.globalAlpha = alpha * 0.42;
+      ctx.fillStyle = `${glyphFill}${alpha * 0.42})`;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, 5.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (alpha > 0.28) {
+        ctx.globalAlpha = alpha * 0.58;
+        ctx.strokeStyle = `${glyphFill}${alpha * 0.65})`;
+        ctx.lineWidth = 0.75;
+        const s = 5;
         ctx.beginPath();
         ctx.moveTo(star.x - s, star.y);
         ctx.lineTo(star.x + s, star.y);

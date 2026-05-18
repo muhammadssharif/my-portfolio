@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:webpack": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "check:css-braces": "node scripts/check-css-braces.mjs app/globals.css",
+    "check:style-bundle": "node scripts/verify-style-health-bundle.mjs"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.7",

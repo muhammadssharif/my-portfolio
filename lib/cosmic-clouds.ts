@@ -31,9 +31,9 @@ export type CloudSprite = {
   baseScale: number;
 };
 
-/** Sun anchor — top-right, matches CosmicLuminaries */
-const SUN_NX = 0.88;
-const SUN_NY = 0.1;
+/** Luminary anchor — upper-right sky beside nav (matches globals.css) */
+const SUN_NX = 0.96;
+const SUN_NY = 0.048;
 
 const CUMULUS_A: CloudPuff[] = [
   { x: 28, y: 98, r: 36 },

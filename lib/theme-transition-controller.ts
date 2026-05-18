@@ -1,4 +1,5 @@
 import { getCosmicQualityTier } from "@/lib/cosmic-quality";
+import { restartCssAnimations } from "@/lib/restart-css-animations";
 import {
   THEME_CHANGE_EVENT,
   THEME_COOKIE_NAME,
@@ -92,13 +93,34 @@ class ThemeTransitionController {
     this.emit();
   }
 
+  /** Clear a stuck veil / lock (Safari refresh, Strict Mode unmount, aborted WAAPI). */
+  recoverStuckState() {
+    if (typeof document === "undefined") return;
+
+    const stuck =
+      this.state.locked ||
+      this.state.phase !== "idle" ||
+      document.documentElement.dataset.themeTransitioning === "true";
+
+    if (stuck) {
+      this.releaseTransitionLock();
+    }
+  }
+
   attach() {
     if (typeof document === "undefined") return () => {};
 
+    this.recoverStuckState();
     this.syncFromDom();
 
     const onThemeChange = () => this.syncFromDom();
+    const onPageShow = () => {
+      this.recoverStuckState();
+      restartCssAnimations();
+    };
+
     window.addEventListener(THEME_CHANGE_EVENT, onThemeChange);
+    window.addEventListener("pageshow", onPageShow);
 
     if (process.env.NODE_ENV === "development") {
       (window as Window & { __themeController?: ThemeTransitionController }).__themeController = this;
@@ -106,6 +128,7 @@ class ThemeTransitionController {
 
     return () => {
       window.removeEventListener(THEME_CHANGE_EVENT, onThemeChange);
+      window.removeEventListener("pageshow", onPageShow);
       this.abortAnimation();
       if (this.coalesceTimer) clearTimeout(this.coalesceTimer);
     };
@@ -190,6 +213,36 @@ class ThemeTransitionController {
     this.veilEl.style.opacity = "0";
   }
 
+  private releaseTransitionLock() {
+    if (typeof document === "undefined") return;
+
+    delete document.documentElement.dataset.themeTransitioning;
+    this.abortAnimation();
+    if (this.coalesceTimer) {
+      clearTimeout(this.coalesceTimer);
+      this.coalesceTimer = null;
+    }
+    this.pendingTarget = null;
+
+    const resolved = readResolvedTheme();
+    this.state = {
+      phase: "idle",
+      resolvedTheme: resolved,
+      targetTheme: resolved,
+      generation: this.state.generation + 1,
+      locked: false
+    };
+    this.resetVeilOpacity();
+    this.emit();
+    restartCssAnimations();
+  }
+
+  private bailTransition(generation: number) {
+    if (generation === this.state.generation) {
+      this.releaseTransitionLock();
+    }
+  }
+
   private async animateVeil(
     keyframes: Keyframe[],
     options: KeyframeAnimationOptions,
@@ -228,7 +281,10 @@ class ThemeTransitionController {
     this.setVeilTheme(target);
 
     if (timings.instant) {
-      if (generation !== this.state.generation) return;
+      if (generation !== this.state.generation) {
+        this.bailTransition(generation);
+        return;
+      }
       this.patch({ phase: "commit" });
       commitThemeToDom(target);
       this.patch({
@@ -263,16 +319,25 @@ class ThemeTransitionController {
       generation
     );
 
-    if (!veilInOk || generation !== this.state.generation) return;
+    if (!veilInOk || generation !== this.state.generation) {
+      this.bailTransition(generation);
+      return;
+    }
 
     this.patch({ phase: "commit", resolvedTheme: target });
     commitThemeToDom(target);
 
-    if (generation !== this.state.generation) return;
+    if (generation !== this.state.generation) {
+      this.bailTransition(generation);
+      return;
+    }
 
     if (VEIL_HOLD_MS > 0) {
       await new Promise<void>((resolve) => setTimeout(resolve, VEIL_HOLD_MS));
-      if (generation !== this.state.generation) return;
+      if (generation !== this.state.generation) {
+        this.bailTransition(generation);
+        return;
+      }
     }
 
     this.patch({ phase: "veil-out" });
@@ -283,7 +348,10 @@ class ThemeTransitionController {
       generation
     );
 
-    if (!veilOutOk || generation !== this.state.generation) return;
+    if (!veilOutOk || generation !== this.state.generation) {
+      this.bailTransition(generation);
+      return;
+    }
 
     this.patch({
       phase: "idle",

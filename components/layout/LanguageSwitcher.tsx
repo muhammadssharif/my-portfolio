@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { createPortal } from "react-dom";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { localeMetadata, locales, type Locale } from "@/i18n/locales";
@@ -10,6 +11,17 @@ import { IconChevronDown } from "@/components/ui/icons";
 
 const PANEL_CLASS =
   "language-menu-panel w-72 min-w-[17rem] max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-2xl border border-[var(--border)] p-1.5 shadow-[var(--language-menu-shadow)]";
+
+/** Above site-shell (10), header (50), and theme veil (100); interactive overlays only. */
+const PANEL_Z_INDEX = 150;
+
+const PANEL_INITIAL_STYLE = {
+  position: "fixed" as const,
+  visibility: "hidden" as const,
+  top: 0,
+  left: 0,
+  zIndex: PANEL_Z_INDEX
+};
 
 type LanguageMenuItemProps = {
   code: Locale;
@@ -67,7 +79,12 @@ function LanguageMenuItem({ code, selected, pathname, onSelect }: LanguageMenuIt
   );
 }
 
-export function LanguageSwitcher() {
+type LanguageSwitcherProps = {
+  /** Flag-only control below md — for crowded mobile headers. */
+  compact?: boolean;
+};
+
+export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
   const t = useTranslations("languageSwitcher");
   const locale = useLocale() as Locale;
   const pathname = usePathname();
@@ -89,7 +106,7 @@ export function LanguageSwitcher() {
         ref={triggerRef}
         type="button"
         onClick={toggle}
-        className={`icon-btn icon-btn-pill shrink-0 gap-1.5 ${open ? "icon-btn-open" : ""}`}
+        className={`icon-btn shrink-0 ${compact ? "mobile-nav:w-9 mobile-nav:justify-center mobile-nav:px-0" : ""} icon-btn-pill gap-1.5 ${open ? "icon-btn-open" : ""}`}
         aria-expanded={open}
         aria-haspopup="true"
         aria-controls="language-menu"
@@ -102,41 +119,46 @@ export function LanguageSwitcher() {
         >
           {current.flag}
         </span>
-        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+        <span
+          className={`font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--muted)] ${compact ? "mobile-nav:hidden" : ""}`}
+        >
           {locale}
         </span>
         <IconChevronDown
           size={13}
-          className={`icon shrink-0 text-[var(--muted)] transition-transform ${open ? "rotate-180 text-[var(--accent)]" : ""}`}
+          className={`icon shrink-0 text-[var(--muted)] transition-transform ${open ? "rotate-180 text-[var(--accent)]" : ""} ${compact ? "mobile-nav:hidden" : ""}`}
         />
       </button>
 
-      {open && (
-        <div
-          ref={menuRef}
-          id="language-menu"
-          role="menu"
-          aria-label={t("label")}
-          dir={docDir}
-          className={`z-[120] ${PANEL_CLASS}`}
-          style={{ visibility: "hidden" }}
-        >
-          <p className="px-3 pb-1 pt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
-            {t("label")}
-          </p>
-          <ul className="m-0 list-none p-0">
-            {locales.map((code) => (
-              <LanguageMenuItem
-                key={code}
-                code={code}
-                selected={code === locale}
-                pathname={pathname}
-                onSelect={close}
-              />
-            ))}
-          </ul>
-        </div>
-      )}
+      {open &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            ref={menuRef}
+            id="language-menu"
+            role="menu"
+            aria-label={t("label")}
+            dir={docDir}
+            className={PANEL_CLASS}
+            style={PANEL_INITIAL_STYLE}
+          >
+            <p className="px-3 pb-1 pt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
+              {t("label")}
+            </p>
+            <ul className="m-0 list-none p-0">
+              {locales.map((code) => (
+                <LanguageMenuItem
+                  key={code}
+                  code={code}
+                  selected={code === locale}
+                  pathname={pathname}
+                  onSelect={close}
+                />
+              ))}
+            </ul>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }

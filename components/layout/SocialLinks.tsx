@@ -8,10 +8,18 @@ const socialItems = [
   { href: siteContent.links.linkedin, label: "LinkedIn", icon: IconLinkedin, external: true }
 ] as const;
 
-export function SocialLinks({ className = "" }: { className?: string }) {
+type SocialLinksProps = {
+  className?: string;
+  /** Only GitHub + LinkedIn (e.g. header); excludes mailto. */
+  variant?: "default" | "compact";
+};
+
+export function SocialLinks({ className = "", variant = "default" }: SocialLinksProps) {
+  const items = variant === "compact" ? socialItems.filter((item) => item.external) : socialItems;
+
   return (
-    <div className={`social-links ${className}`.trim()}>
-      {socialItems.map((item) => (
+    <div className={`social-links inline-flex ${className}`.trim()}>
+      {items.map((item) => (
         <SocialLink key={item.label} {...item} />
       ))}
     </div>

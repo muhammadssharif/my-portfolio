@@ -67,7 +67,7 @@ export function CosmicClouds() {
         return;
       }
       canvas.style.opacity = "1";
-      paintClouds(ctx, width, height, dpr, clouds, time, 1);
+      paintClouds(ctx, width, height, dpr, clouds, time, 0.68);
     };
 
     const onFrame = (time: number) => {

@@ -1,9 +1,14 @@
+export type ImpactMetricCategory = "impact" | "performance" | "scale" | "delivery";
+
 export type ImpactMetric = {
   id: string;
-  value: string;
-  label: string;
-  proof: string;
+  category: ImpactMetricCategory;
+  /** Orange highlight stat (e.g. $1M+, ~75%) */
+  stat: string;
   caseStudy: string;
+  headline: string;
+  story: string;
+  proofChips: readonly string[];
 };
 
 export type CaseStudy = {
@@ -18,14 +23,26 @@ export type CaseStudy = {
   stack: string[];
 };
 
+export type HomepageFeaturedCard = {
+  /** Stable id for i18n keys under home.cards.{cardId} */
+  cardId: string;
+  caseStudyId: string;
+};
+
+export type TechBadge = {
+  id: string;
+  label: string;
+  brandColor: string;
+};
+
 export const siteContent = {
   name: "Muhammad Sheheryar Sharif",
   shortName: "Muhammad Sharif",
   location: "Calgary, AB",
   headline: "Full Stack Developer | Frontend Architecture | Enterprise SaaS | Payments",
   bio: [
-    "Full stack developer specializing in React, TypeScript, FastAPI, MongoDB, WebSockets, Docker, and CI/CD for enterprise SaaS, payments, and compliance products.",
-    "Known for turning urgent business requirements into production systems with measurable impact, including saving a single $1M+ Allianz partnership through a 48-hour SDK delivery, 200K+ row virtualization with page-segmented TanStack Virtual, and up to ~75% load-time improvements."
+    "I build production systems where performance, reliability, and business impact matter, from payment SDKs and compliance platforms to virtualized interfaces handling large datasets.",
+    "Recent work includes helping protect a high-value Allianz payments partnership through a 48-hour SDK delivery, stress-tested large-data table architecture for extreme row counts, and frontend modernization with materially faster loads."
   ],
   links: {
     email: "msheheryarsharif@gmail.com",
@@ -37,34 +54,70 @@ export const siteContent = {
   impactMetrics: [
     {
       id: "allianz-sdk",
-      value: "$1M+",
-      label: "Partnership saved",
-      proof: "48-hour Vanilla JS payments SDK that protected a single Allianz partnership.",
-      caseStudy: "pcc-sdk"
+      category: "impact",
+      stat: "$1M+",
+      caseStudy: "pcc-sdk",
+      headline: "Protected a major payments partnership",
+      story:
+        "Built and shipped a Vanilla JS payments SDK in 48 hours for an urgent Allianz deployment.",
+      proofChips: ["48-hour delivery", "Vanilla JS SDK", "Payments integration", "Production release"] as const
     },
     {
       id: "vite-migration",
-      value: "~75%",
-      label: "Faster load times",
-      proof: "CRA to Vite migration with lazy loading and route-level code splitting.",
-      caseStudy: "horuz-v2"
+      category: "performance",
+      stat: "~75%",
+      caseStudy: "horuz-v2",
+      headline: "Frontend architecture upgrade",
+      story:
+        "Reduced app bundle size and improved load performance by migrating from CRA to Vite, code-splitting key routes, and optimizing production builds.",
+      proofChips: ["CRA → Vite", "Route code splitting", "Production build optimization", "Measurable load gains"] as const
     },
     {
       id: "virtualization",
-      value: "1M rows",
-      label: "Stress-tested scale",
-      proof: "Page-segmented TanStack Virtual architecture handling 200K+ records per segment.",
-      caseStudy: "horuz-v2"
+      category: "scale",
+      stat: "200K+",
+      caseStudy: "horuz-v2",
+      headline: "Large data interface",
+      story:
+        "Built a virtualized enterprise table using TanStack Virtual with segmented scroll logic for high-volume compliance records.",
+      proofChips: [
+        "TanStack Virtual",
+        "Segmented virtualization",
+        "High-volume tables",
+        "Scroll architecture"
+      ] as const
     },
     {
-      id: "promotions",
-      value: "4x",
-      label: "Promoted in 12 months",
-      proof: "Progressed from junior frontend intern to full stack developer at Paybilt.",
-      caseStudy: "occ-platform"
+      id: "auth-state",
+      category: "delivery",
+      stat: "6 modules",
+      caseStudy: "horuz-v2",
+      headline: "Auth and state refactor",
+      story:
+        "Improved app reliability by moving auth and shared app state toward a cleaner Zustand-based architecture.",
+      proofChips: ["Zustand", "Auth flows", "Shared state", "Reliability"] as const
     }
   ] satisfies ImpactMetric[],
-  featuredCaseStudies: ["horuz-v2", "pcc-sdk"],
+  /** Three homepage preview cards (two may share the same case study anchor). */
+  homepageFeatured: [
+    { cardId: "payments-sdk", caseStudyId: "pcc-sdk" },
+    { cardId: "horuz-compliance", caseStudyId: "horuz-v2" },
+    { cardId: "horuz-large-data", caseStudyId: "horuz-v2" }
+  ] satisfies HomepageFeaturedCard[],
+  techBadges: [
+    { id: "react", label: "React", brandColor: "#61DAFB" },
+    { id: "typescript", label: "TypeScript", brandColor: "#3178C6" },
+    { id: "fastapi", label: "FastAPI", brandColor: "#009688" },
+    { id: "mongodb", label: "MongoDB", brandColor: "#47A248" },
+    { id: "docker", label: "Docker", brandColor: "#2496ED" },
+    { id: "vite", label: "Vite", brandColor: "#646CFF" },
+    { id: "zustand", label: "Zustand", brandColor: "#E2845A" },
+    { id: "tanstack", label: "TanStack Virtual", brandColor: "#FF4154" },
+    { id: "payments", label: "Payments", brandColor: "#635BFF" },
+    { id: "websockets", label: "WebSockets", brandColor: "#10B981" },
+    { id: "nodejs", label: "Node.js", brandColor: "#339933" },
+    { id: "postgres", label: "PostgreSQL", brandColor: "#336791" }
+  ] satisfies TechBadge[],
   caseStudies: [
     {
       id: "horuz-v2",

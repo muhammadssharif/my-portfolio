@@ -6,14 +6,22 @@
     "workDescription": "Case studies across enterprise SaaS, payments, and mobile products with verified metrics.",
     "contactTitle": "Contact | Muhammad Sharif",
     "contactDescription": "Connect with Muhammad Sharif for frontend, full stack, and enterprise product opportunities.",
+    "demosTitle": "Demos | Muhammad Sharif",
+    "demosDescription": "Product flow walkthroughs from production payment and donation systems.",
     "siteName": "Muhammad Sharif Portfolio",
     "ogAlt": "Muhammad Sharif portfolio"
   },
   "nav": {
     "home": "Home",
     "work": "Work",
+    "caseStudies": "Case studies",
+    "demos": "Demos",
     "contact": "Contact",
-    "resume": "Resume"
+    "resume": "Resume",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "preferences": "Site preferences",
+    "connect": "Connect"
   },
   "languageSwitcher": {
     "label": "Language",
@@ -38,22 +46,63 @@
     "location": "Calgary, AB",
     "headline": "Full Stack Developer | Frontend Architecture | Enterprise SaaS | Payments",
     "bio": [
-      "Full stack developer specializing in React, TypeScript, FastAPI, MongoDB, WebSockets, Docker, and CI/CD for enterprise SaaS, payments, and compliance products.",
-      "Known for turning urgent business requirements into production systems with measurable impact, including saving a single $1M+ Allianz partnership through a 48-hour SDK delivery, 200K+ row virtualization with page-segmented TanStack Virtual, and up to ~75% load-time improvements."
+      "I build production systems where performance, reliability, and business impact matter, from payment SDKs and compliance platforms to virtualized interfaces handling large datasets.",
+      "Recent work includes helping protect a high-value Allianz payments partnership through a 48-hour SDK delivery, stress-tested large-data table architecture for extreme row counts, and frontend modernization with materially faster loads."
     ]
   },
   "hero": {
     "eyebrow": "Full Stack · Enterprise SaaS · Payments",
-    "viewWork": "View selected work",
-    "getInTouch": "Get in touch",
-    "locationLabel": "Location",
-    "availableLabel": "Available for",
-    "availableValue": "Senior full stack & frontend roles"
+    "positioning": "Enterprise SaaS, payments, and high-performance React systems.",
+    "viewWork": "View case studies",
+    "downloadResume": "Download resume",
+    "openTo": "Open to full stack, frontend architecture, and SaaS roles."
   },
   "home": {
-    "selectedWork": "Selected work",
-    "projectsTitle": "Projects with measurable outcomes",
-    "seeAll": "See all case studies"
+    "selectedEngineeringWork": "Selected engineering work",
+    "recentCaseStudies": "Recent case studies",
+    "seeAll": "View all case studies",
+    "problemLabel": "Problem",
+    "builtLabel": "What I built",
+    "impactLabel": "Impact",
+    "techLabel": "Tech",
+    "viewCaseStudy": "View case study",
+    "techMarqueeLabel": "Tools and platforms",
+    "workMarqueeLabel": "Selected engineering work carousel",
+    "cards": {
+      "payments-sdk": {
+        "tagline": "48-hour Vanilla JS SDK for urgent enterprise payments deployment",
+        "problem": "Merchant checkout needed an embeddable payments layer under an immovable partnership deadline.",
+        "built": "Shipped a production-ready Vanilla JS SDK with theming, prefilled fields, and API-driven payment flows.",
+        "impact": "Helped protect a high-value Allianz payments partnership through rapid, reliable delivery.",
+        "stack": ["JavaScript", "Payments", "REST APIs", "WebSockets", "CSS"]
+      },
+      "horuz-compliance": {
+        "tagline": "Frontend architecture for a multi-tenant enterprise compliance platform",
+        "problem": "Legacy CRA tooling and heavy UI modules slowed loads and complicated delivery for regulated workflows.",
+        "built": "Modernized core modules with Vite, route-level code splitting, and a resilient state layer across the app.",
+        "impact": "Cut initial JS payload and improved load times by a wide margin on core routes.",
+        "stack": ["React", "Vite", "Zustand", "TanStack Virtual", "MongoDB", "FastAPI"]
+      },
+      "horuz-large-data": {
+        "tagline": "Virtualized hierarchy table for high-volume compliance records",
+        "problem": "Compliance users needed snappy navigation through very large record sets without breaking the browser.",
+        "built": "Implemented page-segmented virtualization with TanStack Virtual, cache-aware loading, and sizing for deep tables.",
+        "impact": "Stress-tested large-data table architecture for extreme row counts while keeping interactions responsive.",
+        "stack": ["TanStack Virtual", "React", "TypeScript", "Dynamic sizing", "Caching", "Segmented virtualization"]
+      }
+    }
+  },
+  "viewportDeck": {
+    "label": "Project carousel",
+    "position": "Current slide",
+    "counter": "{current} of {total}",
+    "hintVertical": "← →, swipe, or scroll wheel — one slide at a time",
+    "hintHorizontal": "← →, swipe, or scroll wheel — one screen at a time",
+    "hintTouch": "Swipe or use buttons — one screen at a time",
+    "prev": "Previous",
+    "next": "Next",
+    "jumpTo": "Jump to slide",
+    "goTo": "Go to {label}"
   },
   "work": {
     "eyebrow": "Case studies",
@@ -64,7 +113,9 @@
     "constraint": "Constraint",
     "built": "What I built",
     "proof": "Proof",
-    "stack": "Stack"
+    "stack": "Stack",
+    "slideStory": "Story",
+    "slideOutcomes": "Outcomes"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -86,32 +137,134 @@
     "errorGeneric": "Something went wrong.",
     "errorSend": "Unable to send message."
   },
+  "demos": {
+    "eyebrow": "Product demos",
+    "title": "Production flows",
+    "titleMuted": "in context.",
+    "intro": "Screen-by-screen walkthroughs from live payment and fundraising products — cropped to the product UI without browser chrome.",
+    "viewFlow": "View flow",
+    "flowStepsLabel": "Checkout flow steps",
+    "flowStep": "Step {current} of {total}",
+    "backToDemos": "All demos",
+    "relatedCaseStudy": "Related case study",
+    "conservative-party": {
+      "tag": "OCC · Political fundraising",
+      "title": "Conservative Party of Canada",
+      "description": "End-to-end donation checkout for the Conservative Party of Canada — amount selection, donor contact, Interac e-Transfer and card payment paths, bank handoff, and error handling.",
+      "flowLabel": "Conservative Party donation checkout flow",
+      "disclaimer": "Screenshots are from a production-style staging environment. Personal data shown is sample data for demonstration purposes.",
+      "steps": {
+        "amount": {
+          "title": "Donation amount",
+          "description": "Donor picks a preset amount or enters a custom value. The modal keeps focus on the gift before collecting contact details."
+        },
+        "contact": {
+          "title": "Contact & billing",
+          "description": "Legal name, email, address, and billing fields are captured for compliance, receipts, and payment routing."
+        },
+        "payBy": {
+          "title": "Payment options",
+          "description": "Donor chooses between card and Interac e-Transfer. The summary shows the selected amount before the payment rail opens."
+        },
+        "paymentMethod": {
+          "title": "Interac selected",
+          "description": "Interac path is active in the checkout shell. The flow is about to hand off to bank selection or card entry depending on the rail."
+        },
+        "cardCheckout": {
+          "title": "Card checkout",
+          "description": "Card form with amount summary, billing postal code, and the embedded Paybilt payment widget for secure card capture."
+        },
+        "interacBanks": {
+          "title": "Interac bank selection",
+          "description": "Financial institution grid so the donor can redirect to their online banking to complete the e-Transfer."
+        },
+        "etransferWaiting": {
+          "title": "Waiting for e-Transfer",
+          "description": "In-tab polling while the donor finishes e-Transfer in their bank. The checkout stays open until payment confirms or times out."
+        },
+        "paymentDeclined": {
+          "title": "Payment declined",
+          "description": "Error state when the payment fails or is rejected, with messaging so the donor can retry or choose another method."
+        }
+      }
+    },
+    "bmo-allianz": {
+      "tag": "PCC SDK · BMO × Allianz",
+      "title": "BMO Travel Insurance Checkout",
+      "description": "Embeddable payments SDK inside Allianz’s BMO-branded quote flow — iframe checkout with traveller review, contact capture, Apple Pay, Interac e-Transfer, and credit card rails, plus bank handoff and in-tab payment polling.",
+      "flowLabel": "BMO × Allianz embeddable payment flow",
+      "disclaimer": "Screenshots are from a production-style environment on sales.allianz-assistance.ca. Personal data shown is sample data for demonstration purposes.",
+      "steps": {
+        "reviewPayment": {
+          "title": "Review & payment",
+          "description": "Traveller and policy summary with total due. The embeddable checkout iframe opens the payment step without leaving the Allianz quote flow."
+        },
+        "contactInfo": {
+          "title": "Contact information",
+          "description": "Purchaser details and address fields inside the SDK modal, prefilled where possible from the host page context."
+        },
+        "validationErrors": {
+          "title": "Form validation",
+          "description": "Inline validation on required fields before payment can continue — keeps bad submissions out of the payment rails."
+        },
+        "creditCard": {
+          "title": "Credit card checkout",
+          "description": "Card entry with amount summary and billing postal code, using the same embeddable widget pattern as other Paybilt merchants."
+        },
+        "applePay": {
+          "title": "Apple Pay",
+          "description": "Wallet rail for supported devices. One-tap confirmation after the donor selects Apple Pay in the method list."
+        },
+        "interacEtransfer": {
+          "title": "Interac e-Transfer",
+          "description": "Interac option in the method picker before bank handoff. Amount and policy context stay visible in the host frame."
+        },
+        "waitingPayment": {
+          "title": "Waiting for payment",
+          "description": "Polling state while the donor completes payment in another tab or bank session. The iframe shows progress until success or failure."
+        },
+        "interacBanks": {
+          "title": "Interac bank selection",
+          "description": "FI grid for redirect to online banking. Same Interac handoff pattern as fundraising checkout, tuned for insurance purchase context."
+        }
+      }
+    }
+  },
   "footer": {
     "tagline": "Based in {location} · Open to senior roles"
   },
   "impactConsole": {
     "title": "Impact Console",
-    "ariaLabel": "Impact metrics. Use arrow keys to navigate.",
-    "prev": "Previous metric",
-    "next": "Next metric",
-    "viewCaseStudy": "View case study"
+    "ariaLabel": "Impact stories. Use arrow keys to navigate.",
+    "prev": "Previous story",
+    "next": "Next story",
+    "viewCaseStudy": "View case study",
+    "filterAll": "All",
+    "filterImpact": "Impact",
+    "filterPerformance": "Performance",
+    "filterScale": "Scale",
+    "filterDelivery": "Delivery"
   },
   "impactMetrics": {
     "allianz-sdk": {
-      "label": "Partnership saved",
-      "proof": "48-hour Vanilla JS payments SDK that protected a single Allianz partnership."
+      "headline": "Protected a major payments partnership",
+      "story": "Built and shipped a Vanilla JS payments SDK in 48 hours for an urgent Allianz deployment.",
+      "proofChips": ["48-hour delivery", "Vanilla JS SDK", "Payments integration", "Production release"]
     },
     "vite-migration": {
-      "label": "Faster load times",
-      "proof": "CRA to Vite migration with lazy loading and route-level code splitting."
+      "headline": "Frontend architecture upgrade",
+      "story": "Reduced app bundle size and improved load performance by migrating from CRA to Vite, code-splitting key routes, and optimizing production builds.",
+      "proofChips": ["CRA → Vite", "Route code splitting", "Production build optimization", "Measurable load gains"]
     },
     "virtualization": {
-      "label": "Stress-tested scale",
-      "proof": "Page-segmented TanStack Virtual architecture handling 200K+ records per segment."
+      "headline": "Large data interface",
+      "story": "Built a virtualized enterprise table using TanStack Virtual with segmented scroll logic for high-volume compliance records.",
+      "proofChips": ["TanStack Virtual", "Segmented virtualization", "High-volume tables", "Scroll architecture"]
     },
-    "promotions": {
-      "label": "Promoted in 12 months",
-      "proof": "Progressed from junior frontend intern to full stack developer at Paybilt."
+    "auth-state": {
+      "headline": "Auth and state refactor",
+      "story": "Improved app reliability by moving auth and shared app state toward a cleaner Zustand-based architecture.",
+      "proofChips": ["Zustand", "Auth flows", "Shared state", "Reliability"]
     }
   },
   "caseStudies": {

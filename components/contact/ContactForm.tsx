@@ -49,8 +49,8 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="surface-card space-y-5 rounded-2xl p-6 md:p-8">
-      <div className="grid gap-4 md:grid-cols-2">
+    <form onSubmit={onSubmit} className="surface-panel min-w-0 space-y-5 rounded-2xl p-5 phone-lg:p-6 md:p-8">
+      <div className="grid grid-cols-1 gap-4 phone-lg:grid-cols-2">
         <label className="block space-y-2 text-sm">
           <span className="text-[var(--muted)]">{t("formName")}</span>
           <input
@@ -100,7 +100,10 @@ export function ContactForm() {
       </button>
 
       {message ? (
-        <p className={`text-sm ${status === "error" ? "text-red-400" : "text-emerald-400"}`} role="status">
+        <p
+          className={`text-sm leading-relaxed ${status === "error" ? "text-red-400" : "text-emerald-400"}`}
+          role="status"
+        >
           {message}
         </p>
       ) : null}

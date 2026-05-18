@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { CaseStudyCard } from "@/components/work/CaseStudyCard";
+import { CaseStudyDeck } from "@/components/work/CaseStudyDeck";
 import { getLocalizedPortfolio } from "@/lib/messages-portfolio";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,21 +16,17 @@ export default async function WorkPage() {
   const { caseStudies } = await getLocalizedPortfolio();
 
   return (
-    <div className="space-y-10 py-4 md:space-y-12 md:py-8">
-      <header className="max-w-3xl space-y-4">
+    <div className="viewport-page viewport-page--immersive cosmic-occlude">
+      <header className="viewport-page-intro viewport-page-intro--compact max-w-3xl space-y-1.5 phone-lg:space-y-2">
         <p className="eyebrow">{t("eyebrow")}</p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
+        <h1 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">
           {t("title")}
           <span className="block text-[var(--muted)]">{t("titleMuted")}</span>
         </h1>
-        <p className="text-lg leading-relaxed text-[var(--muted)]">{t("intro")}</p>
+        <p className="text-base leading-relaxed text-[var(--muted)] md:text-lg">{t("intro")}</p>
       </header>
 
-      <div className="space-y-6">
-        {caseStudies.map((study) => (
-          <CaseStudyCard key={study.id} study={study} />
-        ))}
-      </div>
+      <CaseStudyDeck studies={caseStudies} />
     </div>
   );
 }

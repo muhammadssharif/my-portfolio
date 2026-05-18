@@ -6,7 +6,7 @@ import {
   requestThemeChange
 } from "@/lib/theme-transition-controller";
 import { InitialThemeContext } from "@/lib/theme-context";
-import { applyTheme, getDocumentTheme, getStoredTheme, getSystemTheme, type Theme } from "@/lib/theme";
+import { applyTheme, getDocumentTheme, getStoredTheme, type Theme } from "@/lib/theme";
 
 function readClientTheme(): Theme {
   const state = getThemeTransitionController().getSnapshot();
@@ -37,14 +37,9 @@ export function useTheme() {
 
     if (stored && stored !== htmlTheme) {
       applyTheme(stored);
-    } else if (!stored) {
-      const system = getSystemTheme();
-      if (system !== htmlTheme) {
-        applyTheme(system);
-      }
     }
 
-    return getThemeTransitionController().attach();
+    getThemeTransitionController().recoverStuckState();
   }, []);
 
   const isTransitioning = transitionState.locked;

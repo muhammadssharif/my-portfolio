@@ -75,6 +75,14 @@ export function IconChevronDown({ size = 18, className }: IconProps) {
   );
 }
 
+export function IconChevronUp({ size = 18, className }: IconProps) {
+  return (
+    <IconSvg size={size} className={className}>
+      <path d="m18 15-6-6-6 6" {...strokeProps} strokeLinecap="round" strokeLinejoin="round" />
+    </IconSvg>
+  );
+}
+
 export function IconArrowUpRight({ size = 18, className }: IconProps) {
   return (
     <IconSvg size={size} className={className}>
@@ -87,6 +95,15 @@ export function IconArrowRight({ size = 18, className }: IconProps) {
   return (
     <IconSvg size={size} className={className}>
       <path d="M5 12h14M13 6l6 6-6 6" {...strokeProps} strokeLinecap="round" strokeLinejoin="round" />
+    </IconSvg>
+  );
+}
+
+export function IconDownload({ size = 18, className }: IconProps) {
+  return (
+    <IconSvg size={size} className={className}>
+      <path d="M12 15V3M8 11l4 4 4-4" {...strokeProps} strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4 19h16" {...strokeProps} strokeLinecap="round" />
     </IconSvg>
   );
 }
@@ -128,6 +145,22 @@ export function IconMail({ size = 18, className }: IconProps) {
     <IconSvg size={size} className={className}>
       <rect x="2" y="4" width="20" height="16" rx="2" {...strokeProps} />
       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" {...strokeProps} strokeLinecap="round" strokeLinejoin="round" />
+    </IconSvg>
+  );
+}
+
+export function IconMenu({ size = 18, className }: IconProps) {
+  return (
+    <IconSvg size={size} className={className}>
+      <path d="M4 7h16M4 12h16M4 17h16" {...strokeProps} strokeLinecap="round" />
+    </IconSvg>
+  );
+}
+
+export function IconX({ size = 18, className }: IconProps) {
+  return (
+    <IconSvg size={size} className={className}>
+      <path d="m6 6 12 12M18 6 6 18" {...strokeProps} strokeLinecap="round" />
     </IconSvg>
   );
 }
