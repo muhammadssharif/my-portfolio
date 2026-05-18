@@ -39,11 +39,11 @@ function LanguageMenuItem({ code, selected, pathname, onSelect }: LanguageMenuIt
         locale={code}
         onClick={onSelect}
         role="menuitem"
-        dir={meta.dir}
         lang={meta.htmlLang}
         aria-current={selected ? "true" : undefined}
         aria-label={`${meta.nativeLabel} (${meta.nativeRegion})`}
-        className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-start no-underline transition-colors ${
+        dir="ltr"
+        className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 no-underline transition-colors ${
           selected
             ? "bg-[color:color-mix(in_srgb,var(--accent)_16%,transparent)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--accent)_35%,var(--border))]"
             : "text-inherit hover:bg-[var(--hover-surface)]"
@@ -56,13 +56,9 @@ function LanguageMenuItem({ code, selected, pathname, onSelect }: LanguageMenuIt
           {meta.flag}
         </span>
 
-        <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <span className="truncate text-sm font-semibold leading-tight text-[var(--text)]" lang={meta.htmlLang}>
-            {meta.nativeLabel}
-          </span>
-          <span className="truncate text-xs leading-tight text-[var(--muted)]" lang={meta.htmlLang}>
-            {meta.nativeRegion}
-          </span>
+        <span className="flex min-w-0 flex-1 flex-col gap-0.5" dir={meta.dir} lang={meta.htmlLang}>
+          <span className="text-sm font-semibold leading-snug text-[var(--text)]">{meta.nativeLabel}</span>
+          <span className="text-xs leading-snug text-[var(--muted)]">{meta.nativeRegion}</span>
         </span>
 
         <span
@@ -98,7 +94,6 @@ export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
   useFixedDropdownPosition(triggerRef, menuRef, open);
 
   const current = localeMetadata[locale];
-  const docDir = current.dir;
 
   return (
     <div ref={containerRef} className="relative shrink-0">
@@ -138,7 +133,7 @@ export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
             id="language-menu"
             role="menu"
             aria-label={t("label")}
-            dir={docDir}
+            dir="ltr"
             className={PANEL_CLASS}
             style={PANEL_INITIAL_STYLE}
           >
