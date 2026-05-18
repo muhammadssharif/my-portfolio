@@ -19,6 +19,12 @@ type ViewportDeckAxis = "vertical" | "horizontal";
 /** carousel = transform track (demos index); single = one slide in DOM (flow gallery, Safari-safe) */
 type ViewportDeckMode = "carousel" | "single";
 
+const MOBILE_DECK_MAX_WIDTH = "(max-width: 899px)";
+
+type GoToOptions = {
+  scrollToSlide?: boolean;
+};
+
 type ViewportDeckProps = {
   axis: ViewportDeckAxis;
   slides: readonly ViewportDeckSlide[];
@@ -35,6 +41,8 @@ type ViewportDeckProps = {
   onIndexChange?: (index: number) => void;
   /** Rendered between the toolbar and the stage (e.g. flow step rail) */
   middleSlot?: React.ReactNode;
+  /** Scroll active slide into view on toolbar navigation (mobile page scroll) */
+  scrollToSlideOnNavigate?: boolean;
 };
 
 export function ViewportDeck({
@@ -47,12 +55,14 @@ export function ViewportDeck({
   mode = "carousel",
   index: controlledIndex,
   onIndexChange,
-  middleSlot
+  middleSlot,
+  scrollToSlideOnNavigate = false
 }: ViewportDeckProps) {
   const t = useTranslations("viewportDeck");
   const deckId = useId();
   const stageRef = useRef<HTMLDivElement>(null);
   const hashSyncedRef = useRef(false);
+  const pendingScrollRef = useRef(false);
   const [uncontrolledIndex, setUncontrolledIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -63,18 +73,21 @@ export function ViewportDeck({
   const current = slides[index];
 
   const goTo = useCallback(
-    (nextIndex: number) => {
+    (nextIndex: number, options?: GoToOptions) => {
       if (total === 0) return;
       const wrapped = ((nextIndex % total) + total) % total;
       if (wrapped === index) return;
+      if (scrollToSlideOnNavigate && options?.scrollToSlide) {
+        pendingScrollRef.current = true;
+      }
       if (isControlled) onIndexChange?.(wrapped);
       else setUncontrolledIndex(wrapped);
     },
-    [index, isControlled, onIndexChange, total]
+    [index, isControlled, onIndexChange, scrollToSlideOnNavigate, total]
   );
 
-  const goPrev = useCallback(() => goTo(index - 1), [goTo, index]);
-  const goNext = useCallback(() => goTo(index + 1), [goTo, index]);
+  const goPrev = useCallback((options?: GoToOptions) => goTo(index - 1, options), [goTo, index]);
+  const goNext = useCallback((options?: GoToOptions) => goTo(index + 1, options), [goTo, index]);
   const goToRef = useRef(goTo);
   goToRef.current = goTo;
 
@@ -103,6 +116,18 @@ export function ViewportDeck({
     if (!mounted) return;
     stageRef.current?.focus({ preventScroll: true });
   }, [mounted]);
+
+  useEffect(() => {
+    if (!scrollToSlideOnNavigate || !pendingScrollRef.current) return;
+    pendingScrollRef.current = false;
+    if (!window.matchMedia(MOBILE_DECK_MAX_WIDTH).matches) return;
+    const stage = stageRef.current;
+    if (!stage) return;
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth";
+    stage.scrollIntoView({ block: "start", behavior });
+  }, [index, scrollToSlideOnNavigate]);
 
   const lastHashRef = useRef<string | null>(null);
 
@@ -203,7 +228,7 @@ export function ViewportDeck({
           <button
             type="button"
             className="viewport-deck-nav-btn"
-            onClick={goPrev}
+            onClick={() => goPrev({ scrollToSlide: true })}
             aria-label={t("prev")}
             aria-controls={stageControlId}
           >
@@ -218,7 +243,7 @@ export function ViewportDeck({
                 aria-selected={slideIndex === index}
                 aria-controls={`${deckId}-slide-${slide.id}`}
                 className={`viewport-deck-dot ${slideIndex === index ? "viewport-deck-dot-active" : ""}`}
-                onClick={() => goTo(slideIndex)}
+                onClick={() => goTo(slideIndex, { scrollToSlide: true })}
                 aria-label={t("goTo", { label: slide.label })}
               />
             ))}
@@ -226,7 +251,7 @@ export function ViewportDeck({
           <button
             type="button"
             className="viewport-deck-nav-btn"
-            onClick={goNext}
+            onClick={() => goNext({ scrollToSlide: true })}
             aria-label={t("next")}
             aria-controls={stageControlId}
           >

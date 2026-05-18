@@ -2362,6 +2362,7 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   /* Work card first; toolbar (counter + stepper) below on mobile only */
   .case-study-deck.viewport-deck .viewport-deck-stage {
     order: 1;
+    scroll-margin-top: calc(4.5rem + var(--site-header-gap));
   }
 
   .case-study-deck.viewport-deck .viewport-deck-middle {

@@ -23,6 +23,7 @@ export function CaseStudyDeck({ studies }: CaseStudyDeckProps) {
       mode="single"
       slides={slides}
       lockPageScroll={isDesktop}
+      scrollToSlideOnNavigate
       className="case-study-deck"
     />
   );
