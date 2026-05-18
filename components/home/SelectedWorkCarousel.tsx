@@ -7,20 +7,15 @@ import { Marquee } from "@/components/ui/Marquee";
 import { ProjectPreviewCard } from "@/components/home/ProjectPreviewCard";
 import { IconArrowUpRight } from "@/components/ui/icons";
 
-export type HomeFeaturedItem = {
-  cardId: string;
-  study: CaseStudy;
-};
-
 type SelectedWorkCarouselProps = {
-  items: readonly HomeFeaturedItem[];
+  studies: readonly CaseStudy[];
   className?: string;
 };
 
-export function SelectedWorkCarousel({ items, className = "" }: SelectedWorkCarouselProps) {
+export function SelectedWorkCarousel({ studies, className = "" }: SelectedWorkCarouselProps) {
   const t = useTranslations("home");
 
-  const cards = items.map(({ cardId, study }) => <ProjectPreviewCard key={cardId} cardId={cardId} study={study} />);
+  const cards = studies.map((study) => <ProjectPreviewCard key={study.id} study={study} />);
 
   return (
     <section className={`space-y-4 ${className}`.trim()} aria-label={t("recentCaseStudies")}>

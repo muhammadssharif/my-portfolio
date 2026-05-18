@@ -58,6 +58,13 @@ export function useSwipeNavigation<T extends HTMLElement>(
       consumedSwipeRef.current = false;
     };
 
+    const releaseCapture = (pointerId: number) => {
+      // hasPointerCapture is defined everywhere setPointerCapture is, but guard for older WebKit.
+      if (typeof stage.hasPointerCapture === "function" && stage.hasPointerCapture(pointerId)) {
+        stage.releasePointerCapture(pointerId);
+      }
+    };
+
     const onPointerDown = (event: PointerEvent) => {
       if (event.pointerType === "mouse" && event.button !== 0) return;
       if (shouldIgnoreSwipeStart(event.target)) return;
@@ -69,7 +76,10 @@ export function useSwipeNavigation<T extends HTMLElement>(
         tracking: true,
         axis: "none"
       };
-      stage.setPointerCapture(event.pointerId);
+      // NOTE: do NOT setPointerCapture here — capturing a touch pointer before we know
+      // the user's intent blocks the browser from handing the gesture off to native
+      // vertical scroll on mobile (page scroll freezes mid-card). We only claim the
+      // pointer once we've committed to a horizontal swipe in onPointerMove below.
     };
 
     const onPointerMove = (event: PointerEvent) => {
@@ -83,13 +93,27 @@ export function useSwipeNavigation<T extends HTMLElement>(
 
       if (swipe.axis === "none") {
         if (absX < AXIS_LOCK_PX && absY < AXIS_LOCK_PX) return;
-        if (absX > absY * 1.15) swipe.axis = "horizontal";
-        else if (absY > absX * 1.15) swipe.axis = "vertical";
-        else return;
+        if (absX > absY * 1.15) {
+          swipe.axis = "horizontal";
+          // Capture now so we keep getting events even if the finger leaves the
+          // stage (e.g. fast swipe past the deck edge) and the click suppression
+          // below can fire reliably.
+          try {
+            stage.setPointerCapture(event.pointerId);
+          } catch {
+            // Some browsers throw if the pointer is already released; safe to ignore.
+          }
+        } else if (absY > absX * 1.15) {
+          swipe.axis = "vertical";
+        } else {
+          return;
+        }
       }
 
       if (swipe.axis === "vertical") {
+        // Hand the gesture entirely back to the browser so page scroll can continue.
         swipe.tracking = false;
+        releaseCapture(swipe.pointerId);
         return;
       }
 
@@ -105,6 +129,7 @@ export function useSwipeNavigation<T extends HTMLElement>(
         return;
       }
       clearSwipe();
+      releaseCapture(event.pointerId);
 
       if (!swipe.tracking || swipe.axis !== "horizontal") return;
 

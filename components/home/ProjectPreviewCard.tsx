@@ -7,18 +7,36 @@ import type { CaseStudy } from "@/content/portfolio";
 import { IconArrowUpRight } from "@/components/ui/icons";
 
 export type ProjectPreviewCardProps = {
-  cardId: string;
   study: CaseStudy;
 };
 
-export function ProjectPreviewCard({ cardId, study }: ProjectPreviewCardProps) {
+/**
+ * Homepage carousel card. Content is derived directly from the CaseStudy data
+ * (already translated in messages/<locale>.json under `caseStudies.<id>.*`).
+ *
+ * Mapping:
+ *   tagline → study.context  (one-line situation)
+ *   problem → study.constraint
+ *   built   → first item of study.built
+ *   impact  → first item of study.metrics
+ *   stack   → study.stack (capped so the card stays compact)
+ *
+ * Previously the card pulled bespoke copy from `home.cards.<cardId>.*` for a
+ * hand-picked subset of 3 case studies — which is why the marquee was stuck
+ * cycling only Paybilt + Horuz V2. Driving off CaseStudy lets every case study
+ * render with no parallel translation surface.
+ */
+const STACK_PREVIEW_LIMIT = 6;
+
+export function ProjectPreviewCard({ study }: ProjectPreviewCardProps) {
   const t = useTranslations("home");
   const demosT = useTranslations("demos");
-  const tagline = t(`cards.${cardId}.tagline`);
-  const problem = t(`cards.${cardId}.problem`);
-  const built = t(`cards.${cardId}.built`);
-  const impact = t(`cards.${cardId}.impact`);
-  const stack = t.raw(`cards.${cardId}.stack`) as string[];
+
+  const tagline = study.context;
+  const problem = study.constraint;
+  const built = study.built[0] ?? "";
+  const impact = study.metrics[0] ?? "";
+  const stack = study.stack.slice(0, STACK_PREVIEW_LIMIT);
 
   const demo = getDemoForCaseStudy(study.id);
   const href = demo ? `/demos/${demo.slug}` : `/work#${study.id}`;
@@ -32,33 +50,41 @@ export function ProjectPreviewCard({ cardId, study }: ProjectPreviewCardProps) {
         <p className="mt-2 text-sm leading-relaxed text-[var(--accent)]">{tagline}</p>
 
         <dl className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--muted)]">
-          <div>
-            <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("problemLabel")}</dt>
-            <dd className="text-[var(--text)]">{problem}</dd>
-          </div>
-          <div>
-            <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("builtLabel")}</dt>
-            <dd>{built}</dd>
-          </div>
-          <div>
-            <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("impactLabel")}</dt>
-            <dd className="text-[var(--text)]">{impact}</dd>
-          </div>
+          {problem ? (
+            <div>
+              <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("problemLabel")}</dt>
+              <dd className="text-[var(--text)]">{problem}</dd>
+            </div>
+          ) : null}
+          {built ? (
+            <div>
+              <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("builtLabel")}</dt>
+              <dd>{built}</dd>
+            </div>
+          ) : null}
+          {impact ? (
+            <div>
+              <dt className="eyebrow mb-0.5 text-[var(--muted)]">{t("impactLabel")}</dt>
+              <dd className="text-[var(--text)]">{impact}</dd>
+            </div>
+          ) : null}
         </dl>
 
-        <div className="mt-4">
-          <p className="eyebrow mb-2">{t("techLabel")}</p>
-          <div className="flex flex-wrap gap-1.5">
-            {stack.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-lg border border-[var(--border)] bg-[color:color-mix(in_srgb,var(--surface)_70%,transparent)] px-2 py-0.5 text-xs text-[var(--muted)]"
-              >
-                {tech}
-              </span>
-            ))}
+        {stack.length > 0 ? (
+          <div className="mt-4">
+            <p className="eyebrow mb-2">{t("techLabel")}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {stack.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-lg border border-[var(--border)] bg-[color:color-mix(in_srgb,var(--surface)_70%,transparent)] px-2 py-0.5 text-xs text-[var(--muted)]"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <span className="btn btn-secondary mt-5 inline-flex w-full items-center justify-center gap-2 text-sm">
           {ctaLabel}

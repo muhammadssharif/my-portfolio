@@ -2032,10 +2032,14 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
     transform 0.2s ease;
 }
 
-.case-study-flow-cta:hover {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 16%, var(--surface));
-  transform: translateY(-1px);
+/* Hover-only — coarse-pointer (touch) devices keep :hover state stuck after tap
+   on iOS/Android, which made the cards look "selected" after the user lifts. */
+@media (hover: hover) and (pointer: fine) {
+  .case-study-flow-cta:hover {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+    transform: translateY(-1px);
+  }
 }
 
 .case-study-card-body {
@@ -2304,8 +2308,10 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   transition: background 0.2s ease;
 }
 
-.case-study-built-list li:hover {
-  background: color-mix(in srgb, var(--accent) 6%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .case-study-built-list li:hover {
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
 }
 
 .case-study-built-index {
@@ -2346,11 +2352,13 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
     box-shadow 0.2s ease;
 }
 
-.case-study-stack li:hover {
-  border-color: color-mix(in srgb, var(--tech-brand) 55%, var(--border));
-  color: var(--tech-brand);
-  background: color-mix(in srgb, var(--tech-brand) 14%, var(--surface));
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--tech-brand) 22%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .case-study-stack li:hover {
+    border-color: color-mix(in srgb, var(--tech-brand) 55%, var(--border));
+    color: var(--tech-brand);
+    background: color-mix(in srgb, var(--tech-brand) 14%, var(--surface));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--tech-brand) 22%, transparent);
+  }
 }
 
 /* Work page — mobile stacked layout (below two-column breakpoint) */
