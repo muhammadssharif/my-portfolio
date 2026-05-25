@@ -4,7 +4,21 @@
   --font-display: var(--font-syne);
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-jetbrains-mono);
-  /* iPhone 16/17 Pro Max portrait = 440px CSS — progressive layout from here */
+
+  /* ============================================================================
+   * Breakpoint System
+   * ============================================================================
+   * Tailwind defaults: sm (40rem/640px), md (48rem/768px), lg (64rem/1024px),
+   *                    xl (80rem/1280px), 2xl (96rem/1536px)
+   *
+   * Custom breakpoints:
+   *   phone-lg: 27.5rem (440px) — iPhone 16/17 Pro Max portrait
+   *
+   * Key layout breakpoints:
+   *   - 900px: immersive deck switches from mobile to desktop layout
+   *   - 1280px (xl): content scaling for large desktops begins
+   *   - 1536px (2xl): ultrawide optimizations
+   * ============================================================================ */
   --breakpoint-phone-lg: 27.5rem;
 }
 
@@ -23,15 +37,27 @@
 }
 
 :root {
-  /* Upper-right sky beside nav — sized to sit in the viewport margin when possible */
-  --site-max-width: 72rem;
+  /* ============================================================================
+   * Responsive Shell System
+   * ============================================================================
+   * The site shell is now fluid (no max-width cap) with progressive padding:
+   *   - Mobile: 1rem (px-4)
+   *   - phone-lg (440px+): 1.25rem (px-5)
+   *   - md (768px+): 1.5rem (px-6)
+   *   - lg (1024px+): 2rem (px-8)
+   *   - xl (1280px+): 3rem (px-12)
+   *   - 2xl (1536px+): 4rem (px-16)
+   *
+   * --site-gutter: the inline padding at current viewport (used for luminary alignment)
+   * --site-max-width: effectively 100vw - 2 * gutter (no fixed cap)
+   * ============================================================================ */
+  --site-gutter: 1rem;
+  --site-max-width: calc(100vw - 2 * var(--site-gutter));
   --viewport-phone-lg: 27.5rem; /* 440px — iPhone 16/17 Pro Max portrait */
   --viewport-tablet: 48rem; /* 768px — inline nav + desktop header */
   --luminary-top: 0.35rem;
-  --luminary-right: max(
-    0.5rem,
-    calc((100vw - min(100vw, var(--site-max-width))) / 2 - var(--luminary-wrap-size) + 2.75rem)
-  );
+  /* Luminary sits in the viewport margin, aligned with shell edge */
+  --luminary-right: max(0.5rem, calc(var(--site-gutter) - var(--luminary-wrap-size) + 2.75rem));
   --luminary-wrap-size: clamp(108px, 12vw, 156px);
   --luminary-exit-y: 52px;
   --luminary-exit-scale: 0.64;
@@ -177,6 +203,39 @@ body {
   gap: var(--site-header-gap);
 }
 
+/* ============================================================================
+ * Full-Bleed Utility
+ * ============================================================================
+ * Breaks out of the shell's inline padding to span the full viewport width.
+ * Used by carousels/marquees that should reach screen edges on all devices.
+ *
+ * Technique: negative margin pulls element to viewport edge, then width: 100dvw
+ * ensures it spans the full viewport. Padding re-adds safe-area insets for
+ * devices with notches/home indicators.
+ * ============================================================================ */
+.full-bleed {
+  width: 100vw;
+  width: 100dvw;
+  max-width: 100vw;
+  max-width: 100dvw;
+  margin-inline: calc(50% - 50vw);
+  margin-inline: calc(50% - 50dvw);
+  box-sizing: border-box;
+  padding-inline: max(var(--site-gutter), env(safe-area-inset-left, 0px))
+    max(var(--site-gutter), env(safe-area-inset-right, 0px));
+}
+
+/* Overflow guards: allow full-bleed children to break out without clipping */
+.site-shell:has(.home-viewport),
+.site-shell:has(.viewport-page--immersive) {
+  overflow-x: visible;
+}
+
+.site-shell:has(.home-viewport) > main,
+.site-shell:has(.viewport-page--immersive) > main {
+  overflow-x: visible;
+}
+
 @media (min-width: 40rem) {
   :root {
     --site-header-gap: 2rem;
@@ -186,6 +245,37 @@ body {
 @media (min-width: 48rem) {
   :root {
     --site-header-gap: 2.5rem;
+  }
+}
+
+/* Responsive shell gutter — matches Tailwind px-* on .site-shell in layout.tsx */
+@media (min-width: 27.5rem) {
+  :root {
+    --site-gutter: 1.25rem; /* phone-lg: px-5 */
+  }
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --site-gutter: 1.5rem; /* md: px-6 */
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --site-gutter: 2rem; /* lg: px-8 */
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --site-gutter: 3rem; /* xl: px-12 */
+  }
+}
+
+@media (min-width: 96rem) {
+  :root {
+    --site-gutter: 4rem; /* 2xl: px-16 */
   }
 }
 
@@ -1317,14 +1407,40 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   touch-action: pan-y pinch-zoom;
 }
 
+/* Edge fade for full-bleed marquees — fixed width feels more consistent across viewports */
 .home-marquee-fade {
-  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  --marquee-fade-width: clamp(1.5rem, 4vw, 4rem);
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black var(--marquee-fade-width),
+    black calc(100% - var(--marquee-fade-width)),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black var(--marquee-fade-width),
+    black calc(100% - var(--marquee-fade-width)),
+    transparent
+  );
 }
 
 [dir="rtl"] .home-marquee-fade {
-  mask-image: linear-gradient(270deg, transparent, black 6%, black 94%, transparent);
-  -webkit-mask-image: linear-gradient(270deg, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(
+    270deg,
+    transparent,
+    black var(--marquee-fade-width),
+    black calc(100% - var(--marquee-fade-width)),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    270deg,
+    transparent,
+    black var(--marquee-fade-width),
+    black calc(100% - var(--marquee-fade-width)),
+    transparent
+  );
 }
 
 .tech-badge-pill {
@@ -1590,6 +1706,29 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   }
 }
 
+/* Scale demo flow sidebar on large screens */
+@media (min-width: 80rem) {
+  .demo-flow-gallery {
+    grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
+    gap: 1.5rem 2rem;
+  }
+
+  .demo-flow-copy {
+    max-width: clamp(22rem, 18vw, 28rem);
+  }
+}
+
+@media (min-width: 96rem) {
+  .demo-flow-gallery {
+    grid-template-columns: minmax(16rem, 24rem) minmax(0, 1fr);
+    gap: 1.5rem 2.5rem;
+  }
+
+  .demo-flow-copy {
+    max-width: clamp(24rem, 16vw, 32rem);
+  }
+}
+
 .demo-flow-visual {
   display: flex;
   min-width: 0;
@@ -1622,7 +1761,7 @@ html[data-cosmic-tier="low"] .cosmic-sun-rays {
   flex-shrink: 0;
   margin: 0;
   padding: 0 0.15rem;
-  max-width: 52rem;
+  max-width: min(52rem, 100%);
 }
 
 .demo-flow-footnote p {
@@ -2654,6 +2793,40 @@ html.viewport-deck-active body {
   overflow: hidden;
 }
 
+/* Edge-to-edge deck stage — applies at ALL breakpoints for cinematic full-width feel */
+.viewport-page--immersive .viewport-deck-stage {
+  width: 100vw;
+  width: 100dvw;
+  max-width: 100vw;
+  max-width: 100dvw;
+  margin-inline: calc(50% - 50vw);
+  margin-inline: calc(50% - 50dvw);
+  box-sizing: border-box;
+  padding-inline: max(var(--site-gutter), env(safe-area-inset-left, 0px))
+    max(var(--site-gutter), env(safe-area-inset-right, 0px));
+}
+
+/* Desktop: soften corners for cinematic feel, increase shadow on ultrawides */
+@media (min-width: 900px) {
+  .viewport-page--immersive .viewport-deck-stage {
+    border-radius: 0.75rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  .viewport-page--immersive .viewport-deck-stage {
+    border-radius: 0.5rem;
+    box-shadow: 0 24px 64px color-mix(in srgb, #000 25%, transparent);
+  }
+}
+
+@media (min-width: 96rem) {
+  .viewport-page--immersive .viewport-deck-stage {
+    border-radius: 0.35rem;
+    box-shadow: 0 32px 80px color-mix(in srgb, #000 28%, transparent);
+  }
+}
+
 @media (max-width: 899px) {
   .site-shell:has(.viewport-page--flow),
   .site-shell:has(.viewport-page--flow) main {
@@ -2682,15 +2855,8 @@ html.viewport-deck-active body {
     height: auto;
   }
 
-  /* Edge-to-edge deck on small screens; safe-area padding keeps notch/home clear. */
+  /* Mobile: remove border-radius and use minimal safe-area padding (true edge-to-edge) */
   .viewport-page--immersive .viewport-deck-stage {
-    width: 100vw;
-    width: 100dvw;
-    max-width: 100vw;
-    max-width: 100dvw;
-    margin-inline: calc(50% - 50vw);
-    margin-inline: calc(50% - 50dvw);
-    box-sizing: border-box;
     padding-inline: env(safe-area-inset-left, 0px) env(safe-area-inset-right, 0px);
     border-radius: 0;
   }
@@ -2752,6 +2918,29 @@ html.viewport-deck-active body {
 .viewport-page-intro--compact .text-lg {
   font-size: 0.9375rem;
   line-height: 1.55;
+}
+
+/* Scale page intro typography on large screens */
+@media (min-width: 80rem) {
+  .viewport-page-intro--compact h1 {
+    font-size: clamp(2rem, 2.5vw, 2.75rem);
+  }
+
+  .viewport-page-intro--compact .text-base,
+  .viewport-page-intro--compact .text-lg {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 96rem) {
+  .viewport-page-intro--compact h1 {
+    font-size: clamp(2.25rem, 2.2vw, 3rem);
+  }
+
+  .viewport-page-intro--compact .text-base,
+  .viewport-page-intro--compact .text-lg {
+    font-size: 1.0625rem;
+  }
 }
 
 .viewport-page-footnote {
@@ -3014,10 +3203,7 @@ html[data-browser="safari"] .viewport-deck[data-axis="horizontal"] .viewport-dec
 }
 
 @media (min-width: 900px) {
-  html[data-browser="safari"] .viewport-deck-stage {
-    width: 100%;
-  }
-
+  /* Safari: immersive deck inherits full-bleed from global rules; no width override needed */
   html[data-browser="safari"] .viewport-page--immersive {
     height: calc(100svh - var(--viewport-chrome));
     max-height: calc(100svh - var(--viewport-chrome));

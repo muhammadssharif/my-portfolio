@@ -33,7 +33,7 @@ export function ProjectPreviewCard({ study }: ProjectPreviewCardProps) {
   const demo = getDemoForCaseStudy(study.id);
 
   return (
-    <article className="project-preview-card surface-card group flex h-full w-[min(100vw-2rem,20rem)] shrink-0 flex-col rounded-2xl border border-[var(--border)] p-5 sm:w-[19rem] md:p-6">
+    <article className="project-preview-card surface-card group flex h-full w-[min(calc(100vw-2rem),20rem)] shrink-0 flex-col rounded-2xl border border-[var(--border)] p-5 sm:w-[19rem] lg:w-[21rem] xl:w-[24rem] 2xl:w-[26rem] md:p-6 xl:p-7">
       <p className="eyebrow mb-2">{study.company}</p>
       <h3 className="font-display text-lg font-semibold tracking-tight text-[var(--text)] md:text-xl">{study.title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-[var(--accent)]">{tagline}</p>

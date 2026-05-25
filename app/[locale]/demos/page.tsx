@@ -16,7 +16,7 @@ export default async function DemosPage() {
 
   return (
     <div className="viewport-page viewport-page--immersive cosmic-occlude">
-      <header className="viewport-page-intro viewport-page-intro--compact max-w-3xl space-y-2">
+      <header className="viewport-page-intro viewport-page-intro--compact max-w-4xl space-y-2 xl:max-w-5xl">
         <p className="eyebrow">{t("eyebrow")}</p>
         <h1 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">
           <span className="display-title__line">{t("title")}</span>

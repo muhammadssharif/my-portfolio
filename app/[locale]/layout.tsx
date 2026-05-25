@@ -98,7 +98,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
             <SafariCompat />
             <ScrollToTop />
             <CosmicChrome />
-            <div className="site-shell relative mx-auto min-h-screen max-w-6xl px-4 pb-12 pt-5 phone-lg:px-5 md:px-8 md:pt-6">
+            <div className="site-shell relative mx-auto min-h-screen w-full px-4 pb-12 pt-5 phone-lg:px-5 md:px-6 lg:px-8 xl:px-12 2xl:px-16 md:pt-6">
               <Header />
               <main className="site-main relative min-h-0 flex-1">{children}</main>
               <Footer />

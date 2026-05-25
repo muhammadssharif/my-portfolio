@@ -30,7 +30,7 @@ export function SelectedWorkCarousel({ studies, className = "" }: SelectedWorkCa
         </Link>
       </div>
 
-      <Marquee durationSec={42} aria-label={t("workMarqueeLabel")} className="home-marquee-fade -mx-4 md:-mx-8">
+      <Marquee durationSec={42} aria-label={t("workMarqueeLabel")} className="home-marquee-fade full-bleed">
         {cards}
       </Marquee>
     </section>

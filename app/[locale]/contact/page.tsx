@@ -24,7 +24,7 @@ export default async function ContactPage() {
             <span className="display-title__line">{t("title")}</span>
             <span className="display-title__line mt-1 text-[var(--muted)]">{t("titleMuted")}</span>
           </h1>
-          <p className="max-w-md text-base leading-relaxed text-[var(--muted)] phone-lg:text-lg">{t("intro")}</p>
+          <p className="max-w-lg text-base leading-relaxed text-[var(--muted)] phone-lg:text-lg xl:max-w-xl">{t("intro")}</p>
         </div>
 
         <div className="surface-panel contact-details space-y-3 overflow-visible rounded-2xl p-5 text-sm leading-relaxed">

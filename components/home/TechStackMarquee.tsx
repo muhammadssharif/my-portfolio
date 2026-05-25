@@ -36,7 +36,7 @@ export function TechStackMarquee() {
   const t = useTranslations("home");
 
   return (
-    <Marquee direction="right" durationSec={48} aria-label={t("techMarqueeLabel")} className="home-marquee-fade -mx-4 py-1 md:-mx-8">
+    <Marquee direction="right" durationSec={48} aria-label={t("techMarqueeLabel")} className="home-marquee-fade full-bleed py-1">
       {siteContent.techBadges.map((badge) => {
         const Icon = iconById[badge.id] ?? FileCode2;
         return (

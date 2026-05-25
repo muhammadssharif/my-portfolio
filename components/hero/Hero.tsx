@@ -31,10 +31,10 @@ export function Hero() {
         <p className="eyebrow">{t("hero.eyebrow")}</p>
 
         <div className="space-y-2">
-          <h1 className="font-display text-[clamp(2rem,5vw,3rem)] font-semibold leading-[1.15] tracking-[-0.03em]">
+          <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[1.15] tracking-[-0.03em]">
             {t("site.shortName")}
           </h1>
-          <p className="max-w-md text-base leading-snug text-[var(--muted)] md:text-[1.05rem]">{t("hero.positioning")}</p>
+          <p className="max-w-lg text-base leading-snug text-[var(--muted)] md:text-[1.05rem] xl:max-w-xl xl:text-lg">{t("hero.positioning")}</p>
         </div>
 
         <div className="flex flex-wrap gap-1.5">
